@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 
 import { useSelector } from 'react-redux';
 import PrivateRoute from './components/PrivateRoute';
+import OauthRedirectHandler from './service/OauthRedirectHandler';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Main />}/>
         <Route exact path="/login" element={<LoginPage />}/>
+        <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
         <Route 
           path="/myPage"
           element={

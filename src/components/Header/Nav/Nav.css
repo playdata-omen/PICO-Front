@@ -6,7 +6,6 @@
   align-items: center;
 }
 
-
 .nav_links ul{
   display: flex;
   justify-content: space-between;
@@ -16,4 +15,8 @@
 .nav_links li{
   margin-left: 10px;
   list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
