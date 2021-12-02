@@ -3,4 +3,17 @@
   width: 60%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+
+.nav_links ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nav_links li{
+  margin-left: 10px;
+  list-style: none;
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 
-function MyPage() {
+function MyPage({ authenticated }) {
+
+  console.log(authenticated)
   return (
     <div>
       MyPage
