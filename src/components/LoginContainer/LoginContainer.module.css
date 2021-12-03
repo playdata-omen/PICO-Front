@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .container {
-  height: 80%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.oauth-container {
+.oauthContainer {
   width: 60%;
   margin-top: 50px;
   background: #fff;
@@ -16,18 +16,18 @@
   justify-content: center;
 }
 
-.oauth-content {
+.oauthContent {
   width: 50%;
   display: flex;
   flex-direction: column;
-  vertical-align: middle;
+  align-items: center;
   position: relative;
-  margin: 50px 0px;
+  margin-top: 50px;
+  margin-bottom: 80px;
 }
 
-.oauth-btn {
+.oauthBtn {
   width: 180px;
-  margin: auto;
   font-weight: 400;
   font-size: 16px;
   margin-top: 20px;
@@ -46,8 +46,7 @@
   padding-right: 8px;
 }
 
-
-.oauth-btn.google {
+.oauthBtn.google {
   border-radius: 5px;
 
   font-family: 'Roboto';
@@ -56,8 +55,9 @@
   
 }
 
-.oauth-btn.kakao {
-  border-radius: 12px;
+.oauthBtn.kakao {
+  /* border-radius: 12px; */
+  border-radius: 5px;
 
   padding-left: 8px;
   padding-right: 8px;
@@ -67,13 +67,13 @@
   color: #000000 85%;
 }
 
-.oauth-btn label {
+.oauthBtn label {
   width: 100%;
   text-align: center;
   cursor: pointer;
 }
 
-.oauth-btn.naver {
+.oauthBtn.naver {
   background-color: #03C75A;
   border-radius: 5px;
   color: white;
@@ -81,21 +81,21 @@
   font-weight: 500;
 }
 
-.oauth-btn.google img{
+.oauthBtn.google img{
   height: 18px;
   width: 18px;
   margin-right: 24px;
 }
 
-.oauth-btn img{
+.oauthBtn img{
   height: 24px;
   width: 24px;
 }
 
 
 @media screen and (width<=768px){
-  .oauth-container {
+  .oauthContainer {
     width: 100%;
+    box-shadow: none;
   }
-
 }
