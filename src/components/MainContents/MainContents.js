@@ -18,7 +18,7 @@ function MainContents() {
   const [searchField, setSearchField] = useState("")
 
   const handleSearch = () => {
-    navigate(`/searchResult/${searchField}`)
+    searchField !== '' ? navigate(`/searchResult/${searchField}`) : alert('검색할 단어를 작성하세요')
   }
 
   const handleCategorySearch = (category) => {
@@ -37,18 +37,19 @@ function MainContents() {
       <hr />
  
 
-      <div className={`${styles.searchBar} ${styles.search}`}>
-        <input 
-          type="search"
-          placeholder="작가 찾기"
-          onChange={(e) => setSearchField(e.target.value)}
+      <form onSubmit={handleSearch}>
+        <div className={`${styles.searchBar} ${styles.search}`}>
+          <input 
+            type="search"
+            placeholder="작가 찾기"
+            onChange={(e) => setSearchField(e.target.value)}
           />
+          <a onClick={handleSearch}>
+            <SearchIcon />
+          </a>
 
-        <a onClick={handleSearch}>
-        {/* <Link to={{pathname: `/${this.props.testvalue}`, query: {backUrl}}} /> */}
-          <SearchIcon />
-        </a>
-      </div>
+        </div>
+      </form>
       
       <div className={`${styles.searchBar} ${styles.photoUpload}`} onClick={() => console.log('hello')}>
         <input 
