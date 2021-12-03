@@ -3,7 +3,26 @@ import './Nav.css';
 
 import { Link } from 'react-router-dom';
 
-function Nav({ authenticated }) {
+import { useDispatch, useSelector } from 'react-redux';
+import { auth_actions } from '../../../_actions/auth_action';
+
+function Nav() {
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("ACCESS_TOEN")
+    // return !accessToken ? handleLogin : handleLogout
+  })
+
+  const authenticated = useSelector(store => store.auth.authenticated)
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(auth_actions.logout())
+  }
+
+  const handleLogin = () => {
+    dispatch(auth_actions.login())
+  }
 
   return (
     <nav>
@@ -11,28 +30,26 @@ function Nav({ authenticated }) {
         <div>
           <Link to="/">PICO</Link>
         </div>
-        <div>
+
+        <div className="nav_links">
           {
             authenticated?
             
-            <div>
               <ul>
-                <li>견적요청</li>
                 <li><Link to="/myPage">마이페이지</Link></li>
-                <li>로그아웃</li>
+                <li><button onClick={handleLogout}>리덕스 테스트 로그아웃</button></li>
               </ul>
-            </div>
 
             :
 
-            <div>
               <ul>
-                <li>로그인</li>
+                <li><Link to="/login">로그인</Link></li>
+                <li><button onClick={handleLogin}>리덕스 테스트 로그인</button></li>
               </ul>
-            </div>
             
           }
         </div>  
+
       </div>
     </nav>
   )

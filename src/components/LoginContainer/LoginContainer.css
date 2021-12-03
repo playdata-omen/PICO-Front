@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.container {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.oauth-container {
+  width: 60%;
+  margin-top: 50px;
+  background: #fff;
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.oauth-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  position: relative;
+  margin: 50px 0px;
+}
+
+.oauth-btn {
+  width: 180px;
+  margin: auto;
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: black;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.27);
+
+  height: 40px;
+  font-size: 14px;
+
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+
+.oauth-btn.google {
+  border-radius: 5px;
+
+  font-family: 'Roboto';
+
+  color: #000000;
+  
+}
+
+.oauth-btn.kakao {
+  border-radius: 12px;
+
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: #FEE500;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000 85%;
+}
+
+.oauth-btn label {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.oauth-btn.naver {
+  background-color: #03C75A;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.oauth-btn.google img{
+  height: 18px;
+  width: 18px;
+  margin-right: 24px;
+}
+
+.oauth-btn img{
+  height: 24px;
+  width: 24px;
+}
+
+
+@media screen and (width<=768px){
+  .oauth-container {
+    width: 100%;
+  }
+
+}
