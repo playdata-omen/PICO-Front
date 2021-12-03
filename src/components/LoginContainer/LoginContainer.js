@@ -17,16 +17,19 @@ function LoginContainer() {
 
             <h3>PICO 로그인</h3>
 
-            <a className="oauth-btn" href={GOOGLE_AUTH_URL}>
-              <img src={googleLogo} alt="google"/>Sign in with Google
+            <a className="oauth-btn google" href={GOOGLE_AUTH_URL}>
+              <img src={googleLogo} alt="google"/>
+              Sign in with Google
             </a>
 
-            <a className="oauth-btn" href={KAKAO_AUTH_URL}>
-              <img src={kakaoLogo} alt="kakao"/>Sign in with Kakao
+            <a className="oauth-btn kakao" href={KAKAO_AUTH_URL}>
+              <img src={kakaoLogo} alt="kakao"/>
+              <label>카카오 로그인</label>
             </a>
 
-            <a className="oauth-btn" href={KAKAO_AUTH_URL}>
-              <img src={naverLogo} alt="kakao"/>Sign in with Naver
+            <a className="oauth-btn naver" href={KAKAO_AUTH_URL}>
+              <img src={naverLogo} alt="kakao"/>
+              <label>네이버 로그인</label>
             </a>
             
         </div>
