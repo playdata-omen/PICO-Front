@@ -1,0 +1,6 @@
+.nav_container {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
