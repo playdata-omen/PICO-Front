@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/Header/Header';
 import { Routes, Route } from 'react-router-dom';
-import MyPage from './pages/MyPage';
+import MyPage from './pages/MyPage/MyPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 
 import { useSelector } from 'react-redux';
