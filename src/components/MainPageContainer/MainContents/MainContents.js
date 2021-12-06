@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import SearchIcon from '@mui/icons-material/Search';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import picoLogo from '../../img/pico-logo.png'
+import picoLogo from '../../../img/pico-logo.png'
 
 
 function MainContents() {

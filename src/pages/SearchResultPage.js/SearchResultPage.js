@@ -15,7 +15,7 @@ function SearchResultPage() {
     serverAxios.get(`search/${search}`)
     .then(res => 
       setsearchResult(res.data),
-      setLoaded(true)
+      // setLoaded(true)
     ).catch(err => {
         console.log(err.message)
     })
