@@ -9,7 +9,7 @@ import { auth_actions } from '../../../_actions/auth_action';
 function Nav() {
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("ACCESS_TOEN")
+    const accessToken = localStorage.getItem("ACCESS_TOKEN")
     // return !accessToken ? handleLogin : handleLogout
   })
 
