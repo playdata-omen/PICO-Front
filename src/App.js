@@ -1,13 +1,14 @@
 import './App.css';
 import Header from './components/Header/Header';
 import { Routes, Route } from 'react-router-dom';
-import Main from './pages/Main';
-import MyPage from './pages/MyPage';
+import MyPage from './pages/MyPage/MyPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 
 import { useSelector } from 'react-redux';
 import PrivateRoute from './components/PrivateRoute';
 import OauthRedirectHandler from './service/OauthRedirectHandler';
+import MainPage from './pages/MainPage/MainPage';
+import SearchResultPage from './pages/SearchResultPage.js/SearchResultPage';
 
 function App() {
 
@@ -17,9 +18,10 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route exact path="/" element={<Main />}/>
+        <Route exact path="/" element={<MainPage />}/>
         <Route exact path="/login" element={<LoginPage />}/>
         <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
+        <Route exact path="/searchResult/:search" element={<SearchResultPage/>}/>
         <Route 
           exact path="/myPage"
           element={
