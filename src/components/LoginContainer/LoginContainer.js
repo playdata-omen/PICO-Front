@@ -28,7 +28,7 @@ function LoginContainer() {
             </a>
 
             <a className={`${styles.oauthBtn} ${styles.naver}`} href={KAKAO_AUTH_URL}>
-              <img src={naverLogo} alt="kakao"/>
+              <img src={naverLogo} alt="naver"/>
               <label>네이버 로그인</label>
             </a>
             
