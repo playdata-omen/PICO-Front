@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import OauthRedirectHandler from './service/OauthRedirectHandler';
 import MainPage from './pages/MainPage/MainPage';
 import SearchResultPage from './pages/SearchResultPage.js/SearchResultPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
         <Route exact path="/" element={<MainPage />}/>
         <Route exact path="/login" element={<LoginPage />}/>
         <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
-        <Route exact path="/searchResult/:search" element={<SearchResultPage/>}/>
+        <Route exact path="/searchResult/:search" element={<SearchResultPage />}/>
+        <Route exact path="/user/register" element={<RegisterPage />}/>
         <Route 
           path="/myPage"
           element={

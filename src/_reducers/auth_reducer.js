@@ -8,7 +8,13 @@ import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILU
 const initialState = {
   loading: false,
   authenticated: false,
-  user: {},
+  user: {
+    email: 'henrynoowa@gmail.com',
+    name: '조하운',
+    phone: '010-4446-0410',
+    isRegistered: false,
+    isPhotographer: false
+  },
   error: ''
 }
 
@@ -47,7 +53,5 @@ const auth_reducer = (state = initialState, action) => {
     default: return state
   }
 }
-
-
 
 export default auth_reducer

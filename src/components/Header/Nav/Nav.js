@@ -37,7 +37,7 @@ function Nav() {
 
         <div className="nav_links">
           {
-            authenticated?
+            authenticated ?
             
               <ul>
                 <li><Link to="/estimate">견적요청</Link></li>

@@ -1,0 +1,142 @@
+@import url('../../../constants/colors.css');
+
+.formContainer {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px dashed green; */
+}
+
+.formContainer input[type=text], .formContainer select {
+  border: none;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
+.formContainer input[type=text]:focus, .formContainer select:focus {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.inputContainer {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* border: 1px solid blue; */
+  margin-bottom: 50px;
+}
+
+.inputContainer label {
+  /* border: 1px solid burlywood; */
+  padding: 10px;
+}
+
+.inputContainer input {
+  /* box-shadow: 0 0 0 1px var(--primary-color) inset; */
+  border-radius: 5px;
+  padding: 10px;
+  background-color: transparent;
+  outline: none;
+  color: black;
+  /* margin: 0px 8px; */
+}
+
+.inputContainer select {
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.radioForm label {
+  /* border: 1px solid green; */
+  text-align: left;
+  padding: 5px;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.categoryRadio {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 5px;
+  align-content: center;
+}
+
+.categoryRadio input[type=radio] {
+  display: none;
+}
+
+.postApiContainer {
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  position: fixed;
+  left: 30%;
+  width: 40%;
+  top: 20%;
+}
+
+.categoryBtn, .submitBtn {
+  width: 100%;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  transition: ease-out 300ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.categoryBtn {
+  aspect-ratio: 1/1;
+}
+
+.submitBtn {
+  padding: 10px;
+}
+
+.categoryBtn label {
+  text-align: center;
+}
+
+.categoryBtn:hover, .submitBtn:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.radioContainer input[type=radio]:checked + .categoryBtn {
+  border-radius: 50%;
+}
+
+
+
+
+@media screen and (width<=768px){
+  .formContainer {
+    width: 100%;
+  }
+
+  .postApiContainer {
+    left: 5%;
+    width: 90%;
+  }
+
+  .categoryRadio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px
+  }
+}
