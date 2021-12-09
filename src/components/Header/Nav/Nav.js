@@ -11,16 +11,10 @@ import picoLogo from '../../../img/pico-logo.png'
 function Nav() {
 
   useEffect(() => {
-<<<<<<< HEAD
-    const accessToken = localStorage.getItem("ACCESS_TOKEN")
-    // return !accessToken ? handleLogin : handleLogout
-  })
-=======
     localStorage.setItem('ACCESS_TOKEN', "TEST")
     const accessToken = localStorage.getItem("ACCESS_TOKEN")
     return accessToken ? handleLogin : handleLogout
   },[])
->>>>>>> 52ed83a185bdee72333a6c74243d983ae4ef45f8
 
   const authenticated = useSelector(store => store.auth.authenticated)
   const dispatch = useDispatch();
