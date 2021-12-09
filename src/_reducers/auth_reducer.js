@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE } from "../_actions/type"
+import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_PHTOGRAPHER_SUCCESS } from "../_actions/type"
 // state, action 을 파라미터로 받고 
 // state 에 적용되는 action을 통한 새로운 state값을 리턴
 
@@ -14,6 +14,9 @@ const initialState = {
     phone: '010-4446-0410',
     isRegistered: false,
     isPhotographer: false
+  },
+  photographer: {
+
   },
   error: ''
 }
@@ -49,7 +52,14 @@ const auth_reducer = (state = initialState, action) => {
         error: action.payload
       }
     }
-
+    case FETCH_PHTOGRAPHER_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        photographer: action.payload,
+        error: ''
+      }
+    }
     default: return state
   }
 }

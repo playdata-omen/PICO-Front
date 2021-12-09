@@ -2,8 +2,8 @@ import API from "./API"
 import { auth_actions } from '../_actions/auth_action.js'
 
 export const getUser = (navigate, code, provider) => {
-  return (dispatch) => {
-    dispatch(auth_actions.fetchUserRequest())
+  return dispatch => {
+    dispatch(auth_actions.fetchUserRequest)
     API.get('getUser', {
       params: {
         code: code,
@@ -26,7 +26,7 @@ export const getUser = (navigate, code, provider) => {
 }
 
 export const registerUser = (name, email, phone) => {
-  return (dispatch => {
+  return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
     API.post('registerUser', {
       name,
@@ -39,11 +39,12 @@ export const registerUser = (name, email, phone) => {
       alert("회원가입")
       dispatch(auth_actions.fetchUserFailure(err.message))
     })
-  })
+  }
 }
 
 export const registerPhotographer = (hasStudio, location, location2, pCategory, address, addressDetail) => {
-  return (dispatch => {
+  return dispatch => {
+    dispatch(auth_actions.fetchUserRequest)
     API.post('registerPhotographer', {
       hasStudio,
       location,
@@ -52,9 +53,11 @@ export const registerPhotographer = (hasStudio, location, location2, pCategory, 
       address,
       addressDetail
     }).then(res => {
-
+      const photographer = res.data
+      dispatch(auth_actions.fetchPhotoGrapherSuccess(photographer))
     }).catch(err => {
-
+      alert("작가가입")
+      dispatch(auth_actions.fetchUserFailure(err.message))
     })
-  })
+  }
 }

@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react'
 import styles from './MainContents.module.css'
 import { useNavigate } from 'react-router';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 import picoLogo from '../../../img/pico-logo.png'
+import { category_actions } from '../../../_actions/category_actions';
+import { FETCH_CATEGORY_REQUEST } from '../../../_actions/type';
 
 function MainContents() {
 
+  const dispatch = useDispatch();
+
   let navigate = useNavigate();
   const categories = useSelector(store => store.categories.categories)
+  const err = useSelector(store => store.categories.error)
 
   const [searchField, setSearchField] = useState("")
 
@@ -30,11 +35,9 @@ function MainContents() {
     console.log(category)
   }
 
-  useEffect(async() => {
+  useEffect(() => {
     console.log(categories)
-    // const data = await getCategoryAll();    
-    // alert(data)
-    // console.log(data)
+    dispatch(category_actions.fetchCategories())
   },[])
 
   return (
@@ -80,16 +83,17 @@ function MainContents() {
         <hr />
 
         <div className={styles.categoryBtn}>
+          
           {
+            !err ?
             categories.map(category => 
-              <button onClick={() => handleCategorySearch(Object.values(category)[0])}>{Object.values(category)[1]}</button>
+              <button key={Object.values(category)[1]} onClick={() => handleCategorySearch(Object.values(category)[0])}>{Object.values(category)[1]}</button>
             )
+
+            :
+            
+            <div>{err}</div>
           }
-          {/* {
-            category.map(category => 
-              <button onClick={() => handleCategorySearch(category)} key={category}>{category}</button>
-            )
-          } */}
         </div>
 
       </div>  
