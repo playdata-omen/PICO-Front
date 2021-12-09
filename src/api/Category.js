@@ -1,16 +1,16 @@
 import { category_actions } from "../_actions/category_actions"
 import API from "./API"
 
-export const getCategoryAll = () => {
-  return(dispatch => {
+export const fetchCategories = () => {
+  return dispatch => {
+    dispatch(category_actions.fetchCategoriesRequest)
     API.get('getCategory')
     .then(res => {
       const categories = res.data
-      dispatch(category_actions.fetchCategories(categories))
+      dispatch(category_actions.fetchCategoriesSuccess(categories))
     })
     .catch(err => {
-      alert('categoty err')
-      dispatch(category_actions.fetchCategoriesFaiures(err.message))
+      dispatch(category_actions.fetchCategoriesFailure(err.message))
     })
-  })
+  }
 }
