@@ -11,14 +11,22 @@ import picoLogo from '../../../img/pico-logo.png'
 function Nav() {
 
   useEffect(() => {
+<<<<<<< HEAD
     const accessToken = localStorage.getItem("ACCESS_TOKEN")
     // return !accessToken ? handleLogin : handleLogout
   })
+=======
+    localStorage.setItem('ACCESS_TOKEN', "TEST")
+    const accessToken = localStorage.getItem("ACCESS_TOKEN")
+    return accessToken ? handleLogin : handleLogout
+  },[])
+>>>>>>> 52ed83a185bdee72333a6c74243d983ae4ef45f8
 
   const authenticated = useSelector(store => store.auth.authenticated)
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    localStorage.removeItem("ACCESS_TOKEN")
     dispatch(auth_actions.logout())
   }
 
@@ -35,18 +43,19 @@ function Nav() {
 
         <div className="nav_links">
           {
-            authenticated?
+            authenticated ?
             
               <ul>
+                <li><Link to="/estimate">견적요청</Link></li>
                 <li><Link to="/myPage">마이페이지</Link></li>
-                {/* <li><button onClick={handleLogout}>리덕스 테스트 로그아웃</button></li> */}
+                <li><button onClick={handleLogout}>리덕스 테스트 로그아웃</button></li>
               </ul>
 
             :
 
               <ul>
                 <li><Link to="/login">로그인</Link></li>
-                {/* <li><button onClick={handleLogin}>리덕스 테스트 로그인</button></li> */}
+                <li><button onClick={handleLogin}>리덕스 테스트 로그인</button></li>
               </ul>
             
           }

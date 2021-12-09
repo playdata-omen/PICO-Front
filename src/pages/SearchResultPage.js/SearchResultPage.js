@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import API from '../../api/API';
 
 import Spinner from '../../components/Spinner/Spinner';
 
-import serverAxios from '../../utils/serverAxios';
 
 function SearchResultPage() {
   let { search } = useParams();
@@ -12,10 +12,10 @@ function SearchResultPage() {
   const [searchResult, setsearchResult] = useState([])
 
   useEffect(() => {
-    serverAxios.get(`search/${search}`)
+    API.get(`search/${search}`)
     .then(res => 
       setsearchResult(res.data),
-      setLoaded(true)
+      // setLoaded(true)
     ).catch(err => {
         console.log(err.message)
     })

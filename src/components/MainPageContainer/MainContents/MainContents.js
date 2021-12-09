@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './MainContents.module.css'
 import { useNavigate } from 'react-router';
+
+import { useSelector } from 'react-redux';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import picoLogo from '../../img/pico-logo.png'
-
+import picoLogo from '../../../img/pico-logo.png'
 
 function MainContents() {
 
   let navigate = useNavigate();
+  const categories = useSelector(store => store.categories.categories)
 
-  // 여기션 내가 직접 카테고리를 state에 작성하였지만 
-  // 서버연동이 되었을땐 enum 리스트 받아오는 방법 생각중
-  const [category, setCategory] = useState(['스냅', '화보', '웨딩', '행사', '제품', '기타'])
   const [searchField, setSearchField] = useState("")
 
   const handleSearch = (event) => {
@@ -22,20 +21,30 @@ function MainContents() {
     searchField !== '' ? navigate(`/searchResult/${searchField}`) : alert('검색할 단어를 작성하세요')
   }
 
-  const handleCategorySearch = (category) => {
+  const handleCategorySearch = category => {
+    setTimeout(
+      function(){
+        navigate(`/searchResult/${category}`)
+      }, 700
+    )
     console.log(category)
-    navigate(`/searchResult/${category}`)
   }
+
+  useEffect(async() => {
+    console.log(categories)
+    // const data = await getCategoryAll();    
+    // alert(data)
+    // console.log(data)
+  },[])
 
   return (
     <div className={styles.content}>
-
       <div className={styles.contentLeft}>
 
         <h3>
           나에게 알맞는 사진작가 찾기
         </h3>
-        <hr />
+        <hr/>
   
 
         <form onSubmit={(event) => handleSearch(event)}>
@@ -58,7 +67,6 @@ function MainContents() {
             value="이미지검색"
             />
           <a>
-          {/* <Link to={{pathname: `/${this.props.testvalue}`, query: {backUrl}}} /> */}
             <AddPhotoAlternateIcon />
           </a>
         </div>
@@ -73,10 +81,15 @@ function MainContents() {
 
         <div className={styles.categoryBtn}>
           {
-            category.map(category => 
-              <button onClick={() => handleCategorySearch(category)}>{category}</button>
+            categories.map(category => 
+              <button onClick={() => handleCategorySearch(Object.values(category)[0])}>{Object.values(category)[1]}</button>
             )
           }
+          {/* {
+            category.map(category => 
+              <button onClick={() => handleCategorySearch(category)} key={category}>{category}</button>
+            )
+          } */}
         </div>
 
       </div>  

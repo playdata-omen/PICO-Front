@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './MainPageContainer.module.css'
 
-import MainContents from '../MainContents/MainContents';
+import MainContents from './MainContents/MainContents';
 
 function MainPageContainer() {
 
