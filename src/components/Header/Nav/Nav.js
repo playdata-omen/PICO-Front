@@ -9,9 +9,8 @@ import { auth_actions } from '../../../_actions/auth_action';
 import picoLogo from '../../../img/pico-logo.png'
 
 function Nav() {
-
   useEffect(() => {
-    localStorage.setItem('ACCESS_TOKEN', "TEST")
+    // localStorage.setItem('ACCESS_TOKEN', "TEST")
     const accessToken = localStorage.getItem("ACCESS_TOKEN")
     return accessToken ? handleLogin : handleLogout
   },[])

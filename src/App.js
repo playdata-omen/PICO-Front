@@ -13,7 +13,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 
 function App() {
 
-  const authenticated = useSelector(store => store.auth.authenticated)
+  const auth = useSelector(store => store.auth)
 
   return (
     <div className="App">
@@ -27,8 +27,8 @@ function App() {
         <Route 
           path="/myPage"
           element={
-            <PrivateRoute authenticated>
-              <MyPage authenticated/>
+            <PrivateRoute authenticated={auth.authenticated}>
+              <MyPage user={auth.user}/>
             </ PrivateRoute>
           }
         />

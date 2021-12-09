@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import DaumPostcode from 'react-daum-postcode';
@@ -9,7 +9,6 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { AREA } from '../../../constants';
 
 import styles from './RegForm.module.css'
-import { getCategoryAll } from '../../../api/Category';
 
 import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
@@ -29,7 +28,10 @@ function RegForm() {
   const handleNameChange = value => setName(value)
   const handleEmailChange = value => setEmail(value)
   const handlePhoneChange = value => setPhone(value)
-  const handleIsPhotographerChange = value => setIsPhotographer(JSON.parse(value))
+  const handleIsPhotographerChange = value => {
+    setIsPhotographer(value)
+    !isPhotographer && setPCategory([])
+  }
 
   // 작가 정보등록용
   const [address, setAddress] = useState('')
@@ -43,7 +45,6 @@ function RegForm() {
   const [location2, setLocation2] = useState('전체')
 
   const [pCategory, setPCategory] = useState([])
-  // const [categories, setCategories] = useState([{"categoryIdx":1,"kind":"웨딩"},{"categoryIdx":2,"kind":"스냅"},{"categoryIdx":3,"kind":"화보"}])
 
   const handleHasStudioChange = value => {
     setHasStudio(JSON.parse(value))
@@ -209,11 +210,12 @@ function RegFormPhotographer(
               <div>
                 <input 
                   type="radio"
-                  value={Object.values(category)[0]}
-                  checked={pCategory.includes(parseInt(Object.values(category)[0]))}
+                  value={category.categoryIdx}
+                  // checked={pCategory.includes(parseInt(Object.values(category)[0]))}
+                  checked={pCategory.includes(parseInt(category.categoryIdx))}
                 />
-                <div key={Object.values(category)[1]} className={styles.categoryBtn} onClick={() => handlePCategoryChange(parseInt(parseInt(Object.values(category)[0])))}>
-                  <label>{Object.values(category)[1]}</label>
+                <div key={category.categoryIdx} className={styles.categoryBtn} onClick={() => handlePCategoryChange(parseInt(parseInt(Object.values(category)[0])))}>
+                  <label>{category.kind}</label>
                 </div>
               </div>
             )
