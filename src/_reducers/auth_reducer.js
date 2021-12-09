@@ -13,11 +13,9 @@ const initialState = {
     name: '조하운',
     phone: '010-4446-0410',
     isRegistered: false,
-    isPhotographer: false
+    isPhotographer: true
   },
-  photographer: {
-
-  },
+  photographer: {},
   error: ''
 }
 

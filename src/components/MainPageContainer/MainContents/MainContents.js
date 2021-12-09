@@ -37,7 +37,7 @@ function MainContents() {
 
   useEffect(() => {
     console.log(categories)
-    dispatch(category_actions.fetchCategories())
+    // dispatch(category_actions.fetchCategories())
   },[])
 
   return (
@@ -87,7 +87,7 @@ function MainContents() {
           {
             !err ?
             categories.map(category => 
-              <button key={Object.values(category)[1]} onClick={() => handleCategorySearch(Object.values(category)[0])}>{Object.values(category)[1]}</button>
+              <button key={category.categoryIdx} onClick={() => handleCategorySearch(category.categoryIdx)}>{category.kind}</button>
             )
 
             :
