@@ -1,0 +1,79 @@
+.container {
+  padding: 10px;
+  height: 60vh;
+  /* border: 1px dashed red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.container label {
+  padding: 10px;
+  /* border: 1px dashed red; */
+}
+
+/* Form 1 Category */
+.category {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 5px;
+  align-content: center;
+}
+
+.category * {
+  transition: ease-out 300ms;
+}
+
+.category input[type=radio] {
+  display: none;
+}
+
+.categoryBtn {
+  width: 100%;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+
+.submitBtn {
+  padding: 10px;
+  align-items: center;
+}
+
+.categoryBtn label {
+  cursor: pointer;
+  text-align: center;
+  font-size: small;
+}
+
+.categoryBtn:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.category input[type=radio]:checked + .categoryBtn {
+  border-radius: 50%;
+}
+
+.categoryBtn:active {
+  background-color: var(--secondary-color);
+}
+
+@media screen and (width<=768px){
+  .category {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 30%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    align-content: center;
+  }
+}

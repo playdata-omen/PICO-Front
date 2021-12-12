@@ -15,6 +15,11 @@ export const API_BASE_URL_KAKAO = "https://kauth.kakao.com/oauth/authorize?";
 export const KAKAO_AUTH_URL = API_BASE_URL_KAKAO + "response_type=code&client_id=" + CLIENT_ID_KAKAO + "&redirect_uri=" + OAUTH2_REDIRECT_URI_KAKAO;
 
 // Naver
+export const OAUTH2_REDIRECT_URI_NAVER = "http://localhost:3000/oauth/callback/naver"
+export const CLIENT_ID_NAVER = process.env.REACT_APP_NAVER_CID;
+export const API_BASE_URL_NAVER = "https://nid.naver.com/oauth2.0/authorize?"
+export const NAVER_AUth_URL = API_BASE_URL_NAVER + "response_type=code&client_id=" + CLIENT_ID_NAVER + "&redirect_uri=" + OAUTH2_REDIRECT_URI_NAVER;
+
 
 
 // 지역

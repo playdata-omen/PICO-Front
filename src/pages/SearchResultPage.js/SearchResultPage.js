@@ -6,19 +6,26 @@ import Spinner from '../../components/Spinner/Spinner';
 
 
 function SearchResultPage() {
-  let { search } = useParams();
+  let { type, search } = useParams();
 
   const [loaded, setLoaded] = useState(false)
   const [searchResult, setsearchResult] = useState([])
 
   useEffect(() => {
-    API.get(`search/${search}`)
-    .then(res => 
-      setsearchResult(res.data),
-      // setLoaded(true)
-    ).catch(err => {
+    console.log(type)
+    if(type === 'text') {
+      // 서치 조회
+      API.get(`search/${search}`)
+      .then(res => 
+        setsearchResult(res.data),
+        setLoaded(true)
+      ).catch(err => {
         console.log(err.message)
-    })
+      })
+    } else if(type === 'category') {
+      // 카테고리 별 조회 
+      console.log(search)
+    }
   }, [])
   
 

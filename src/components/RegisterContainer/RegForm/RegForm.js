@@ -62,6 +62,7 @@ function RegForm() {
   }
 
   const handleLocation2Change = value => setLocation2(value)
+  
   const handleOpenPostApiChange = value => setOpenPostApi(value)
 
   const handlePCategoryChange = async value => {
@@ -294,8 +295,6 @@ function RegFormPhotographer(
           <DaumPostcode onComplete={data => handlePostChange(data)}/>
         </div>
       }
-
-   
 
     </div>
   )

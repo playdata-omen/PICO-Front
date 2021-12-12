@@ -39,7 +39,7 @@ function Nav() {
             authenticated ?
             
               <ul>
-                <li><Link to="/estimate">견적요청</Link></li>
+                <li><Link to="/estimateRequest">견적요청</Link></li>
                 <li><Link to="/myPage">마이페이지</Link></li>
                 <li><button onClick={handleLogout}>리덕스 테스트 로그아웃</button></li>
               </ul>

@@ -23,16 +23,15 @@ function MainContents() {
 
   const handleSearch = (event) => {
     event.preventDefault()
-    searchField !== '' ? navigate(`/searchResult/${searchField}`) : alert('검색할 단어를 작성하세요')
+    searchField !== '' ? navigate(`/searchResult/text/${searchField}`) : alert('검색할 단어를 작성하세요')
   }
 
   const handleCategorySearch = category => {
     setTimeout(
       function(){
-        navigate(`/searchResult/${category}`)
+        navigate(`/searchResult/category/${category}`)
       }, 700
     )
-    console.log(category)
   }
 
   useEffect(() => {
