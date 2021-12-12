@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getEstimateReqList } from '../../api/Estimate'
-import EstimateReqCard from '../Cards/EstimateReqCard/EstimateReqCard'
+import EstimateReqCard from '../Cards/EstimateCard/EstimateReqCard'
 import MyInfoCard from '../Cards/MyInfoCard/MyInfoCard'
 import WorkCard from '../Cards/WorkCard.js/WorkCard'
 import Spinner from '../Spinner/Spinner'
@@ -15,11 +15,11 @@ function MyPageContents({user}) {
   //   {"estimateIdx" : 2, "name" : "견적2"},
   // ])
 
-  const [works, setWorks] = useState([])
-  // const [works, setWorks] = useState([
-  //   {"workIdx" : 1, "name" : "작업1"},
-  //   {"workIdx" : 2, "name" : "작업2"},
-  // ])
+  // const [works, setWorks] = useState([])
+  const [works, setWorks] = useState([
+    {"workIdx" : 1, "name" : "작업1"},
+    {"workIdx" : 2, "name" : "작업2"},
+  ])
 
   useEffect(async() => {
     const data = await getEstimateReqList(user.idx);
@@ -47,7 +47,7 @@ function MyPageContents({user}) {
         <label>견적요청</label>
         {
           estimates.map(estimate => 
-            <EstimateReqCard name={estimate.name} />
+            <EstimateReqCard estimateIdx={estimate.estimateIdx} name={estimate.name} />
           )
         }
       </div>
@@ -76,7 +76,6 @@ function MyPageContents({user}) {
               :
 
               <span>작품을 등록하려먼 작가 등록을 하세요</span>
-
             }
           </div>
          
