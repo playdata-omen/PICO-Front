@@ -11,6 +11,7 @@ function ProfileTop({ user }) {
         <span>{user.name} { user.isPhotographer ? '작가님' : '고객님'}</span>
       </div>
       <div className={styles.cardInfoBtn}>
+        <button>정보수정</button>
       </div>
     </div>
   )

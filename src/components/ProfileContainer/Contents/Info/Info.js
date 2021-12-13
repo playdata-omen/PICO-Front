@@ -38,8 +38,13 @@ function Info({user}) {
         :
 
         <div className={styles.basicInfoContainer}>
-          <AddButton />
-          작가등록 버튼
+          <label>작가등록 버튼</label>
+          <div className={styles.btnContainer}>
+              <div className={styles.btn}>
+                <div><AddButton /></div>
+                <span>작품을 등록하고싶으면 작가 등록을 하세요</span>
+              </div>
+          </div>
         </div>
 
       }
