@@ -1,0 +1,24 @@
+.container {
+  padding: 20px;
+}
+
+.basicInfoContainer {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.basicInfoContainer label {
+  font-weight: 800;
+}
+
+.basicInfoContainer ul{
+  padding: 0px;
+  margin-bottom: 100px;
+}
+
+.basicInfoContainer li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  list-style: none;
+}

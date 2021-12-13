@@ -1,11 +1,13 @@
 import React from 'react'
+import MyPageContents from '../../components/MyPageContainer/MyPageContents'
+import styles from '../Pages.module.css'
 
-function MyPage({ authenticated }) {
+function MyPage({ user }) {
 
-  console.log(authenticated)
+
   return (
-    <div>
-      MyPage
+    <div className={styles.container}>
+      <MyPageContents user={user} />
     </div>
   )
 }

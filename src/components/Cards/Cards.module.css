@@ -1,0 +1,69 @@
+@import url('../../constants/colors.css');
+
+.card {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: ease-out 300ms;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.card:active {
+  background-color: var(--secondary-color);
+}
+
+.imgContainer{
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+.imgContainer .profile {
+  width: 100%;
+  height: 100%;
+}
+
+.cardInfoContainer{
+  text-align: left;
+  padding-left: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cardInfoContainer span {
+  display: block;
+  padding: 5px;
+}
+
+.cardInfoBtn {
+  /* border: 1px dashed red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (width<=768px){
+  .card {
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .cardInfoContainer {
+    padding-left: 5px;
+  }
+
+  .card .imgContainer {
+    width: 70px;
+    height: 70px;
+  }
+}

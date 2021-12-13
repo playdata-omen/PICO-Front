@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import DaumPostcode from 'react-daum-postcode';
@@ -9,7 +9,6 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import { AREA } from '../../../constants';
 
 import styles from './RegForm.module.css'
-import { getCategoryAll } from '../../../api/Category';
 
 import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
@@ -17,6 +16,7 @@ import { auth_actions } from '../../../_actions/auth_action.js'
 function RegForm() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
+  const categories = useSelector(store => store.categories.categories)
 
   // 일반 유저 정보
   const [name, setName] = useState(user.name)
@@ -28,7 +28,10 @@ function RegForm() {
   const handleNameChange = value => setName(value)
   const handleEmailChange = value => setEmail(value)
   const handlePhoneChange = value => setPhone(value)
-  const handleIsPhotographerChange = value => setIsPhotographer(JSON.parse(value))
+  const handleIsPhotographerChange = value => {
+    setIsPhotographer(value)
+    !isPhotographer && setPCategory([])
+  }
 
   // 작가 정보등록용
   const [address, setAddress] = useState('')
@@ -42,9 +45,7 @@ function RegForm() {
   const [location2, setLocation2] = useState('전체')
 
   const [pCategory, setPCategory] = useState([])
-  const [categories, setCategories] = useState([{"categoryIdx":1,"kind":"웨딩"},{"categoryIdx":2,"kind":"스냅"},{"categoryIdx":3,"kind":"화보"}])
 
-  const handleCategoryChange = value => setCategories(value)
   const handleHasStudioChange = value => {
     setHasStudio(JSON.parse(value))
     
@@ -61,6 +62,7 @@ function RegForm() {
   }
 
   const handleLocation2Change = value => setLocation2(value)
+  
   const handleOpenPostApiChange = value => setOpenPostApi(value)
 
   const handlePCategoryChange = async value => {
@@ -89,7 +91,7 @@ function RegForm() {
   }
 
   return (
-    <div className={`${styles.formContainer} ${styles.form}`}>
+    <div className={styles.formContainer}>
       <div className={styles.inputContainer}>
         <label>이름</label>
         <input type="text" value={name} onChange={event => handleNameChange(event.target.value)} />
@@ -109,29 +111,31 @@ function RegForm() {
         <div className={styles.inputContainer}>
           <label>회원</label>
         </div>
-        <div className={styles.radioContainer}>
+        <div className={`${styles.radioContainer} ${styles.radio}`}>
           <div>
-            <PersonIcon />
-            <CameraAltIcon />
-            <br />
-            <label>작가</label>
             <input
               type="radio"
               checked={isPhotographer === true}
               value={true}
-              onChange={event => handleIsPhotographerChange(event.target.value)}
               />
+            <div className={styles.radioBtn} onClick={() => handleIsPhotographerChange(true)}>
+              <div>
+                <PersonIcon />
+                <CameraAltIcon />
+              </div>
+              <label>작가</label>
+            </div>
           </div>
           <div>
-            <PersonIcon />
-            <br />
-            <label>일반유저</label>
             <input
               type="radio"
               checked={isPhotographer === false}
               value={false}
-              onChange={event => handleIsPhotographerChange(event.target.value)}
             />
+            <div className={styles.radioBtn} onClick={() => handleIsPhotographerChange(false)}>
+              <PersonIcon />
+              <label>일반유저</label>
+            </div>
           </div>
         </div>
       </div>
@@ -153,7 +157,6 @@ function RegForm() {
           handleLocationChange={handleLocationChange}
           handleLocation2Change={handleLocation2Change}
 
-          handleCategoryChange={handleCategoryChange}
           handleHasStudioChange={handleHasStudioChange}
 
           handleOpenPostApiChange={handleOpenPostApiChange}
@@ -208,11 +211,12 @@ function RegFormPhotographer(
               <div>
                 <input 
                   type="radio"
-                  value={Object.values(category)[0]}
-                  checked={pCategory.includes(parseInt(Object.values(category)[0]))}
+                  value={category.categoryIdx}
+                  // checked={pCategory.includes(parseInt(Object.values(category)[0]))}
+                  checked={pCategory.includes(parseInt(category.categoryIdx))}
                 />
-                <div key={Object.values(category)[1]} className={styles.categoryBtn} onClick={() => handlePCategoryChange(parseInt(parseInt(Object.values(category)[0])))}>
-                  <label>{Object.values(category)[1]}</label>
+                <div key={category.categoryIdx} className={styles.categoryBtn} onClick={() => handlePCategoryChange(parseInt(parseInt(Object.values(category)[0])))}>
+                  <label>{category.kind}</label>
                 </div>
               </div>
             )
@@ -240,30 +244,32 @@ function RegFormPhotographer(
       </div>
 
       <div>
-        <div className={styles.radioForm}>
+        <div className={styles.inputContainer}>
           <label>스튜디오</label>
         </div>
-        <div className={styles.radioContainer}>
+        <div className={`${styles.radioContainer} ${styles.radio}`}>
+
           <div>
-            보유
-            <PersonIcon />
+            <div className={styles.radioBtn} onClick={() => handleHasStudioChange(true)}>
+              <PersonIcon />
+              <label>보유</label>
+            </div>
             <br />
             <input
               type="radio"
               value={true}
               checked={hasStudio === true}
-              onChange={event => handleHasStudioChange(event.target.value)}
             />
           </div>
           <div>
-            미보유
-            <PersonIcon />
-            <br />
+            <div className={styles.radioBtn} onClick={() => handleHasStudioChange(false)}>
+              <PersonIcon />
+              <label>미보유</label>
+            </div>
             <input
               type="radio"
               value={false}
               checked={hasStudio === false}
-              onChange={event => handleHasStudioChange(event.target.value)}
             />
           </div>
         </div>
@@ -289,8 +295,6 @@ function RegFormPhotographer(
           <DaumPostcode onComplete={data => handlePostChange(data)}/>
         </div>
       }
-
-   
 
     </div>
   )

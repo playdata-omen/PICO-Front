@@ -9,9 +9,8 @@ import { auth_actions } from '../../../_actions/auth_action';
 import picoLogo from '../../../img/pico-logo.png'
 
 function Nav() {
-
   useEffect(() => {
-    localStorage.setItem('ACCESS_TOKEN', "TEST")
+    // localStorage.setItem('ACCESS_TOKEN', "TEST")
     const accessToken = localStorage.getItem("ACCESS_TOKEN")
     return accessToken ? handleLogin : handleLogout
   },[])
@@ -40,7 +39,7 @@ function Nav() {
             authenticated ?
             
               <ul>
-                <li><Link to="/estimate">견적요청</Link></li>
+                <li><Link to="/estimateRequest">견적요청</Link></li>
                 <li><Link to="/myPage">마이페이지</Link></li>
                 <li><button onClick={handleLogout}>리덕스 테스트 로그아웃</button></li>
               </ul>
