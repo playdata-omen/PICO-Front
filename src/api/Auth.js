@@ -1,5 +1,6 @@
 import API from "./API"
 import { auth_actions } from '../_actions/auth_action.js'
+import { ACCESS_TOKEN } from "../constants"
 
 export const getUser = (navigate, code, provider) => {
   return dispatch => {
@@ -12,7 +13,7 @@ export const getUser = (navigate, code, provider) => {
     })
     .then(res => {
       const user = res.data
-      localStorage.setItem("token", user.accessToken)
+      localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
       user.isRegistered ? navigate('/') : navigate('/register')
     })

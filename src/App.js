@@ -44,7 +44,15 @@ function App() {
           }
         />
         <Route 
-          path="/estimateRequest"
+          exact path="/estimateRequest"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <EstimateRequestPage />
+            </ PrivateRoute>
+          }
+        />
+        <Route 
+          path="/estimateRequest/:photographerIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />

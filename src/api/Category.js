@@ -14,3 +14,18 @@ export const fetchCategories = () => {
     })
   }
 }
+
+export const getPCategories = async photgrapherIdx => {
+  const data = await API.get('getPCategories', photgrapherIdx)
+  .then(res => {
+    return res.data
+  })
+  .catch(err => {
+    return ([
+      {"categoryIdx":4,"kind":"제품"},
+      {"categoryIdx":5,"kind":"행사"},
+      {"categoryIdx":6,"kind":"기타"},
+    ])
+  })
+  return data
+}
