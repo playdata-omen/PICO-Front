@@ -23,7 +23,7 @@ export const getEstimateReqList = async userIdx => {
 }
 
 export const getEstimateDetail = async estimateIdx => {
-  const data = await API.get('estimateDe', estimateIdx)
+  const data = await API.get('estimateDetail', estimateIdx)
   .then(res => {
     return res.data
   }).catch(err => {
@@ -51,4 +51,19 @@ export const getEstimateDetail = async estimateIdx => {
     )
   })
   return data
+}
+
+
+// reqEstimate(navigate, category, content, city, address, startDate, endDate)
+export const reqEstimate = async(navigate, category, content, city, address, startDate, endDate) => {
+  const response = await API.post('estimateReq', {
+    category, content, city, address, startDate, endDate
+  })
+  .then(res => {
+    navigate('/myPage')
+  })
+  .catch(err => {
+    alert('err test')
+    navigate('/myPage')
+  })
 }

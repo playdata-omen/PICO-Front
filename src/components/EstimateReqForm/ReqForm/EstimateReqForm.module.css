@@ -9,14 +9,86 @@
 
 .container label {
   padding: 10px;
+  font-size: 20px;
   /* border: 1px dashed red; */
 }
 
+.progressBar {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.bar {
+  margin: 2px;
+  width: 120px;
+  height: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px var(--primary-color) inset;
+  transition: ease-out 300ms;
+}
+
+.progressBar input[type=radio]:checked + .bar {
+  background-color: var(--primary-color);
+}
+
+.progressBar input[type=radio] {
+  display: none;
+}
+
 /* Form 1 Category */
+.contentContainer {
+  height: 100%;
+  /* border: 1px dashed red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+
+.contentContainer textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+  outline: none;
+  align-self: center;
+  max-width: 80%;
+  min-width: 80%;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.contentContainer textarea:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.form2 {
+  align-items: center;
+}
+
+.form2 select {
+  outline: none;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
+.datePicker {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.datePicker label {
+  display: block;
+  padding: 10px;
+}
+
 .category {
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 20%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
@@ -67,6 +139,11 @@
 }
 
 @media screen and (width<=768px){
+  .container{
+    min-height: 60vh;
+    height: fit-content;
+  }
+  
   .category {
     padding-left: 0px;
     padding-right: 0px;
@@ -75,5 +152,14 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px;
     align-content: center;
+  }
+
+  .bar {
+    width: 60px;
+  }
+
+  .contentContainer .datePicker {
+    display: flex;
+    flex-direction: column;
   }
 }
