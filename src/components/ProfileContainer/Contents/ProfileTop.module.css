@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+  height: 120px;
+  /* border: 1px solid green; */
+  display: flex;
+}
+
+.imgContainer {
+  border: 1px solid black;
+  height: 100%;
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  margin-right: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.infoContainer span {
+  padding: 10px;
+  font-size: 20px;
+}

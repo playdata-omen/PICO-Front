@@ -8,6 +8,7 @@
   padding: 20px;
   margin-bottom: 20px;
   transition: ease-out 300ms;
+  cursor: pointer;
 }
 
 .card:hover {

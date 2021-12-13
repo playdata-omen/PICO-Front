@@ -12,6 +12,8 @@ import SearchResultPage from './pages/SearchResultPage.js/SearchResultPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import EstimatePage from './pages/EstimatePage/EstimatePage';
 import EstimateRequestPage from './pages/EstimateRequestPage/EstimateRequestPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import ImageSearchPage from './pages/ImageSearchPage/ImageSearchPage';
 
 function App() {
 
@@ -26,12 +28,21 @@ function App() {
         <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
         <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />}/>
         <Route exact path="/user/register" element={<RegisterPage />}/>
+        <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route 
           path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <MyPage user={auth.user}/>
               
+            </ PrivateRoute>
+          }
+        />
+        <Route 
+          path="/myPage/profile"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <ProfilePage user={auth.user}/>       
             </ PrivateRoute>
           }
         />
