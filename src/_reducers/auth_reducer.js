@@ -15,7 +15,17 @@ const initialState = {
     isRegistered: false,
     isPhotographer: false
   },
-  photographer: {},
+  photographer: {
+    hasStudio: true,
+    city: '서울특별시',
+    address: '전체',
+    studioAddress: '서울시 은평구 불광동 머시기',
+    otherAreas: false,
+    pCategory: [
+      {"categoryIdx":2,"kind":"스냅"},
+      {"categoryIdx":3,"kind":"화보"}
+    ]
+  },
   error: ''
 }
 

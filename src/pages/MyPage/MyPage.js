@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import MyInfoCard from '../../components/Cards/MyInfoCard/MyInfoCard'
+import React from 'react'
 import MyPageContents from '../../components/MyPageContainer/MyPageContents'
 import styles from '../Pages.module.css'
 
