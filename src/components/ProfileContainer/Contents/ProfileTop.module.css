@@ -1,8 +1,14 @@
 .container {
+  margin-top: 50px;
   padding: 20px;
   height: 120px;
   /* border: 1px solid green; */
   display: flex;
+  justify-content: space-between;
+}
+
+.container * {
+  transition: ease 300ms;
 }
 
 .imgContainer {
@@ -14,6 +20,8 @@
 }
 
 .infoContainer {
+  width: 100%;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,4 +30,16 @@
 .infoContainer span {
   padding: 10px;
   font-size: 20px;
+}
+
+.cardInfoBtn button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.cardInfoBtn button:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }

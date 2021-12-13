@@ -20,6 +20,7 @@ function RegForm() {
 
   // 일반 유저 정보
   const [name, setName] = useState(user.name)
+  const [nickName, setNickName] = useState(user.nickName)
   const [email, setEmail] = useState(user.email)
   const [phone, setPhone] = useState(user.phone)
 
@@ -79,7 +80,7 @@ function RegForm() {
   const handleAddressDetailChange = value => setAddressDetail(value)
 
   const handleRegister = () => {
-    dispatch(auth_actions.registerUser(name, email, phone))
+    dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer))
     
     isPhotographer &&
     dispatch(auth_actions.registerPhotographer(
@@ -95,6 +96,11 @@ function RegForm() {
       <div className={styles.inputContainer}>
         <label>이름</label>
         <input type="text" value={name} onChange={event => handleNameChange(event.target.value)} />
+      </div>
+
+      <div className={styles.inputContainer}>
+        <label>닉네임</label>
+        <input type="text" value={nickName} onChange={event => setNickName(event.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>

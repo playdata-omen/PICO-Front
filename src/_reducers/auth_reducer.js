@@ -9,11 +9,11 @@ const initialState = {
   loading: false,
   authenticated: false,
   user: {
-    email: 'henrynoowa@gmail.com',
-    name: '조하운',
-    phone: '010-4446-0410',
-    isRegistered: false,
-    isPhotographer: false
+    // email: 'henrynoowa@gmail.com',
+    // name: '조하운',
+    // phone: '010-4446-0410',
+    // isRegistered: false,
+    // isPhotographer: false
   },
   photographer: {
     hasStudio: true,
@@ -33,7 +33,8 @@ const auth_reducer = (state = initialState, action) => {
   switch(action.type) {
     case LOGIN: return {
       ...state,
-      authenticated: true
+      authenticated: true,
+      error: ''
     }
     case LOGOUT: return {
       ...state,
@@ -48,6 +49,7 @@ const auth_reducer = (state = initialState, action) => {
     }
     case FETCH_USER_SUCCESS: {
       return {
+        ...state,
         loading: false,
         user: action.payload,
         error: ''

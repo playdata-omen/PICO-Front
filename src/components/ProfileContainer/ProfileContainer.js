@@ -12,23 +12,29 @@ function ProfileContainer({ user }) {
       <div className={styles.profileContentContainer}>
         <ProfileTop user={user}/>
         <div className={styles.pageBtnContainer}>
+          
           <div>
             <input type="radio" checked={page === 1}/>
             <button onClick={()=>setPage(1)}>소개</button>
           </div>
-          { user.isPhotographer && (
+          { user.isPhotographer && 
+            (
             <div>
               <input type="radio" checked={page === 2}/>
               <button onClick={()=>setPage(2)}>작업/사진</button>
             </div>
-          )}
-          { user.isPhotographer && (
+            )
+          }
+          { user.isPhotographer && 
+            (
             <div>
               <input type="radio" checked={page === 3}/>
               <button onClick={()=>setPage(3)}>리뷰</button>
             </div>
-          )}
+            )
+          }
         </div>
+
         <div>
           {page === 1 && <Info user={user}/>}
           {(page === 2 && user.isPhotographer) && <div>Work</div>}

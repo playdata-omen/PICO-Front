@@ -5,17 +5,16 @@ import { ACCESS_TOKEN } from "../constants"
 export const getUser = (navigate, code, provider) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
-    API.get('getUser', {
-      params: {
-        code: code,
-        provider: provider
-      }
+    API.post('login', {
+        code,
+        provider
     })
     .then(res => {
       const user = res.data
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
-      user.isRegistered ? navigate('/') : navigate('/register')
+      dispatch(auth_actions.login())
+      user.register ? navigate('/') : navigate('/register')
     })
     .catch(err => {
       alert(err.message)
@@ -26,15 +25,21 @@ export const getUser = (navigate, code, provider) => {
   }
 }
 
-export const registerUser = (name, email, phone) => {
+export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer) => {
   return dispatch => {
+    console.log(userIdx)
     dispatch(auth_actions.fetchUserRequest)
-    API.post('registerUser', {
+    API.post('user/register', {
+      userIdx,
       name,
+      nickName,
       email,
-      phone
+      phone,
+      isPhotographer
     }).then(res => {
       const user = res.data
+      alert("회원가입")
+      localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
     }).catch(err => {
       alert("회원가입")

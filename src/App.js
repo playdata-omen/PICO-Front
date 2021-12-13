@@ -27,14 +27,13 @@ function App() {
         <Route exact path="/login" element={<LoginPage />}/>
         <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
         <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />}/>
-        <Route exact path="/user/register" element={<RegisterPage />}/>
+        <Route exact path="/register" element={<RegisterPage />}/>
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route 
           path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
-              <MyPage user={auth.user}/>
-              
+              <MyPage user={auth.user}/> 
             </ PrivateRoute>
           }
         />
