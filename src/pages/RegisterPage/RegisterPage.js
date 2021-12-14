@@ -1,6 +1,6 @@
 import React from 'react'
 import RegisterContainer from '../../components/RegisterContainer/RegisterContainer'
-import styles from './RegisterPage.module.css'
+import styles from '../Pages.module.css'
 function RegisterPage() {
   return (
     <div className={styles.container}>

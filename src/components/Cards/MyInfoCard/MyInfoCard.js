@@ -23,7 +23,7 @@ function MyInfoCard({name, email}) {
         <AccountBoxIcon fontSize='large' className={styles.profile}/>
       </div>
       <div className={styles.cardInfoContainer}>
-        <span>{name} 고객님</span>
+        <span>{name}</span>
         <span>{email}</span>
       </div>
       <div className={styles.cardInfoBtn}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import DaumPostcode from 'react-daum-postcode';
@@ -14,8 +14,10 @@ import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
 
 function RegForm() {
+  
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
+  const photographer = useSelector(store => store.auth.photographer)
   const categories = useSelector(store => store.categories.categories)
 
   // 일반 유저 정보
@@ -24,28 +26,25 @@ function RegForm() {
   const [email, setEmail] = useState(user.email)
   const [phone, setPhone] = useState(user.phone)
 
-  const [isPhotographer, setIsPhotographer] = useState(false)
+  const [isPhotographer, setIsPhotographer] = useState(user.photographer)
 
-  const handleNameChange = value => setName(value)
-  const handleEmailChange = value => setEmail(value)
-  const handlePhoneChange = value => setPhone(value)
   const handleIsPhotographerChange = value => {
     setIsPhotographer(value)
     !isPhotographer && setPCategory([])
   }
 
   // 작가 정보등록용
-  const [address, setAddress] = useState('')
-  const [addressDetail, setAddressDetail] = useState('')
+  const [address, setAddress] = useState(photographer? photographer.address : '')
+  const [addressDetail, setAddressDetail] = useState(photographer? photographer.addressDetail : '')
 
   const areas = Object.keys(AREA)
 
-  const [hasStudio, setHasStudio] = useState(false)
+  const [hasStudio, setHasStudio] = useState(photographer? photographer.hasStudio : false)
   const [openPostApi, setOpenPostApi] = useState(false)
-  const [location, setLocation] = useState(areas[0])
-  const [location2, setLocation2] = useState('전체')
+  const [city, setCity] = useState(photographer? photographer.city : areas[0])
+  const [location2, setLocation2] = useState(photographer? photographer.address : '전체')
 
-  const [pCategory, setPCategory] = useState([])
+  const [pCategory, setPCategory] = useState(photographer? [...photographer.pCategory]: [])
 
   const handleHasStudioChange = value => {
     setHasStudio(JSON.parse(value))
@@ -57,45 +56,46 @@ function RegForm() {
     
   }
 
-  const handleLocationChange = value => {
-    setLocation(value)
+  const handleCityChange = value => {
+    setCity(value)
     setLocation2('전체')
   }
-
-  const handleLocation2Change = value => setLocation2(value)
-  
-  const handleOpenPostApiChange = value => setOpenPostApi(value)
-
-  const handlePCategoryChange = async value => {
-    let categoryIdx = parseInt(value)
-    console.log(value)
+    
+  const handlePCategoryChange = categoryIdx => {
+    console.log(typeof([1,2]))
+    console.log(typeof(pCategory))
     !pCategory.includes(categoryIdx)?
     setPCategory([...pCategory, categoryIdx])
     :
     setPCategory(pCategory.filter(cat => cat != categoryIdx))
-    console.log(pCategory)
+    // console.log(pCategory)
   }
 
   const handleAddressChange = value => setAddress(value)
   const handleAddressDetailChange = value => setAddressDetail(value)
 
   const handleRegister = () => {
-    dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer))
+    dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer, user.register))
     
     isPhotographer &&
     dispatch(auth_actions.registerPhotographer(
       hasStudio,
-      location,
+      city,
       location2,
       pCategory
     ))
+
   }
+
+  useEffect(()=> {
+    console.log(pCategory)
+  },[pCategory])
 
   return (
     <div className={styles.formContainer}>
       <div className={styles.inputContainer}>
         <label>이름</label>
-        <input type="text" value={name} onChange={event => handleNameChange(event.target.value)} />
+        <input type="text" value={name} onChange={event => setName(event.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>
@@ -105,12 +105,12 @@ function RegForm() {
 
       <div className={styles.inputContainer}>
         <label>이메일</label>
-        <input type="text" value={email} onChange={event => handleEmailChange(event.target.value)} />
+        <input type="text" value={email} onChange={event => setEmail(event.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>
         <label>전화번호</label>
-        <input type="text" value={phone} onChange={event => handlePhoneChange(event.target.value)} />
+        <input type="text" value={phone} onChange={event => setPhone(event.target.value)} />
       </div>
 
       <div>
@@ -149,7 +149,7 @@ function RegForm() {
         isPhotographer && 
         <RegFormPhotographer className={styles.form}
         
-          location={location}
+          city={city}
           location2={location2}
           categories={categories}
           
@@ -160,19 +160,19 @@ function RegForm() {
           openPostApi={openPostApi} 
           pCategory={pCategory}
 
-          handleLocationChange={handleLocationChange}
-          handleLocation2Change={handleLocation2Change}
+          handleCityChange={handleCityChange}
+          setLocation2={setLocation2}
 
           handleHasStudioChange={handleHasStudioChange}
 
-          handleOpenPostApiChange={handleOpenPostApiChange}
+          setOpenPostApi={setOpenPostApi}
           handlePCategoryChange={handlePCategoryChange}
           
           handleAddressChange={handleAddressChange} 
           handleAddressDetailChange={handleAddressDetailChange}
         />
       }
-      <button className={styles.submitBtn} onClick={handleRegister}>회원가입</button>      
+      <button className={styles.submitBtn} onClick={handleRegister}>{user.register ? '정보수정' : '회원가입'}</button>      
     </div>
 
 
@@ -181,7 +181,7 @@ function RegForm() {
 
 function RegFormPhotographer(
   { 
-    location,
+    city,
     location2,
     hasStudio,
     address, 
@@ -190,21 +190,21 @@ function RegFormPhotographer(
     pCategory,
 
 
-    handleLocationChange, handleLocation2Change,
+    handleCityChange, setLocation2,
     handlePCategoryChange,
     handleHasStudioChange,
     handleAddressChange, handleAddressDetailChange,
-    handleOpenPostApiChange
+    setOpenPostApi
   }) {
   const categories = useSelector(store => store.categories.categories)
 
   const areas = Object.keys(AREA)
+
   const handlePostChange = data => {
-    handleOpenPostApiChange(false)
+    setOpenPostApi(false)
     handleAddressChange(data.address)
     console.log(address)
   }
-
 
   return (
     <div>
@@ -218,10 +218,9 @@ function RegFormPhotographer(
                 <input 
                   type="radio"
                   value={category.categoryIdx}
-                  // checked={pCategory.includes(parseInt(Object.values(category)[0]))}
-                  checked={pCategory.includes(parseInt(category.categoryIdx))}
+                  checked={pCategory.includes(category.categoryIdx)}
                 />
-                <div key={category.categoryIdx} className={styles.categoryBtn} onClick={() => handlePCategoryChange(parseInt(parseInt(Object.values(category)[0])))}>
+                <div key={category.categoryIdx} className={styles.categoryBtn} onClick={() => handlePCategoryChange(category.categoryIdx)}>
                   <label>{category.kind}</label>
                 </div>
               </div>
@@ -231,7 +230,7 @@ function RegFormPhotographer(
 
         <label>활동지역</label>
           <label>지역</label><br/>
-          <select value={location} onChange={event => handleLocationChange(event.target.value)}>
+          <select value={city} onChange={event => handleCityChange(event.target.value)}>
             {
               areas.map(area => 
                 <option value={area} key={area}>{area}</option>
@@ -239,10 +238,10 @@ function RegFormPhotographer(
             }
           </select>
           <br/>
-          <select onChange={event => handleLocation2Change(event.target.value)}>
-            <option value={'전체'} >{location} 전체</option>
+          <select onChange={event => setLocation2(event.target.value)}>
+            <option value={'전체'} >{city} 전체</option>
             {
-              Object.values(AREA[location]).map(loc => 
+              Object.values(AREA[city]).map(loc => 
                 <option value={loc} key={loc}>{loc}</option>
               )
             }
@@ -286,7 +285,7 @@ function RegFormPhotographer(
         <div>
           <div className={styles.inputContainer}>
             <label>스튜디오 주소</label>
-            <input type="text" value={address} onChange={event => handleLocationChange(event.target.value)} onClick={() => handleOpenPostApiChange(!openPostApi)} />
+            <input type="text" value={address} onChange={event => handleCityChange(event.target.value)} onClick={() => setOpenPostApi(!openPostApi)} />
           </div>
           <div className={styles.inputContainer}>
             <label>상세주소</label>

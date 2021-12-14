@@ -3,3 +3,14 @@
   display: flex;
   justify-content: center;
 }
+
+.componentContainer {
+  margin-top: 50px;
+  width: 60%
+}
+
+@media screen and (width<=768px){
+  .componentContainer {
+    width: 90%;
+  }
+}

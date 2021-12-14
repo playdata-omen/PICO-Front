@@ -18,7 +18,7 @@ function EstimateResCard({ photographer }) {
         {photographer.responseIdx}
       </div>
       <div className={styles.cardInfoContainer}>
-        <span>작가 이름: {photographer.user}</span>
+        <span>작가 이름: {photographer.name}</span>
       </div>
       <div className={styles.cardInfoBtn}>
         <ArrowRightIcon fontSize='large' className={styles.btn}/>

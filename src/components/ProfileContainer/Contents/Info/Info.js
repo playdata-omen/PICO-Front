@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './Info.module.css'
 import { useSelector } from 'react-redux'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { AddButton } from '../../../Button/Button';
+import { getPhotographerDetail } from '../../../../api/User';
+import Spinner from '../../../Spinner/Spinner';
 
-function Info({user}) {
+function Info({ user }) {
 
-  const photographer = useSelector(state => state.auth.photographer)
+  const [photographer, setPhotographer] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(async() => {
+    const data = await getPhotographerDetail(user.userIdx)
+    setPhotographer(data)
+    setLoading(false)
+  }, [])
+
+  // const photographer = useSelector(state => state.auth.photographer)
 
   return (
+
     <div className={styles.container}>
       <div className={styles.basicInfoContainer}>
         <label>{user.isPhotographer ? "작가" : "기본"} 정보</label>
@@ -20,7 +32,11 @@ function Info({user}) {
         </ul>
       </div>
       {
-        user.isPhotographer ?
+        user.photographer ?
+        (
+        loading ?
+        <div>작가 정보 불러오는 중...</div>
+        :
         <div className={styles.basicInfoContainer}>
           <ul>
             <li><span>작업위치: {photographer.city} {photographer.address}</span></li>
@@ -34,11 +50,11 @@ function Info({user}) {
             {photographer.hasStudio && <li><span>스튜디오 주소: {photographer.studioAddress}</span></li>}
           </ul>
         </div>
+        )
 
         :
 
         <div className={styles.basicInfoContainer}>
-          <label>작가등록 버튼</label>
           <div className={styles.btnContainer}>
               <div className={styles.btn}>
                 <div><AddButton /></div>

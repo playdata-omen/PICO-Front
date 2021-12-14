@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import { getEstimateDetail } from '../../api/Estimate'
 import EstimateResCard from '../Cards/EstimateCard/EstimateResCard'
 import Spinner from '../Spinner/Spinner'
@@ -8,6 +9,8 @@ function EstimateDetail({ estimateIdx }) {
 
   const [ estimate, setEstimate ] = useState({})
   const [ loading, setLoading ] = useState(true)
+
+  let navigate = useNavigate();
 
   // {
   //   "categoryIdx" : 1,
@@ -52,9 +55,11 @@ function EstimateDetail({ estimateIdx }) {
       <div>
         <label>받은 견적서</label>
         {
-          !estimate.response.length == 0?
-          estimate.response.map(response => 
-            <EstimateResCard photographer={response}/>
+          !estimate.applyList.length == 0?
+          estimate.applyList.map(photographer => 
+            <div onClick={() => navigate(`chat/${photographer.userIdx}`)} >
+              <EstimateResCard photographer={photographer} />
+            </div>
           )
           :
           <div>아직 받은 견적이 없습니다</div>

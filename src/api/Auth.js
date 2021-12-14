@@ -25,7 +25,7 @@ export const getUser = (navigate, code, provider) => {
   }
 }
 
-export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer) => {
+export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegistered) => {
   return dispatch => {
     console.log(userIdx)
     dispatch(auth_actions.fetchUserRequest)
@@ -38,11 +38,11 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
       isPhotographer
     }).then(res => {
       const user = res.data
-      alert("회원가입")
+      isRegistered ? alert('수정완료') :alert("회원가입")
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
     }).catch(err => {
-      alert("회원가입")
+      alert("에러")
       dispatch(auth_actions.fetchUserFailure(err.message))
     })
   }
