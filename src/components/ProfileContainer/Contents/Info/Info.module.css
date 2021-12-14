@@ -26,6 +26,7 @@
 .btnContainer {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .btn {
@@ -41,3 +42,4 @@
   color: grey;
   margin-top: 20px;
 }
+

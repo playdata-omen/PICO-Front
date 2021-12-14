@@ -28,24 +28,32 @@ export const getEstimateDetail = async estimateIdx => {
     return res.data
   }).catch(err => {
     return (
+
+      
       {
+        "id": 1, 
+        "userIdx": 1,
         "category" : {"categoryIdx":4,"kind":"제품"},
         "city" : "서울",
         "address" : "은평구",
-        "startDate" : "",
-        "endDate" : "",
-        "content" : "dasdfjahsdkhvlalsdfkjlashdfklalscdkjh",
-        "response": [
+        "startDate": "2021-12-15",
+        "endDate": "2021-12-20",
+        "content" : "상세정보 상세정보 상세정보 상세정보 상세정보 상세정보 상세정보 ",
+        "applyList": [
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
-            "responseIdx" : 1,
-            "user" : "차재훈"
+            "applyIdx" : 1,
+            "userIdx" : 2,
+            "name" : "이기환",
+            "review" : 4
           },
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
-            "responseIdx" : 2,
-            "user" : "이기환"
-          },
+            "applyIdx" : 2,
+            "userIdx" : 3,
+            "name" : "차재훈",
+            "review" : 4
+          }
         ]
       }
     )

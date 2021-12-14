@@ -14,6 +14,8 @@ import EstimatePage from './pages/EstimatePage/EstimatePage';
 import EstimateRequestPage from './pages/EstimateRequestPage/EstimateRequestPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ImageSearchPage from './pages/ImageSearchPage/ImageSearchPage';
+import ChatRoomPage from './pages/ChatRoomPage/ChatRoomPage';
+import ProfileUpdatePage from './pages/ProfileUpdatePage/ProfileUpdatePage';
 
 function App() {
 
@@ -33,16 +35,24 @@ function App() {
           path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
-              <MyPage user={auth.user}/> 
-            </ PrivateRoute>
+              <MyPage user={auth.user}/>
+            </PrivateRoute>
           }
         />
         <Route 
-          path="/myPage/profile"
+          exact path="/myPage/profile"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <ProfilePage user={auth.user}/>       
-            </ PrivateRoute>
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/myPage/profile/update"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <ProfileUpdatePage user={auth.user}/>
+            </PrivateRoute>
           }
         />
         <Route 
@@ -50,7 +60,15 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimatePage/>
-            </ PrivateRoute>
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          exact path="/myPage/estimate/:estimateIdx/chat/:userIdx"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <ChatRoomPage />
+            </PrivateRoute>
           }
         />
         <Route 
@@ -58,7 +76,7 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />
-            </ PrivateRoute>
+            </PrivateRoute>
           }
         />
         <Route 
@@ -66,7 +84,7 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />
-            </ PrivateRoute>
+            </PrivateRoute>
           }
         />
       </Routes>

@@ -1,0 +1,86 @@
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr;
+  border-right: 1px solid var(--primary-color);
+}
+
+.container * {
+  transition: ease 300ms;
+}
+
+.content {
+  /* border:1px solid red; */
+}
+
+.top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.top button {
+  cursor: pointer;
+  padding: 5px;
+  width: 100px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+}
+
+.top button:hover, .sendBtn:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.read {
+  padding: 10px;
+  min-height: 50px;
+  overflow: scroll;
+}
+
+.chat {
+  height: 100%;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
+.send {
+  padding: 10px;
+  min-height: 50px;
+  border-top: 1px solid var(--primary-color);
+}
+
+.textArea {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.textArea textarea {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.sendBtn {
+  margin-left: 10px;
+  cursor: pointer;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.sendBtn * {
+  padding-left: 5%;
+  padding-top: 25%;
+}
+
+@media screen and (width<=768px){
+  .container {
+    grid-template-rows: 1fr 7fr 1fr;
+  }
+}

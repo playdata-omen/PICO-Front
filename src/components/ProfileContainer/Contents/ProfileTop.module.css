@@ -1,10 +1,10 @@
 .container {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   padding: 20px;
   height: 120px;
   /* border: 1px solid green; */
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .container * {
@@ -21,18 +21,25 @@
 
 .infoContainer {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  width: 100%;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.infoContainer span {
+.info span {
   padding: 10px;
   font-size: 20px;
 }
 
-.cardInfoBtn button {
+.updateBtn button {
+  cursor: pointer;
   width: 150px;
   padding: 10px;
   border: none;
@@ -40,6 +47,16 @@
   background-color: var(--primary-color);
 }
 
-.cardInfoBtn button:hover {
+.updateBtn button:hover {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.updateBtn button:active {
+  background-color: var(--secondary-color);
+}
+
+@media screen and (width<=768px){
+  .infoContainer {
+    flex-direction: column;
+  }
 }

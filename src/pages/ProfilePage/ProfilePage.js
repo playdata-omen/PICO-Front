@@ -6,7 +6,9 @@ import styles from '../Pages.module.css'
 function ProfilePage({ user }) {
   return (
     <div className={styles.container}>
-      <ProfileContainer user={user}/>
+      <div className={styles.componentContainer}>
+        <ProfileContainer user={user}/>
+      </div>
     </div>
   )
 }
