@@ -6,7 +6,7 @@
 
 .componentContainer {
   margin-top: 50px;
-  width: 60%
+  width: 60%;
 }
 
 @media screen and (width<=768px){

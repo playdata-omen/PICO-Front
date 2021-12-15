@@ -32,6 +32,7 @@ function App() {
         <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />}/>
         <Route exact path="/register" element={<RegisterPage />}/>
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
+        <Route exact path="/imageRecommended" element={<imageRecommendedPage />}/>
         <Route 
           exact path="/myPage"
           element={
