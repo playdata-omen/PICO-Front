@@ -21,11 +21,21 @@
   /* border: 1px solid red; */
 }
 
+@media screen and (width<=1208px){
+  .chatContainer{
+    width: 60%;
+  } 
+}
+
 @media screen and (width<=768px){
   .container {
     width: 90%;
     height: fit-content;
     flex-direction: column;
+  }
+
+  .chatContainer {
+    width: 100%;
   }
 
   .profileContainer {

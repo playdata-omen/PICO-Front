@@ -1,18 +1,19 @@
 import React from 'react'
-import styles from '../Cards.module.css'
+import styles from './WorkCard.module.css'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-function WorkCard({ name }) {
+import picoLogo from '../../../img/pico-logo.png'
+
+function WorkCard({ work }) {
   return (
     <div className={styles.card}>
-      <div className={styles.imgContainer}> 
-        {/* <AccountBoxIcon fontSize='large' className={styles.profile}/> */}
+      <div className={styles.cardImgContainer}>
+        <img src={work.thumbnail} alt="test"/>
+        {/* <img src={picoLogo} alt="test"/> */}
       </div>
       <div className={styles.cardInfoContainer}>
-        <span>{name}</span>
-      </div>
-      <div className={styles.cardInfoBtn}>
-        <ArrowRightIcon fontSize='large' className={styles.btn}/>
+        <span>{work.title}</span>
+        <p><u>see more...</u></p>
       </div>
     </div>
   )

@@ -5,9 +5,11 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { AddButton } from '../../../Button/Button';
 import { getPhotographerDetail } from '../../../../api/User';
-import Spinner from '../../../Spinner/Spinner';
 
 function Info({ user }) {
+
+  const categories = useSelector(store => store.categories.categories)
+
 
   const [photographer, setPhotographer] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -16,6 +18,7 @@ function Info({ user }) {
     const data = await getPhotographerDetail(user.userIdx)
     setPhotographer(data)
     setLoading(false)
+
   }, [])
 
   // const photographer = useSelector(state => state.auth.photographer)
@@ -34,22 +37,34 @@ function Info({ user }) {
       {
         user.photographer ?
         (
-        loading ?
-        <div>작가 정보 불러오는 중...</div>
-        :
-        <div className={styles.basicInfoContainer}>
-          <ul>
-            <li><span>작업위치: {photographer.city} {photographer.address}</span></li>
-            <li><span>스튜디오 보유: </span>{photographer.hasStudio ? <CheckCircleIcon/> : <CancelIcon/>}</li>
-            {photographer.hasStudio && <li><span>스튜디오 주소: {photographer.studioAddress}</span></li>}
-          </ul>
-          <label>촬영 분야</label>
-          <ul>
-            <li><span>작업위치: {photographer.city} {photographer.address}</span></li>
-            <li><span>스튜디오 보유: </span>{photographer.hasStudio ? <CheckCircleIcon/> : <CancelIcon/>}</li>
-            {photographer.hasStudio && <li><span>스튜디오 주소: {photographer.studioAddress}</span></li>}
-          </ul>
-        </div>
+          loading ?
+          <div>작가 정보 불러오는 중...</div>
+
+          :
+          
+          <div className={styles.basicInfoContainer}>
+            <ul>
+              <li><span>작업위치: {photographer.city} {photographer.address}</span></li>
+              <li><span>스튜디오 보유: </span>{photographer.hasStudio ? <CheckCircleIcon/> : <CancelIcon/>}</li>
+              {photographer.hasStudio && <li><span>스튜디오 주소: {photographer.studioAddress}</span></li>}
+            </ul>
+            <label>촬영 분야</label>
+            <ul>
+              <li>
+                <div className={styles.categoryContainer}>
+                  {
+                    categories
+                      .filter(category => photographer.pCategory.includes(category.categoryIdx))
+                      .map(category => 
+                        <div className={styles.categoryLabel}>
+                          {category.kind}
+                        </div>
+                    )
+                  }
+                </div>
+              </li>
+            </ul>
+          </div>
         )
 
         :

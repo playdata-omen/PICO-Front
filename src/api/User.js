@@ -31,8 +31,9 @@ export const getPhotographerDetail = async userIdx => {
       studioAddress: '서울시 은평구 불광동 머시기',
       otherAreas: false,
       pCategory: [
-        {"categoryIdx":2,"kind":"스냅"},
-        {"categoryIdx":3,"kind":"화보"}
+        2, 3
+        // {"categoryIdx":2,"kind":"스냅"},
+        // {"categoryIdx":3,"kind":"화보"}
       ]
     })
   })

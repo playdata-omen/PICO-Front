@@ -3,7 +3,9 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  transition: ease 300ms;
 }
+
 .btnFrame * {
   transition: ease 300ms;
 }

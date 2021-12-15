@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Info from './Contents/Info/Info'
+import Work from './Contents/Work/Work'
 import ProfileTop from './Contents/ProfileTop'
 import styles from './ProfileContainer.module.css'
 
@@ -37,7 +38,7 @@ function ProfileContainer({ user }) {
 
         <div>
           {page === 1 && <Info user={user}/>}
-          {(page === 2 && user.photographer) && <div>Work</div>}
+          {(page === 2 && user.photographer) && <Work user={user}/>}
           {(page === 3 && user.photographer) && <div>Review</div>}
         </div>
     

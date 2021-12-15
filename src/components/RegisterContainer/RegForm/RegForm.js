@@ -62,13 +62,10 @@ function RegForm() {
   }
     
   const handlePCategoryChange = categoryIdx => {
-    console.log(typeof([1,2]))
-    console.log(typeof(pCategory))
     !pCategory.includes(categoryIdx)?
     setPCategory([...pCategory, categoryIdx])
     :
     setPCategory(pCategory.filter(cat => cat != categoryIdx))
-    // console.log(pCategory)
   }
 
   const handleAddressChange = value => setAddress(value)
