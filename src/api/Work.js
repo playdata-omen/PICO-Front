@@ -1,5 +1,17 @@
 import API from "./API";
 
+export const uploadWork = async (params) => {
+  await API.post('uploadWork', {
+    params
+  })
+  .then(res => {
+    console.log(res.data)
+  })
+  .catch(err => {
+    console.log(err.message);
+  })
+}
+
 export const getWorksList = async (userIdx)  => {
   const data = await API.get('getWorksList', userIdx)
   .then(res => {
@@ -7,25 +19,29 @@ export const getWorksList = async (userIdx)  => {
   })
   .catch(err => {
     return(
-      []
-      // [
-      //   {
-      //     "workIdx": 1,
-      //     "title": "work1",
-      //   },
-      //   {
-      //     "workIdx": 2,
-      //     "title": "work2",
-      //   },
-      //   {
-      //     "workIdx": 3,
-      //     "title": "work3",
-      //   },
-      //   {
-      //     "workIdx": 4,
-      //     "title": "work4",
-      //   },
-      // ]
+      // []
+      [
+        {
+          "workIdx": 1,
+          "title": "work1",
+        },
+        {
+          "workIdx": 2,
+          "title": "work2",
+        },
+        {
+          "workIdx": 3,
+          "title": "work3",
+        },
+        {
+          "workIdx": 4,
+          "title": "work4",
+        },
+        {
+          "workIdx": 5,
+          "title": "work5",
+        },
+      ]
     )
   })
   return data

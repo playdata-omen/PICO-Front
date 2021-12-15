@@ -16,6 +16,10 @@ function Work({ user }) {
   const workPage = workIdx => {
     console.log(workIdx)
   }
+
+  const uploadWorkPage = () => {
+    navigate('/uploadWork')
+  }
  
 
   useEffect(async()  => {
@@ -39,7 +43,7 @@ function Work({ user }) {
         :
         <div>
           {
-            works.length !== 0 ?
+            works.length !== 0 &&
             <div className={styles.workCardContainer}>
               {
                 works.map(work =>
@@ -51,15 +55,18 @@ function Work({ user }) {
 
               {
                 user.userIdx === userIdx &&
-                <div className={styles.addBtnContainer}>
+                <div className={styles.addBtnContainer} onClick={uploadWorkPage}>
                   <AddButton />
                 </div>
               }
             </div>
+          }
 
-            :
+            
+          {
+            (user.userIdx === userIdx && works.length === 0) && 
             <div className={styles.add}>
-              <div className={styles.addBtnContainer}>
+              <div className={styles.addBtnContainer} onClick={uploadWorkPage}>
                 <AddButton />
                 <label>작품을 업로드 하세요</label>
               </div>

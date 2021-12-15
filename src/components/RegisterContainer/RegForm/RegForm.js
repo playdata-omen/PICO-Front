@@ -12,9 +12,10 @@ import styles from './RegForm.module.css'
 
 import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
+import { useNavigate } from 'react-router';
 
 function RegForm() {
-  
+  let navigate = useNavigate()
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
   const photographer = useSelector(store => store.auth.photographer)
@@ -81,7 +82,7 @@ function RegForm() {
       location2,
       pCategory
     ))
-
+    navigate('/')
   }
 
   useEffect(()=> {

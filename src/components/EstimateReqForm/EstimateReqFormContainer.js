@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Form1, Form2, Form3, Form4, ProgressBar } from './ReqForm/EstimateReqForm'
+import { Form1, Form2, Form3, Form4 } from './ReqForm/EstimateReqForm'
 import styles from './EstimateReqFormContainer.module.css'
 import { reqEstimate } from '../../api/Estimate'
 
 import { useNavigate } from 'react-router-dom'
+import { ProgressBar } from '../ProgressBar/ProgressBar'
 
 function EstimateReqFormContainer({ photographerIdx }) {
 
@@ -17,7 +18,7 @@ function EstimateReqFormContainer({ photographerIdx }) {
   const navigate = useNavigate()
 
   const [page, setPage] = useState(1)
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState(6)
   const [city, setCity] = useState('서울특별시')
   const [address, setAddress] = useState('전체')
 
@@ -47,7 +48,8 @@ function EstimateReqFormContainer({ photographerIdx }) {
   
   return (
     <div className={styles.container}>
-      <ProgressBar page={page}/>
+      <ProgressBar page={page} num={4} />
+      {/* <ProgressBar page={page} num={4}/> */}
       <br/>
 
       <div>

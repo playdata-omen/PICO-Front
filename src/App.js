@@ -16,6 +16,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ImageSearchPage from './pages/ImageSearchPage/ImageSearchPage';
 import ChatRoomPage from './pages/ChatRoomPage/ChatRoomPage';
 import ProfileUpdatePage from './pages/ProfileUpdatePage/ProfileUpdatePage';
+import UploadWorkPage from './pages/UploadWorkPage/UploadWorkPage';
 
 function App() {
 
@@ -84,6 +85,14 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/uploadWork"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <UploadWorkPage />
             </PrivateRoute>
           }
         />

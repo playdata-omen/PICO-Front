@@ -1,8 +1,5 @@
 import React from 'react'
 import styles from './WorkCard.module.css'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-
-import picoLogo from '../../../img/pico-logo.png'
 
 function WorkCard({ work }) {
   return (

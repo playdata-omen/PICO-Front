@@ -18,10 +18,7 @@ function Info({ user }) {
     const data = await getPhotographerDetail(user.userIdx)
     setPhotographer(data)
     setLoading(false)
-
   }, [])
-
-  // const photographer = useSelector(state => state.auth.photographer)
 
   return (
 
@@ -50,19 +47,17 @@ function Info({ user }) {
             </ul>
             <label>촬영 분야</label>
             <ul>
-              <li>
-                <div className={styles.categoryContainer}>
-                  {
-                    categories
-                      .filter(category => photographer.pCategory.includes(category.categoryIdx))
-                      .map(category => 
-                        <div className={styles.categoryLabel}>
-                          {category.kind}
-                        </div>
-                    )
-                  }
-                </div>
-              </li>
+              <div className={styles.categoryContainer}>
+                {
+                  categories
+                    .filter(category => photographer.pCategory.includes(category.categoryIdx))
+                    .map(category => 
+                      <div className={styles.categoryLabel}>
+                        {category.kind}
+                      </div>
+                  )
+                }
+              </div>
             </ul>
           </div>
         )
