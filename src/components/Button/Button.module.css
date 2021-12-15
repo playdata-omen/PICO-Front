@@ -1,0 +1,49 @@
+.btnFrame {
+  background-color: var(--primary-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition: ease 300ms;
+}
+
+.btnFrame * {
+  transition: ease 300ms;
+}
+
+.btnFrame:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.plus, .plus2 {
+  position: absolute;
+  background-color: var(--secondary-color);
+  border-radius: 2.5px;
+}
+
+.plus {
+  width: 30px;
+  height: 6px;
+  transform: translateY(27px) translateX(15px);
+}
+
+.plus2{
+  width: 6px;
+  height: 30px;
+  transform: translateY(15px) translateX(27px);
+  transition: ease 300ms;
+}
+
+.active {
+  position: absolute;
+  background-color: transparent;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translateY(15px) translateX(15px);
+}
+
+.btnFrame:active > .active{
+  background-color: var(--secondary-color);
+}
+
+

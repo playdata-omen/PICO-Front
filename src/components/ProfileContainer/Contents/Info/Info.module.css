@@ -1,0 +1,64 @@
+.container {
+  padding: 20px;
+}
+
+.basicInfoContainer {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.basicInfoContainer label {
+  font-weight: 800;
+}
+
+.basicInfoContainer ul{
+  padding: 0px;
+  margin-bottom: 100px;
+}
+
+.basicInfoContainer li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  list-style: none;
+}
+
+.categoryContainer {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.categoryLabel {
+  margin: 10px;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.btn {
+  margin-top: 120px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.btn span {
+  font-size: 12px;
+  color: grey;
+  margin-top: 20px;
+}
+
