@@ -87,6 +87,7 @@ function App() {
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />
             </PrivateRoute>
+
           }
         />
         <Route 
