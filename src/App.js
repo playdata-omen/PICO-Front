@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/register" element={<RegisterPage />}/>
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route 
-          path="/myPage"
+          exact path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <MyPage user={auth.user}/>
