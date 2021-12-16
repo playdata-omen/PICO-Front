@@ -63,7 +63,7 @@ function MainContents() {
           </div>
         </form>
         
-        <div className={`${styles.searchBar} ${styles.photoUpload}`} onClick={() => console.log('hello')}>
+        <div className={`${styles.searchBar} ${styles.photoUpload}`} onClick={() => navigate('imageSearch')}>
           <input 
             type="button"
             value="이미지검색"

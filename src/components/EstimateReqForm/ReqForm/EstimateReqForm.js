@@ -8,29 +8,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { getPCategories } from '../../../api/Category';
 import Spinner from '../../Spinner/Spinner';
 
-export const ProgressBar = ({page}) => {
-  return (
-    <div className={styles.progressBar}>
-      <div>
-        <input type="radio" value={page} checked={page >= 1}/>
-        <div className={styles.bar}/>
-      </div>
-      <div>
-        <input type="radio" value={page} checked={page >= 2}/>
-        <div className={styles.bar}/>
-      </div>
-      <div>
-        <input type="radio" value={page} checked={page >= 3}/>
-        <div className={styles.bar}/>
-      </div>
-      <div>
-        <input type="radio" value={page} checked={page >= 4}/>
-        <div className={styles.bar}/>
-      </div>
-    </div>
-  )
-}
-
 export const Form1 = ({ category, setCategory, photographerIdx }) => {
 
   const [categories, setCategories] = useState(useSelector(state => state.categories.categories))

@@ -1,0 +1,38 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.workInfoContainer {
+  text-align: left;
+}
+
+.categoryLabel {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.categoryLabel label {
+  width: 100px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.workImgContainer {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.imgCard {
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  border: 1px solid green;
+}
+
+.imgCard img {
+  width: 100%;
+}

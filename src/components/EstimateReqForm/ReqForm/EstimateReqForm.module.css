@@ -13,29 +13,6 @@
   /* border: 1px dashed red; */
 }
 
-.progressBar {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.bar {
-  margin: 2px;
-  width: 120px;
-  height: 15px;
-  border-radius: 5px;
-  box-shadow: 0 0 0 2px var(--primary-color) inset;
-  transition: ease-out 300ms;
-}
-
-.progressBar input[type=radio]:checked + .bar {
-  background-color: var(--primary-color);
-}
-
-.progressBar input[type=radio] {
-  display: none;
-}
-
 /* Form 1 Category */
 .contentContainer {
   height: 100%;

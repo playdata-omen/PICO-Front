@@ -16,6 +16,8 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ImageSearchPage from './pages/ImageSearchPage/ImageSearchPage';
 import ChatRoomPage from './pages/ChatRoomPage/ChatRoomPage';
 import ProfileUpdatePage from './pages/ProfileUpdatePage/ProfileUpdatePage';
+import UploadWorkPage from './pages/UploadWorkPage/UploadWorkPage';
+import WorkPage from './pages/WorkPage/WorkPage';
 
 function App() {
 
@@ -31,8 +33,10 @@ function App() {
         <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />}/>
         <Route exact path="/register" element={<RegisterPage />}/>
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
+        <Route exact path="/work/:workIdx" element={<WorkPage />}/>
+        <Route exact path="/imageRecommended" element={<imageRecommendedPage />}/>
         <Route 
-          path="/myPage"
+          exact path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <MyPage user={auth.user}/>
@@ -56,7 +60,7 @@ function App() {
           }
         />
         <Route 
-          path="/myPage/estimate/:estimateIdx"
+          exact path="/myPage/estimate/:estimateIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimatePage/>
@@ -84,6 +88,15 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimateRequestPage />
+            </PrivateRoute>
+
+          }
+        />
+        <Route 
+          path="/uploadWork"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <UploadWorkPage />
             </PrivateRoute>
           }
         />

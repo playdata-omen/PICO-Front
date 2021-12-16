@@ -23,6 +23,23 @@
   list-style: none;
 }
 
+.categoryContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categoryLabel {
+  margin: 10px;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .btnContainer {
   display: flex;
   justify-content: center;
