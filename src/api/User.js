@@ -1,5 +1,6 @@
 import API from "./API";
 
+// export const getPUserWithUIdx = async userIdx => {
 export const getPhotographerUser = async userIdx => {
   const data = await API.get('pUser', userIdx)
   .then(res => {
@@ -11,9 +12,20 @@ export const getPhotographerUser = async userIdx => {
       email: 'lgh95m@gmail.com',
       name: '이기환',
       phone: '010-4446-0410',
-      isRegistered: false,
       photographer: true
     })
+  })
+  return data
+}
+
+export const getPUserWithPIdx = async photographerIdx => {
+  const data = await API.get('pUserIdx', photographerIdx)
+  .then(res => {
+    return getPhotographerUser(res.data)
+  })
+  .catch(err => {
+    return getPhotographerUser(2)
+    // return 1 //pUserIdx
   })
   return data
 }

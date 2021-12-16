@@ -58,5 +58,10 @@
 @media screen and (width<=768px){
   .infoContainer {
     flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .updateBtn {
+    align-self: flex-start;
   }
 }

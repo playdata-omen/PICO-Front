@@ -47,30 +47,35 @@ export const Form2 = ({ setTitle }) => {
   )
 }
 
-export const Form3 = () => {
-  const [files, setFiles] = useState([])
+export const Form3 = ({files, setFiles}) => {
+
   const {getRootProps, getInputProps} = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      setFiles(
-        // acceptedFiles
-        acceptedFiles.map(file => Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        }))
-        )
-      }
+      acceptedFiles.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      })).forEach(file => setFiles([...files, file]))
+    }
+  })
+
+  const deleteImg = name => {
+    files.forEach((file, index) => {
+      file.name === name && setFiles(files.filter((f, i) => i != index))
     })
-    
-    const images = files.map(file => 
-      <div key={file.name} className={styles.image}>
-      <div>
-        <img src={file.preview} alt="" style={{
-          width: '100px'
-        }}/>
+  }
+
+  const handleImgLimit = name => {
+    alert('작품 사진 업로드는 6장까지만 가능합니다')
+    deleteImg(name)
+  }
+
+  const images = files.map((file, i) => 
+    <div key={`${file.name}${i}`} className={styles.image}>
+      <div onClick={()=> deleteImg(file.name)}>
+        <img src={file.preview} alt=""/>
       </div>
     </div>  
   )
-  console.log(files)
 
   const dropZone = (
     <div {...getRootProps()} className={styles.dropZoneContainer}> 
@@ -79,6 +84,11 @@ export const Form3 = () => {
       <span>Drop Files here</span>
     </div>
   )
+
+  useEffect(() => {
+    files.length > 6 && handleImgLimit(files.slice(-1)[0].name)
+  },[files])
+
   return(
     <div className={styles.container}>
       <label>사진 업로드</label>

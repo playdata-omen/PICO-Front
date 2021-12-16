@@ -1,15 +1,18 @@
 import API from "./API";
 
-export const uploadWork = async (params) => {
+
+export const uploadWork = async (navigate, category, title, files, content) => {
   await API.post('uploadWork', {
-    params
+    category, title, files, content
   })
   .then(res => {
     console.log(res.data)
   })
   .catch(err => {
     console.log(err.message);
+    console.log(files);
   })
+  navigate('/myPage')
 }
 
 export const getWorksList = async (userIdx)  => {
@@ -42,6 +45,30 @@ export const getWorksList = async (userIdx)  => {
           "title": "work5",
         },
       ]
+    )
+  })
+  return data
+}
+
+export const getWorkDetail = async (workIdx) => {
+  const data = await API.get('getWork', workIdx)
+  .then(res => {
+    return res.data
+  })
+  .catch(res => {
+    return (
+      {
+        "workIdx" : 1,
+        "photographerIdx" : 1,
+        "title" : "작품 이름",
+        "content": "작품 설명",
+        "category": 1,
+        "photos" : [
+          "img1",
+          "img2",
+          "img3"
+        ],
+      }
     )
   })
   return data

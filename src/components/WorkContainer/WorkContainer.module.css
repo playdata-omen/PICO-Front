@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  border: 1px dashed red;
+}
+
+.container hr {
+  height: 1px;
+  background-color: var(--primary-color);
+  border: none;
+}
