@@ -10,7 +10,6 @@ export const getEstimateReqList = async userIdx => {
     ]
   })
   .catch(err => {
-    console.log('오싙')
     return [
       {"estimateIdx" : 1, "name" : "견적1"},
       {"estimateIdx" : 2, "name" : "견적2"},
@@ -28,8 +27,6 @@ export const getEstimateDetail = async estimateIdx => {
     return res.data
   }).catch(err => {
     return (
-
-      
       {
         "id": 1, 
         "userIdx": 1,
@@ -45,14 +42,16 @@ export const getEstimateDetail = async estimateIdx => {
             "applyIdx" : 1,
             "userIdx" : 2,
             "name" : "이기환",
-            "review" : 4
+            "review" : 4,
+            "grade": 4.5
           },
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
             "applyIdx" : 2,
             "userIdx" : 3,
             "name" : "차재훈",
-            "review" : 4
+            "review" : 4,
+            "grade": 3.8
           }
         ]
       }

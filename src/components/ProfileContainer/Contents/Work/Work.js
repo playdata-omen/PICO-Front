@@ -14,7 +14,7 @@ function Work({ user }) {
   const [loading, setLoading] = useState(true)
 
   const workPage = workIdx => {
-    console.log(workIdx)
+    navigate(`/work/${workIdx}`)
   }
 
   const uploadWorkPage = () => {
@@ -34,12 +34,9 @@ function Work({ user }) {
     <div className={styles.container}>
       {
         loading ?
-  
         <div>
           작업 불러오는 중...
         </div>
-    
-    
         :
         <div>
           {
@@ -61,8 +58,6 @@ function Work({ user }) {
               }
             </div>
           }
-
-            
           {
             (user.userIdx === userIdx && works.length === 0) && 
             <div className={styles.add}>

@@ -48,16 +48,30 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
   }
 }
 
-export const registerPhotographer = (hasStudio, location, location2, pCategory, address, addressDetail) => {
+// {
+//   "activityAddress": "string",
+//   "activityCity": "string",
+//   "category": [
+//     0
+//   ],
+//   "hasStudio": true,
+//   "isOtherArea": true,
+//   "photographerIdx": 0,
+//   "studioAddress": "string",
+//   "studioCity": "string",
+//   "userIdx": 0
+// }
+
+export const registerPhotographer = (hasStudio, activityAddress, activityCity, category, studioAddress, studioCity) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
-    API.post('registerPhotographer', {
+    API.post('photographer/register', {
       hasStudio,
-      location,
-      location2,
-      pCategory,
-      address,
-      addressDetail
+      activityAddress,
+      activityCity,
+      category,
+      studioAddress,
+      studioCity
     }).then(res => {
       const photographer = res.data
       dispatch(auth_actions.fetchPhotoGrapherSuccess(photographer))

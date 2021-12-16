@@ -8,16 +8,16 @@ export const ProgressBar = ({page, num}) => {
     i++
   }
 
+  const barCount = pLen.map(v =>
+    <div>
+      <input type="radio" value={page} checked={page >= v}/>
+      <div className={styles.bar}/>
+    </div>
+  )
+
   return (
     <div className={styles.progressBar}>
-      {
-        pLen.map(v =>
-          <div>
-            <input type="radio" value={page} checked={page >= v}/>
-            <div className={styles.bar}/>
-          </div>
-        )
-      }
+      { barCount }
     </div>
   )
 }

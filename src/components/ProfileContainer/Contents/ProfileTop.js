@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 
 function ProfileTop({ user }) {
 
+  const userIdx = useSelector(store => store.auth.user.userIdx)
   let navigate = useNavigate()
 
   const updateProfile = () => {
@@ -18,7 +19,14 @@ function ProfileTop({ user }) {
     )
   }
 
-  const userIdx = useSelector(store => store.auth.user.userIdx)
+  const resquestPEstimate = () => {
+    setTimeout(
+      function(){
+        navigate(`/estimateRequest/${user.userIdx}`)
+      }, 700
+    )
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}> 
@@ -29,9 +37,13 @@ function ProfileTop({ user }) {
           <span>{user.name} { user.photographer ? '작가님' : '고객님'}</span>
         </div>
         { 
-          userIdx === user.userIdx &&
+          userIdx === user.userIdx ?
           <div className={styles.updateBtn} onClick={updateProfile}>
             <button>정보수정</button>
+          </div>
+          :
+          <div className={styles.updateBtn} onClick={resquestPEstimate}>
+            <button>견적요청</button>
           </div>
         }
       </div>
