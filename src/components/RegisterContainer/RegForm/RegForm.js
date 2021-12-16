@@ -26,6 +26,7 @@ import { useNavigate } from 'react-router';
 function RegForm() {
 
   let navigate = useNavigate()
+
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
   const photographer = useSelector(store => store.auth.photographer)

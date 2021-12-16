@@ -10,7 +10,7 @@ function Info({ user }) {
 
   const categories = useSelector(store => store.categories.categories)
 
-
+  
   const [photographer, setPhotographer] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -19,6 +19,7 @@ function Info({ user }) {
     setPhotographer(data)
     setLoading(false)
   }, [])
+
 
   return (
 

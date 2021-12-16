@@ -44,8 +44,6 @@ export const getPhotographerDetail = async userIdx => {
       otherAreas: false,
       pCategory: [
         2, 3, 4, 5
-        // {"categoryIdx":2,"kind":"스냅"},
-        // {"categoryIdx":3,"kind":"화보"}
       ]
     })
   })

@@ -1,0 +1,14 @@
+.container {
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgb(177, 94, 94);
+}
+
+.previewControll {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
