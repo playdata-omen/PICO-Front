@@ -4,17 +4,17 @@ import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILU
 
 // (previousState, action) => newState
 
-// state
+
 const initialState = {
   loading: false,
   authenticated: false,
   user: {
-    email: 'henrynoowa@gmail.com',
-    nickName: 'test',
-    name: '조하운',
-    phone: '010-4446-0410',
-    registered: false,
-    photographer: false
+    // email: 'henrynoowa@gmail.com',
+    // nickName: 'test',
+    // name: '조하운',
+    // phone: '010-4446-0410',
+    // isRegister: false,
+    // isPhotographer: true
   },
 
   // hasStudio,
@@ -24,18 +24,18 @@ const initialState = {
   // studioAddress,
   // studioCity
   photographer: {
-    hasStudio: true,
-    isOtherArea: false,
-    activityCity: '서울특별시',
-    activityAddress: '전체',
-    studioCity: '서울시 은평구 불광동 머시기',
-    studioAddress: '서울시 은평구 불광동 머시기',
-    otherAreas: false,
-    category: [
-      1, 2
-      // {"categoryIdx":2,"kind":"스냅"},
-      // {"categoryIdx":3,"kind":"화보"}
-    ]
+    // hasStudio: true,
+    // isOtherArea: false,
+    // activityCity: '서울특별시',
+    // activityAddress: '전체',
+    // studioCity: '서울시 은평구 불광동 머시기',
+    // studioAddress: '2층',
+    // otherAreas: false,
+    // category: [
+    //   1, 2
+    //   // {"categoryIdx":2,"kind":"스냅"},
+    //   // {"categoryIdx":3,"kind":"화보"}
+    // ]
   },
   error: ''
 }

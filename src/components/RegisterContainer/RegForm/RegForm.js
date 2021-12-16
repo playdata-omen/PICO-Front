@@ -5,6 +5,8 @@ import DaumPostcode from 'react-daum-postcode';
 
 import PersonIcon from '@mui/icons-material/Person';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { AREA } from '../../../constants';
 
@@ -13,6 +15,7 @@ import styles from './RegForm.module.css'
 import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
 import { useNavigate } from 'react-router';
+
 
 
 // hasStudio,
@@ -40,7 +43,7 @@ function RegForm() {
   const [email, setEmail] = useState(user.email)
   const [phone, setPhone] = useState(user.phone)
 
-  const [isPhotographer, setIsPhotographer] = useState(user.photographer)
+  const [isPhotographer, setIsPhotographer] = useState(user.isPhotographer)
 
   const handleIsPhotographerChange = value => {
     setIsPhotographer(value)
@@ -49,25 +52,23 @@ function RegForm() {
 
   // 작가 정보등록용
   const [isOtherArea, setIsOtherArea] = useState(photographer? photographer.isOtherArea : false)
-  const [activityCity, setActivityCity] = useState(photographer? photographer.activityCity : areas[0])
+  const [activityCity, setActivityCity] = useState(photographer.activityCity? photographer.activityCity : areas[0])
   const [activityAddress, setActivityAddress] = useState(photographer? photographer.activityAddress : '전체')
-  const [studioAddress, setStudioAddress] = useState(photographer? photographer.studioAddress : '')
   const [studioCity, setStudioCity] = useState(photographer? photographer.studioCity : '')
+  const [studioAddress, setStudioAddress] = useState(photographer? photographer.studioAddress : '')
 
 
   const [hasStudio, setHasStudio] = useState(photographer? photographer.hasStudio : false)
   const [openPostApi, setOpenPostApi] = useState(false)
 
-  const [category, setCategory] = useState(photographer? [...photographer.category]: [])
+  const [category, setCategory] = useState(photographer.category? [...photographer.category]: [])
 
   const handleHasStudioChange = value => {
     setHasStudio(JSON.parse(value))
-    
     if(!hasStudio){
       setStudioAddress('')
       setStudioCity('')
     }
-    
   }
 
   const handleActivityCityChange = value => {
@@ -82,32 +83,25 @@ function RegForm() {
     setCategory(category.filter(cat => cat != categoryIdx))
   }
 
-  const handleAddressChange = value => setStudioAddress(value)
-  const handlestudioCityChange = value => setStudioCity(value)
-
   const handleRegister = () => {
     dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer, user.register))
     
     isPhotographer &&
     dispatch(auth_actions.registerPhotographer(
-      hasStudio,
-      activityAddress,
       activityCity,
-      category
+      activityAddress,
+      category,
+      hasStudio,
+      isOtherArea,
+      studioAddress,
+      studioCity,
     ))
     navigate('/')
   }
 
-  useEffect(()=> {
-    console.log(category)
-  },[category])
-
   return (
     <div className={styles.formContainer}>
       <div className={styles.inputContainer}>
-        {activityCity} <br/>
-        {activityAddress}
-        {`${isPhotographer}`}
         <label>이름</label>
         <input type="text" value={name} onChange={e => setName(e.target.value)} />
       </div>
@@ -163,30 +157,29 @@ function RegForm() {
         isPhotographer && 
         <RegFormPhotographer className={styles.form}
         
+          categories={categories}
+    
+          category={category}
+          handleCategoryChange={handleCategoryChange}
+          
+          isOtherArea={isOtherArea}
+          setIsOtherArea={setIsOtherArea}
+        
           activityCity={activityCity}
           activityAddress={activityAddress}
-          categories={categories}
+          handleActivityCityChange={handleActivityCityChange}
+          setActivityAddress={setActivityAddress}
+          
+          handleHasStudioChange={handleHasStudioChange}
+          
+          openPostApi={openPostApi} 
+          setOpenPostApi={setOpenPostApi}
           
           hasStudio={hasStudio}
           studioAddress={studioAddress} 
           studioCity={studioCity}
-        
-          openPostApi={openPostApi} 
-          category={category}
-
-          isOtherArea={isOtherArea}
-          setIsOtherArea={setIsOtherArea}
-
-          handleActivityCityChange={handleActivityCityChange}
-          setActivityAddress={setActivityAddress}
-
-          handleHasStudioChange={handleHasStudioChange}
-
-          setOpenPostApi={setOpenPostApi}
-          handleCategoryChange={handleCategoryChange}
-          
-          handleAddressChange={handleAddressChange} 
-          handlestudioCityChange={handlestudioCityChange}
+          setStudioCity={setStudioCity}
+          setStudioAddress={setStudioAddress} 
         />
       }
       <button className={styles.submitBtn} onClick={handleRegister}>{user.register ? '정보수정' : '회원가입'}</button>      
@@ -210,7 +203,7 @@ function RegFormPhotographer(
     handleActivityCityChange, setActivityAddress,
     handleCategoryChange,
     handleHasStudioChange,
-    handleAddressChange, handlestudioCityChange,
+    setStudioCity, setStudioAddress,
     setOpenPostApi
   }) {
   const categories = useSelector(store => store.categories.categories)
@@ -219,7 +212,7 @@ function RegFormPhotographer(
 
   const handlePostChange = data => {
     setOpenPostApi(false)
-    handleAddressChange(data.address)
+    setStudioCity(data.address)
     console.log(studioAddress)
   }
 
@@ -273,8 +266,7 @@ function RegFormPhotographer(
 
           <div>
             <div className={styles.radioBtn} onClick={() => handleHasStudioChange(true)}>
-              <PersonIcon />
-              <label>협의가능</label>
+              <CheckCircleIcon />
             </div>
             <br />
             <input
@@ -285,8 +277,7 @@ function RegFormPhotographer(
           </div>
           <div>
             <div className={styles.radioBtn} onClick={() => handleHasStudioChange(false)}>
-              <PersonIcon />
-              <label>협의불가능</label>
+              <CancelIcon />
             </div>
             <input
               type="radio"
@@ -336,11 +327,11 @@ function RegFormPhotographer(
         <div>
           <div className={styles.inputContainer}>
             <label>스튜디오 주소</label>
-            <input type="text" value={activityAddress} onChange={e => handleActivityCityChange(e.target.value)} onClick={() => setOpenPostApi(!openPostApi)} />
+            <input type="text" value={studioCity} onChange={e => setStudioCity(e.target.value)} onClick={() => setOpenPostApi(!openPostApi)} />
           </div>
           <div className={styles.inputContainer}>
             <label>상세주소</label>
-            <input type="text" value={studioCity} onChange={e => handlestudioCityChange(e.target.value)}/>
+            <input type="text" value={studioAddress} onChange={e => setStudioAddress(e.target.value)}/>
           </div>
         </div>
       }

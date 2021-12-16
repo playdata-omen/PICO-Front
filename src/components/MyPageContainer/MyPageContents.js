@@ -15,7 +15,6 @@ function MyPageContents({user}) {
   //   {"estimateIdx" : 2, "name" : "견적2"},
   // ])
 
-  // const [works, setWorks] = useState([])
   const [works, setWorks] = useState([
     {"workIdx" : 1, "name" : "작업1"},
     {"workIdx" : 2, "name" : "작업2"},
@@ -62,7 +61,7 @@ function MyPageContents({user}) {
           user.isPhotographer && !works.length == 0 ?
           works.map(work => 
             <div className={styles.cardList}>
-              <WorkCard name={work.name} />
+              <WorkCard work={work} />
             </div>
           )
 

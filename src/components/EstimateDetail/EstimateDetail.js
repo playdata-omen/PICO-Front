@@ -11,16 +11,7 @@ function EstimateDetail({ estimateIdx }) {
   const [ loading, setLoading ] = useState(true)
 
   let navigate = useNavigate();
-
-  // {
-  //   "categoryIdx" : 1,
-  //   "city" : "서울",
-  //   "address" : "은평구",
-  //   "startDate" : "",
-  //   "endDate" : "",
-  //   "content" : "dasdfjahsdkhvlalsdfkjlashdfklalscdkjh"
-  // }
-
+  
   useEffect(async()=> {
     const data = await getEstimateDetail(estimateIdx)
     setEstimate(data)

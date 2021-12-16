@@ -14,7 +14,7 @@ export const getUser = (navigate, code, provider) => {
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
       dispatch(auth_actions.login())
-      user.register ? navigate('/') : navigate('/register')
+      user.isRegister ? navigate('/') : navigate('/register')
     })
     .catch(err => {
       alert(err.message)
@@ -25,7 +25,7 @@ export const getUser = (navigate, code, provider) => {
   }
 }
 
-export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegistered) => {
+export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegister) => {
   return dispatch => {
     console.log(userIdx)
     dispatch(auth_actions.fetchUserRequest)
@@ -38,7 +38,7 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
       isPhotographer
     }).then(res => {
       const user = res.data
-      isRegistered ? alert('수정완료') :alert("회원가입")
+      isRegister ? alert('수정완료') :alert("회원가입")
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
     }).catch(err => {
@@ -62,16 +62,25 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
 //   "userIdx": 0
 // }
 
-export const registerPhotographer = (hasStudio, activityAddress, activityCity, category, studioAddress, studioCity) => {
+// activityCity,
+// activityAddress,
+// category,
+// hasStudio,
+// isOtherArea,
+// studioAddress,
+// studioCity,
+
+export const registerPhotographer = (activityCity, activityAddress, category, hasStudio, isOtherArea, studioAddress, studioCity) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
     API.post('photographer/register', {
-      hasStudio,
-      activityAddress,
       activityCity,
+      activityAddress,
       category,
+      hasStudio,
+      isOtherArea,
       studioAddress,
-      studioCity
+      studioCity,
     }).then(res => {
       const photographer = res.data
       dispatch(auth_actions.fetchPhotoGrapherSuccess(photographer))

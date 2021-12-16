@@ -22,7 +22,7 @@ export const getEstimateReqList = async userIdx => {
 }
 
 export const getEstimateDetail = async estimateIdx => {
-  const data = await API.get('estimateDetail', estimateIdx)
+  const data = await API.get(`estimateDetail/${estimateIdx}`)
   .then(res => {
     return res.data
   }).catch(err => {
@@ -59,18 +59,37 @@ export const getEstimateDetail = async estimateIdx => {
   })
   return data
 }
-
+// {
+//   "address": "string",
+//   "category": 0,
+//   "city": "string",
+//   "content": "string",
+//   "created": {
+//     "date": 0,
+//     "day": 0,
+//     "hours": 0,
+//     "minutes": 0,
+//     "month": 0,
+//     "nanos": 0,
+//     "seconds": 0,
+//     "time": 0,
+//     "timezoneOffset": 0,
+//     "year": 0
+//   },
+//   "endDate": "string",
+//   "idx": 0,
+//   "photographerIdx": 0,
+//   "startDate": "string",
+//   "status": "string",
+//   "user": 0
+// }
 
 // reqEstimate(navigate, category, content, city, address, startDate, endDate)
-export const reqEstimate = async(navigate, category, content, city, address, startDate, endDate) => {
-  const response = await API.post('estimateReq', {
-    category, content, city, address, startDate, endDate
-  })
-  .then(res => {
-    navigate('/myPage')
-  })
+export const reqEstimate = async(navigate, address, category, city, content, startDate, endDate) => {
+// export const reqEstimate = async(navigate, category, content, city, address, startDate, endDate) => {
+  await API.post('estimate/add', { address, category, city, content, startDate, endDate })
   .catch(err => {
-    alert('err test')
-    navigate('/myPage')
+    alert(err.message)
   })
+  navigate('/myPage')
 }

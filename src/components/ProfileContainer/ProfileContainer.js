@@ -20,7 +20,7 @@ function ProfileContainer({ user }) {
             <button onClick={()=>setPage(1)}>소개</button>
           </div>
           { 
-            user.photographer && 
+            user.isPhotographer && 
             (
               <div>
                 <input type="radio" checked={page === 2} readOnly/>
@@ -29,7 +29,7 @@ function ProfileContainer({ user }) {
             )
           }
           { 
-            user.photographer && 
+            user.isPhotographer && 
             (
               <div>
                 <input type="radio" checked={page === 3} readOnly/>
@@ -41,8 +41,8 @@ function ProfileContainer({ user }) {
 
         <div>
           {page === 1 && <Info user={user}/>}
-          {(page === 2 && user.photographer) && <Work user={user}/>}
-          {(page === 3 && user.photographer) && <div>Review</div>}
+          {(page === 2 && user.isPhotographer) && <Work user={user}/>}
+          {(page === 3 && user.isPhotographer) && <div>Review</div>}
         </div>
     
       </div>

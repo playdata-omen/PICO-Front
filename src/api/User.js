@@ -1,8 +1,7 @@
 import API from "./API";
 
-// export const getPUserWithUIdx = async userIdx => {
 export const getPhotographerUser = async userIdx => {
-  const data = await API.get('pUser', userIdx)
+  const data = await API.get(`pUser/${userIdx}`)
   .then(res => {
     return res.data
   })
@@ -12,14 +11,14 @@ export const getPhotographerUser = async userIdx => {
       email: 'lgh95m@gmail.com',
       name: '이기환',
       phone: '010-4446-0410',
-      photographer: true
+      isPhotographer: true
     })
   })
   return data
 }
 
 export const getPUserWithPIdx = async photographerIdx => {
-  const data = await API.get('pUserIdx', photographerIdx)
+  const data = await API.get(`pUserIdx/${photographerIdx}`)
   .then(res => {
     return getPhotographerUser(res.data)
   })
@@ -31,7 +30,7 @@ export const getPUserWithPIdx = async photographerIdx => {
 }
 
 export const getPhotographerDetail = async userIdx => {
-  const data = await API.get('photographer', userIdx)
+  const data = await API.get(`photographer/${userIdx}`)
   .then(res => {
     return res.data
   })
