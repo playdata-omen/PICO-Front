@@ -1,6 +1,7 @@
 import API from "./API"
 import { auth_actions } from '../_actions/auth_action.js'
 import { ACCESS_TOKEN } from "../constants"
+import { getPhotographerDetail } from "./User"
 
 export const getUser = (navigate, code, provider) => {
   return dispatch => {
@@ -9,11 +10,12 @@ export const getUser = (navigate, code, provider) => {
         code,
         provider
     })
-    .then(res => {
+    .then( async(res) => {
       const user = res.data
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
       dispatch(auth_actions.login())
+      user.isPhotographer && dispatch(auth_actions.fetchPhotographerSuccess(await getPhotographerDetail(user.userIdx)))
       user.isRegister ? navigate('/') : navigate('/register')
     })
     .catch(err => {
@@ -26,6 +28,20 @@ export const getUser = (navigate, code, provider) => {
 }
 
 export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegister) => {
+
+  let form = new FormData()
+  form.append('userIdx', userIdx)
+  form.append("name", name)
+  form.append('nickName', nickName)
+  form.append('email', email)
+  form.append('phone', phone)
+  form.append('isPhotographer', isPhotographer)
+  form.append('isRegister', isRegister)
+
+  console.log(Array.from(form))
+
+  form.forEach(v => console.log(v))
+
   return dispatch => {
     console.log(userIdx)
     dispatch(auth_actions.fetchUserRequest)
@@ -70,10 +86,11 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
 // studioAddress,
 // studioCity,
 
-export const registerPhotographer = (activityCity, activityAddress, category, hasStudio, isOtherArea, studioAddress, studioCity) => {
+export const registerPhotographer = (userIdx, activityCity, activityAddress, category, hasStudio, isOtherArea, studioAddress, studioCity) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
     API.post('photographer/register', {
+      userIdx,
       activityCity,
       activityAddress,
       category,
@@ -83,10 +100,25 @@ export const registerPhotographer = (activityCity, activityAddress, category, ha
       studioCity,
     }).then(res => {
       const photographer = res.data
-      dispatch(auth_actions.fetchPhotoGrapherSuccess(photographer))
+      console.log(res.data)
+      dispatch(auth_actions.fetchPhotographerSuccess(photographer))
     }).catch(err => {
-      alert("작가가입")
+      alert(err.message)
       dispatch(auth_actions.fetchUserFailure(err.message))
     })
   }
 }
+
+// {
+//   "activityAddress": "string",
+//   "activityCity": "string",
+//   "category": [
+//     0
+//   ],
+//   "hasStudio": true,
+//   "isOtherArea": true,
+//   "photographerIdx": 0,
+//   "studioAddress": "string",
+//   "studioCity": "string",
+//   "userIdx": 0
+// }

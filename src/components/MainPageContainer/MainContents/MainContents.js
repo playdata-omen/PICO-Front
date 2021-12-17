@@ -36,7 +36,7 @@ function MainContents() {
 
   useEffect(() => {
     console.log(categories)
-    // dispatch(category_actions.fetchCategories())
+    dispatch(category_actions.fetchCategories())
   },[])
 
   return (

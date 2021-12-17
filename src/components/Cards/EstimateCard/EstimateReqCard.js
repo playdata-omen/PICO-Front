@@ -4,7 +4,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useNavigate } from 'react-router';
 
 
-function EstimateReqCard({ estimateIdx, name }) {
+function EstimateReqCard({ estimateIdx }) {
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function EstimateReqCard({ estimateIdx, name }) {
         { estimateIdx }
       </div>
       <div className={styles.cardInfoContainer}>
-        <span>{name}</span>
+        <span>{estimateIdx}</span>
       </div>
       <div className={styles.cardInfoBtn}>
         <ArrowRightIcon fontSize='large' className={styles.btn}/>

@@ -31,6 +31,10 @@ function UploadWorkContainer() {
     // console.log(converted)
     uploadWork(navigate, category, title, converted, content)
   }
+
+  useEffect(() => {
+    console.log(converted)
+  },[converted])
  
   return (
     <div className={styles.container}>

@@ -9,9 +9,9 @@ export const fetchCategories = () => {
       const categories = res.data
       dispatch(category_actions.fetchCategoriesSuccess(categories))
     })
-    .catch(err => {
-      dispatch(category_actions.fetchCategoriesFailure(err.message))
-    })
+    // .catch(err => {
+    //   dispatch(category_actions.fetchCategoriesFailure(err.message))
+    // })
   }
 }
 

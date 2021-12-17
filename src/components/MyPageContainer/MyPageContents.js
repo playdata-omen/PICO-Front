@@ -10,10 +10,6 @@ function MyPageContents({user}) {
 
   const [loading, setLoading] = useState(true)
   const [estimates, setEstimates] = useState([])
-  // const [estimates, setEstimates] = useState([
-  // {"estimateIdx" : 1, "name" : "견적1"},
-  //   {"estimateIdx" : 2, "name" : "견적2"},
-  // ])
 
   const [works, setWorks] = useState([
     {"workIdx" : 1, "name" : "작업1"},
@@ -51,7 +47,7 @@ function MyPageContents({user}) {
         }
       </div>
       
-      {
+      {/* {
         user.isPhotographer &&
         <div className={styles.cardList}>
           <label>작품</label>
@@ -78,7 +74,7 @@ function MyPageContents({user}) {
             }
           </div>
          
-        }
+        } */}
 
     </div>
 
