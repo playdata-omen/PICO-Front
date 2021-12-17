@@ -30,7 +30,7 @@ export const getEstimateDetail = async estimateIdx => {
       {
         "id": 1, 
         "userIdx": 1,
-        "category" : {"categoryIdx":4,"kind":"제품"},
+        "categoryIdx" : 4,
         "city" : "서울",
         "address" : "은평구",
         "startDate": "2021-12-15",
@@ -40,7 +40,7 @@ export const getEstimateDetail = async estimateIdx => {
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
             "applyIdx" : 1,
-            "userIdx" : 2,
+            "userIdx" : 6,
             "name" : "이기환",
             "review" : 4,
             "grade": 4.5
@@ -48,7 +48,7 @@ export const getEstimateDetail = async estimateIdx => {
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
             "applyIdx" : 2,
-            "userIdx" : 3,
+            "userIdx" : 4,
             "name" : "차재훈",
             "review" : 4,
             "grade": 3.8

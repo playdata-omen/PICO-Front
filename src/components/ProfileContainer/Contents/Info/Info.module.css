@@ -8,7 +8,7 @@
 }
 
 .basicInfoContainer label {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .basicInfoContainer ul{
@@ -24,15 +24,18 @@
 }
 
 .categoryContainer {
+  /* border: 1px solid red; */
+  width: 100%;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .categoryLabel {
-  margin: 10px;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
   text-align: center;
-  width: 100px;
-  height: 100px;
   border-radius: 10px;
   background-color: var(--primary-color);
   display: flex;

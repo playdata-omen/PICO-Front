@@ -34,7 +34,7 @@ function ProfileTop({ user }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.info}>
-          <span>{user.name} { user.photographer ? '작가님' : '고객님'}</span>
+          <span>{user.name} { user.isPhotographer ? '작가님' : '고객님'}</span>
         </div>
         { 
           userIdx === user.userIdx ?

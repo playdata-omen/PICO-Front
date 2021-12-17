@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ACCESS_TOKEN, SERVER_URL } from '../constants'
+import RedirectHandler, { handleServerErr } from '../service/RedirectHandler';
 
 const API = axios.create({
   baseURL: SERVER_URL,
@@ -8,9 +9,9 @@ const API = axios.create({
 const getToken = async () => {
   const token = localStorage.getItem(ACCESS_TOKEN);
   if (token) {
-      return `Bearer ${token}`;
+    return `Bearer ${token}`;
   } else {
-      return null;
+    return null;
   }
 };
 
@@ -22,6 +23,26 @@ API.interceptors.request.use(async config => {
   config.headers["authorization"] = await getToken();
   return config;
 });
+
+API.interceptors.response.use(
+  response => {
+    return response
+  },
+  error => {
+    if (!error.response) {
+      RedirectHandler.handleServerErr()
+    }
+    return Promise.reject(error)
+  }
+)
+// API.interceptors.response.use(
+//   response => response,
+//   error => {
+//     if (error.response && error.response.status === 500) {
+//       alert('현재 서버에 문제가 있습니다')
+//     }
+//   }
+// );
 
 // API.interceptors.response.use((response) => {
 //   if (response.headers.client) {

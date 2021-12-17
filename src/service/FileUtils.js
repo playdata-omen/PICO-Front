@@ -4,6 +4,7 @@ export const getBase64 = (file, converted, setConverted) => {
     let baseURL = "";
     // Make new FileReader
     let reader = new FileReader();
+    console.log(file)
 
     // Convert the file to base64 text
     reader.readAsDataURL(file);
@@ -13,8 +14,9 @@ export const getBase64 = (file, converted, setConverted) => {
       // Make a fileInfo Object
       // console.log("Called", reader);
       baseURL = reader.result;
-      setConverted([...converted, baseURL])
       // console.log(baseURL);
+
+      setConverted([...converted, baseURL])
       resolve(baseURL);
     };
     console.log(fileInfo);
