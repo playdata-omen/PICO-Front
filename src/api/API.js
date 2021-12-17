@@ -29,8 +29,9 @@ API.interceptors.response.use(
     return response
   },
   error => {
-    if (!error.response) {
-      RedirectHandler.handleServerErr()
+    if (!error.response && error.response.status === 404) {
+      alert('404')
+      // RedirectHandler.handleServerErr()
     }
     return Promise.reject(error)
   }
