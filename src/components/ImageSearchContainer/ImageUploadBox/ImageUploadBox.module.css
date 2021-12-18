@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .btn {
@@ -19,7 +21,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(240, 250, 231);
+  background-color: var(--accept-color);
+  border-radius: 10px;
 }
 
 .dropzoneReject {
@@ -29,7 +32,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(253, 232, 232);
+  background-color: var(--reject-color);
+  border-radius: 10px;
 }
 
 

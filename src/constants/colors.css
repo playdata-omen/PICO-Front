@@ -3,4 +3,6 @@
   --secondary-color: #D9BD6A; */
   --primary-color: #AEADD4;
   --secondary-color: #5F5DA6;
+  --accept-color: rgb(240, 250, 231);
+  --reject-color: rgb(253, 232, 232);
 }
