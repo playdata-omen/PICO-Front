@@ -12,7 +12,8 @@ function ProfilePage({ user }) {
   const [pUser, setPUser] = useState(user)
 
   useEffect(async() => {
-    userIdx !== user.userIdx && setPUser(await getPhotographerUser(userIdx))
+    console.log(userIdx)
+    userIdx && setPUser(await getPhotographerUser(userIdx))
     console.log(userIdx)
   }, [])
   return (

@@ -102,9 +102,6 @@ function RegForm() {
 
   return (
     <div className={styles.formContainer}>
-      {`${typeof(isOtherArea)}`}
-      {`${isOtherArea}`}
-      {`${photographer && `${photographer.isOtherArea}`}`}
       <div className={styles.inputContainer}>
         <label>이름</label>
         <input type="text" value={name} onChange={e => setName(e.target.value)} />
