@@ -32,7 +32,7 @@ function Nav() {
     <nav>
       <div className="nav_container">
         <div className="logo">
-          <Link to="/"><img src={picoLogo}/></Link>
+          <Link to="/"><h3>PICO</h3></Link>
         </div>
 
         <div className="nav_links">

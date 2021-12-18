@@ -7,7 +7,7 @@ export const getPhotographerUser = async userIdx => {
   })
   .catch(err => {
     return ({
-      userIdx: 6,
+      userIdx: 12,
       email: 'lgh95m@gmail.com',
       name: '유저정보에러 테스트',
       phone: '010-4446-0410',

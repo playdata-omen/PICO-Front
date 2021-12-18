@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './ChatContainer.module.css'
 
 import SendIcon from '@mui/icons-material/Send';
@@ -34,3 +34,9 @@ function ChatContainer() {
 }
 
 export default ChatContainer
+
+function ChatScreen() {
+  const [chatRoom, setChatRoom] = useState({
+    chatRoomIdx: 0,
+  })
+}

@@ -16,7 +16,7 @@ export const uploadWork = async (navigate, category, title, files, content) => {
 }
 
 export const getWorksList = async (userIdx)  => {
-  const data = await API.get('getWorksList', userIdx)
+  const data = await API.get(`getWorksList/${userIdx}`)
   .then(res => {
     return res.data
   })
@@ -51,7 +51,7 @@ export const getWorksList = async (userIdx)  => {
 }
 
 export const getWorkDetail = async (workIdx) => {
-  const data = await API.get('getWork', workIdx)
+  const data = await API.get(`getWork${workIdx}`)
   .then(res => {
     return res.data
   })
@@ -64,9 +64,9 @@ export const getWorkDetail = async (workIdx) => {
         "content": "작품 설명",
         "category": 1,
         "photos" : [
-          "img1",
-          "img2",
-          "img3"
+          "imgUrl1",
+          "imgUrl2",
+          "imgUrl3"
         ],
       }
     )

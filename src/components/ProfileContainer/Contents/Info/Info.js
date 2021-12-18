@@ -10,10 +10,6 @@ import { useNavigate } from 'react-router';
 function Info({ user }) {
   let navigate = useNavigate()
 
-  const categories = useSelector(store => store.categories.categories)
-
-  const [photographer, setPhotographer] = useState(null)
-  const [photographerLoading, setPhotographerLoading] = useState(true)
 
   const updateProfile = () => {
     setTimeout(
@@ -22,11 +18,8 @@ function Info({ user }) {
       }, 700
     )
   }
-  
-  useEffect( async() => {
-    setPhotographer(await getPhotographerDetail(user.userIdx))
-    setPhotographerLoading(false)
-  }, [photographerLoading])
+
+
 
   return (
 
@@ -40,7 +33,7 @@ function Info({ user }) {
         </ul>
       </div>
 
-      {user.isPhotographer && <PhotographerInfo photographer={photographer} categories={categories} photographerLoading={photographerLoading} />}
+      {user.isPhotographer && <PhotographerInfo userIdx={user.userIdx} />}
 
 
       {!user.isPhotographer &&
@@ -62,10 +55,21 @@ function Info({ user }) {
 export default Info
 
 
-const PhotographerInfo = ({ photographer, categories, photographerLoading }) => {
+const PhotographerInfo = ({ userIdx }) => {
+
+  const [photographer, setPhotographer] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const categories = useSelector(store => store.categories.categories)
+
+
+  useEffect(async () => {
+    setPhotographer(await getPhotographerDetail(userIdx))
+    setLoading(false)
+  }, [])
 
   return (
-    photographerLoading ?
+    loading ?
 
       <div>작가 정보 불러오는 중...</div>
 
