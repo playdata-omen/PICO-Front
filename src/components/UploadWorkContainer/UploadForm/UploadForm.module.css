@@ -127,18 +127,21 @@
 }
 
 .previewContainer {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .image {
+  margin-top: 20px;
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .image img {
-  border: 1px solid blue;
   width: 100px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--primary-color);
 }
 
 @media screen and (width<=768px){

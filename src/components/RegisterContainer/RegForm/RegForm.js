@@ -5,6 +5,8 @@ import DaumPostcode from 'react-daum-postcode';
 
 import PersonIcon from '@mui/icons-material/Person';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import { AREA } from '../../../constants';
 
@@ -14,12 +16,26 @@ import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
 import { useNavigate } from 'react-router';
 
+
+
+// hasStudio,
+// activityAddress,
+
+// activityCity,
+// category,
+// studioAddress,
+// studioCity
+
 function RegForm() {
+
   let navigate = useNavigate()
+
   const dispatch = useDispatch();
   const user = useSelector(store => store.auth.user)
   const photographer = useSelector(store => store.auth.photographer)
   const categories = useSelector(store => store.categories.categories)
+
+  const areas = Object.keys(AREA)
 
   // 일반 유저 정보
   const [name, setName] = useState(user.name)
@@ -27,88 +43,83 @@ function RegForm() {
   const [email, setEmail] = useState(user.email)
   const [phone, setPhone] = useState(user.phone)
 
-  const [isPhotographer, setIsPhotographer] = useState(user.photographer)
+  const [isPhotographer, setIsPhotographer] = useState(user.isPhotographer)
 
   const handleIsPhotographerChange = value => {
     setIsPhotographer(value)
-    !isPhotographer && setPCategory([])
+    !isPhotographer && setCategory([])
   }
 
   // 작가 정보등록용
-  const [address, setAddress] = useState(photographer? photographer.address : '')
-  const [addressDetail, setAddressDetail] = useState(photographer? photographer.addressDetail : '')
+  const [isOtherArea, setIsOtherArea] = useState(photographer !== null ? photographer.isOtherArea : false)
+  const [activityCity, setActivityCity] = useState(photographer.activityCity? photographer.activityCity : areas[0])
+  const [activityAddress, setActivityAddress] = useState(photographer? photographer.activityAddress : '전체')
+  const [studioCity, setStudioCity] = useState(photographer? photographer.studioCity : '')
+  const [studioAddress, setStudioAddress] = useState(photographer? photographer.studioAddress : '')
 
-  const areas = Object.keys(AREA)
 
-  const [hasStudio, setHasStudio] = useState(photographer? photographer.hasStudio : false)
+  const [hasStudio, setHasStudio] = useState(photographer.hasStudio? photographer.hasStudio : false)
   const [openPostApi, setOpenPostApi] = useState(false)
-  const [city, setCity] = useState(photographer? photographer.city : areas[0])
-  const [location2, setLocation2] = useState(photographer? photographer.address : '전체')
 
-  const [pCategory, setPCategory] = useState(photographer? [...photographer.pCategory]: [])
+  const [category, setCategory] = useState(photographer.category? [...photographer.category]: [])
 
   const handleHasStudioChange = value => {
     setHasStudio(JSON.parse(value))
-    
     if(!hasStudio){
-      setAddress('')
-      setAddressDetail('')
+      setStudioAddress('')
+      setStudioCity('')
     }
-    
   }
 
-  const handleCityChange = value => {
-    setCity(value)
-    setLocation2('전체')
+  const handleActivityCityChange = value => {
+    setActivityCity(value)
+    setActivityAddress('전체')
   }
     
-  const handlePCategoryChange = categoryIdx => {
-    !pCategory.includes(categoryIdx)?
-    setPCategory([...pCategory, categoryIdx])
+  const handleCategoryChange = categoryIdx => {
+    !category.includes(categoryIdx)?
+    setCategory([...category, categoryIdx])
     :
-    setPCategory(pCategory.filter(cat => cat != categoryIdx))
+    setCategory(category.filter(cat => cat != categoryIdx))
   }
-
-  const handleAddressChange = value => setAddress(value)
-  const handleAddressDetailChange = value => setAddressDetail(value)
 
   const handleRegister = () => {
     dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer, user.register))
     
     isPhotographer &&
     dispatch(auth_actions.registerPhotographer(
+      user.userIdx,
+      activityCity,
+      activityAddress,
+      category,
       hasStudio,
-      city,
-      location2,
-      pCategory
+      isOtherArea,
+      studioAddress,
+      studioCity,
     ))
     navigate('/')
   }
-
-  useEffect(()=> {
-    console.log(pCategory)
-  },[pCategory])
 
   return (
     <div className={styles.formContainer}>
       <div className={styles.inputContainer}>
         <label>이름</label>
-        <input type="text" value={name} onChange={event => setName(event.target.value)} />
+        <input type="text" value={name} onChange={e => setName(e.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>
         <label>닉네임</label>
-        <input type="text" value={nickName} onChange={event => setNickName(event.target.value)} />
+        <input type="text" value={nickName} onChange={e => setNickName(e.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>
         <label>이메일</label>
-        <input type="text" value={email} onChange={event => setEmail(event.target.value)} />
+        <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
       </div>
 
       <div className={styles.inputContainer}>
         <label>전화번호</label>
-        <input type="text" value={phone} onChange={event => setPhone(event.target.value)} />
+        <input type="text" value={phone} onChange={e => setPhone(e.target.value)} />
       </div>
 
       <div>
@@ -121,7 +132,7 @@ function RegForm() {
               type="radio"
               checked={isPhotographer === true}
               value={true}
-              />
+            />
             <div className={styles.radioBtn} onClick={() => handleIsPhotographerChange(true)}>
               <div>
                 <PersonIcon />
@@ -147,30 +158,32 @@ function RegForm() {
         isPhotographer && 
         <RegFormPhotographer className={styles.form}
         
-          city={city}
-          location2={location2}
           categories={categories}
+    
+          category={category}
+          handleCategoryChange={handleCategoryChange}
+          
+          isOtherArea={isOtherArea}
+          setIsOtherArea={setIsOtherArea}
+        
+          activityCity={activityCity}
+          activityAddress={activityAddress}
+          handleActivityCityChange={handleActivityCityChange}
+          setActivityAddress={setActivityAddress}
+          
+          handleHasStudioChange={handleHasStudioChange}
+          
+          openPostApi={openPostApi} 
+          setOpenPostApi={setOpenPostApi}
           
           hasStudio={hasStudio}
-          address={address} 
-          addressDetail={addressDetail}
-        
-          openPostApi={openPostApi} 
-          pCategory={pCategory}
-
-          handleCityChange={handleCityChange}
-          setLocation2={setLocation2}
-
-          handleHasStudioChange={handleHasStudioChange}
-
-          setOpenPostApi={setOpenPostApi}
-          handlePCategoryChange={handlePCategoryChange}
-          
-          handleAddressChange={handleAddressChange} 
-          handleAddressDetailChange={handleAddressDetailChange}
+          studioAddress={studioAddress} 
+          studioCity={studioCity}
+          setStudioCity={setStudioCity}
+          setStudioAddress={setStudioAddress} 
         />
       }
-      <button className={styles.submitBtn} onClick={handleRegister}>{user.register ? '정보수정' : '회원가입'}</button>      
+      <button className={styles.submitBtn} onClick={handleRegister}>{user.isRegister ? '정보수정' : '회원가입'}</button>      
     </div>
 
 
@@ -179,19 +192,19 @@ function RegForm() {
 
 function RegFormPhotographer(
   { 
-    city,
-    location2,
+    activityAddress,
+    activityCity,
     hasStudio,
-    address, 
-    addressDetail,
+    studioAddress, 
+    studioCity,
     openPostApi,
-    pCategory,
-
-
-    handleCityChange, setLocation2,
-    handlePCategoryChange,
+    category,
+    isOtherArea,
+    setIsOtherArea,
+    handleActivityCityChange, setActivityAddress,
+    handleCategoryChange,
     handleHasStudioChange,
-    handleAddressChange, handleAddressDetailChange,
+    setStudioCity, setStudioAddress,
     setOpenPostApi
   }) {
   const categories = useSelector(store => store.categories.categories)
@@ -200,8 +213,8 @@ function RegFormPhotographer(
 
   const handlePostChange = data => {
     setOpenPostApi(false)
-    handleAddressChange(data.address)
-    console.log(address)
+    setStudioCity(data.address)
+    console.log(studioAddress)
   }
 
   return (
@@ -211,15 +224,15 @@ function RegFormPhotographer(
         <label>활동분야</label>
         <div className={`${styles.radioContainer} ${styles.categoryRadio}`}>
           {
-            categories.map(category => 
+            categories.map(cat => 
               <div>
                 <input 
                   type="radio"
-                  value={category.categoryIdx}
-                  checked={pCategory.includes(category.categoryIdx)}
+                  value={cat.categoryIdx}
+                  checked={category.includes(cat.categoryIdx)}
                 />
-                <div key={category.categoryIdx} className={styles.categoryBtn} onClick={() => handlePCategoryChange(category.categoryIdx)}>
-                  <label>{category.kind}</label>
+                <div key={cat.categoryIdx} className={styles.categoryBtn} onClick={() => handleCategoryChange(cat.categoryIdx)}>
+                  <label>{cat.kind}</label>
                 </div>
               </div>
             )
@@ -228,7 +241,7 @@ function RegFormPhotographer(
 
         <label>활동지역</label>
           <label>지역</label><br/>
-          <select value={city} onChange={event => handleCityChange(event.target.value)}>
+          <select value={activityCity} onChange={e => handleActivityCityChange(e.target.value)}>
             {
               areas.map(area => 
                 <option value={area} key={area}>{area}</option>
@@ -236,15 +249,46 @@ function RegFormPhotographer(
             }
           </select>
           <br/>
-          <select onChange={event => setLocation2(event.target.value)}>
-            <option value={'전체'} >{city} 전체</option>
+          <select onChange={e => setActivityAddress(e.target.value)}>
+            <option value={'전체'} >{activityCity} 전체</option>
             {
-              Object.values(AREA[city]).map(loc => 
+              Object.values(AREA[activityCity]).map(loc => 
                 <option value={loc} key={loc}>{loc}</option>
               )
             }
           </select>
       </div>
+
+      <div>
+        <div className={styles.inputContainer}>
+          <label>타지역 협의가능</label>
+        </div>
+        <div className={`${styles.radioContainer} ${styles.radio}`}>
+
+          <div>
+            <div className={styles.radioBtn} onClick={() => setIsOtherArea(true)}>
+              <CheckCircleIcon />
+            </div>
+            <br />
+            <input
+              type="radio"
+              value={true}
+              checked={isOtherArea === true}
+            />
+          </div>
+          <div>
+            <div className={styles.radioBtn} onClick={() => setIsOtherArea(false)}>
+              <CancelIcon />
+            </div>
+            <input
+              type="radio"
+              value={false}
+              checked={isOtherArea === false}
+            />
+          </div>
+        </div>
+      </div>
+
 
       <div>
         <div className={styles.inputContainer}>
@@ -278,16 +322,17 @@ function RegFormPhotographer(
         </div>
       </div>
 
+      
       {
         hasStudio &&
         <div>
           <div className={styles.inputContainer}>
             <label>스튜디오 주소</label>
-            <input type="text" value={address} onChange={event => handleCityChange(event.target.value)} onClick={() => setOpenPostApi(!openPostApi)} />
+            <input type="text" value={studioCity} onChange={e => setStudioCity(e.target.value)} onClick={() => setOpenPostApi(!openPostApi)} />
           </div>
           <div className={styles.inputContainer}>
             <label>상세주소</label>
-            <input type="text" value={addressDetail} onChange={event => handleAddressDetailChange(event.target.value)}/>
+            <input type="text" value={studioAddress} onChange={e => setStudioAddress(e.target.value)}/>
           </div>
         </div>
       }

@@ -10,7 +10,6 @@ export const getEstimateReqList = async userIdx => {
     ]
   })
   .catch(err => {
-    console.log('오싙')
     return [
       {"estimateIdx" : 1, "name" : "견적1"},
       {"estimateIdx" : 2, "name" : "견적2"},
@@ -23,17 +22,15 @@ export const getEstimateReqList = async userIdx => {
 }
 
 export const getEstimateDetail = async estimateIdx => {
-  const data = await API.get('estimateDetail', estimateIdx)
+  const data = await API.get(`estimateDetail/${estimateIdx}`)
   .then(res => {
     return res.data
   }).catch(err => {
     return (
-
-      
       {
         "id": 1, 
         "userIdx": 1,
-        "category" : {"categoryIdx":4,"kind":"제품"},
+        "categoryIdx" : 4,
         "city" : "서울",
         "address" : "은평구",
         "startDate": "2021-12-15",
@@ -43,16 +40,18 @@ export const getEstimateDetail = async estimateIdx => {
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
             "applyIdx" : 1,
-            "userIdx" : 2,
+            "userIdx" : 6,
             "name" : "이기환",
-            "review" : 4
+            "review" : 4,
+            "grade": 4.5
           },
           {
             // 여기 정보가 어떻게 들어갈지 정해야 함
             "applyIdx" : 2,
-            "userIdx" : 3,
+            "userIdx" : 4,
             "name" : "차재훈",
-            "review" : 4
+            "review" : 4,
+            "grade": 3.8
           }
         ]
       }
@@ -60,18 +59,37 @@ export const getEstimateDetail = async estimateIdx => {
   })
   return data
 }
-
+// {
+//   "address": "string",
+//   "category": 0,
+//   "city": "string",
+//   "content": "string",
+//   "created": {
+//     "date": 0,
+//     "day": 0,
+//     "hours": 0,
+//     "minutes": 0,
+//     "month": 0,
+//     "nanos": 0,
+//     "seconds": 0,
+//     "time": 0,
+//     "timezoneOffset": 0,
+//     "year": 0
+//   },
+//   "endDate": "string",
+//   "idx": 0,
+//   "photographerIdx": 0,
+//   "startDate": "string",
+//   "status": "string",
+//   "user": 0
+// }
 
 // reqEstimate(navigate, category, content, city, address, startDate, endDate)
-export const reqEstimate = async(navigate, category, content, city, address, startDate, endDate) => {
-  const response = await API.post('estimateReq', {
-    category, content, city, address, startDate, endDate
-  })
-  .then(res => {
-    navigate('/myPage')
-  })
+export const reqEstimate = async(navigate, address, category, city, content, startDate, endDate) => {
+// export const reqEstimate = async(navigate, category, content, city, address, startDate, endDate) => {
+  await API.post('estimate/add', { address, category, city, content, startDate, endDate })
   .catch(err => {
-    alert('err test')
-    navigate('/myPage')
+    alert(err.message)
   })
+  navigate('/myPage')
 }

@@ -4,14 +4,14 @@ import API from "./API"
 export const fetchCategories = () => {
   return dispatch => {
     dispatch(category_actions.fetchCategoriesRequest)
-    API.get('getCategory')
+    API.get('category/getAllCategory')
     .then(res => {
       const categories = res.data
       dispatch(category_actions.fetchCategoriesSuccess(categories))
     })
-    .catch(err => {
-      dispatch(category_actions.fetchCategoriesFailure(err.message))
-    })
+    // .catch(err => {
+    //   dispatch(category_actions.fetchCategoriesFailure(err.message))
+    // })
   }
 }
 
