@@ -28,7 +28,7 @@ function MainContents() {
 
   const handleCategorySearch = category => {
     setTimeout(
-      function(){
+      function () {
         navigate(`/searchResult/category/${category}`)
       }, 700
     )
@@ -37,21 +37,21 @@ function MainContents() {
   useEffect(() => {
     console.log(categories)
     dispatch(category_actions.fetchCategories())
-  },[])
+  }, [])
 
   return (
-    <div className={styles.content}>
+    <div className={styles.container}>
       <div className={styles.contentLeft}>
 
         <h3>
           나에게 알맞는 사진작가 찾기
         </h3>
-        <hr/>
-  
+        <hr />
+
 
         <form onSubmit={(event) => handleSearch(event)}>
           <div className={`${styles.searchBar} ${styles.search}`}>
-            <input 
+            <input
               type="search"
               placeholder="작가 찾기"
               onChange={(e) => setSearchField(e.target.value)}
@@ -62,51 +62,90 @@ function MainContents() {
 
           </div>
         </form>
-        
+
         <div className={`${styles.searchBar} ${styles.photoUpload}`} onClick={() => navigate('imageSearch')}>
-          <input 
+          <input
             type="button"
             value="이미지검색"
-            />
+          />
           <a>
             <AddPhotoAlternateIcon />
           </a>
         </div>
 
-        <br/>
+        <br />
 
         <h3>
           사진 카테고리별 검색
         </h3>
-        
+
         <hr />
 
         <div className={styles.categoryBtn}>
-          
+
           {
             !err ?
-            categories.map(category => 
-              <button key={category.categoryIdx} onClick={() => handleCategorySearch(category.categoryIdx)}>{category.kind}</button>
-            )
+              categories.map(category =>
+                <button key={category.categoryIdx} onClick={() => handleCategorySearch(category.categoryIdx)}>{category.kind}</button>
+              )
 
-            :
-            
-            <div>{err}</div>
+              :
+
+              <div>{err}</div>
           }
         </div>
 
-      </div>  
-
-      <div className={styles.contentRight}>
-        <div className={styles.imgContainer}>
-          gif 이미지 넣을 예정 <br/>
-          - 반응형으로 폰 화면일 땐 렌더 안함
-          <img src={picoLogo} alt="test"/>
-        </div>
       </div>
+
+      <ConentRight />
+
 
     </div>
   )
 }
 
 export default MainContents
+
+function ConentRight() {
+
+  const [index, setIndex] = useState(0)
+  const [categories, setCategories] = useState(['Wedding', 'Product', 'Event', 'Snap', 'Look Book'])
+
+  const nextCat = () => {
+    setTimeout(
+      function () {
+        index > (categories.length - 2) ? setIndex(0) : setIndex(index + 1)
+      }, 1500
+    )
+  }
+
+  useEffect(() => {
+    nextCat()
+  }, [index])
+
+  return (
+    <div className={styles.contentRight}>
+      <div className={styles.imgContainer}>
+        <div className={styles.logo}>
+          PIC<span>ture</span>
+          O<span>f</span>
+        </div>
+        <div className={styles.animationContainer}>
+          {
+            categories.map((cat, i) =>
+            <div>
+              <div key={cat} className={styles.radio}>
+                <input
+                  type="radio"
+                  checked={index == i}
+                />
+                <label>{cat}</label>
+              </div>
+            </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  )
+}

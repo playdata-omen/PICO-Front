@@ -50,7 +50,8 @@ const auth_reducer = (state = initialState, action) => {
     case LOGOUT: return {
       ...state,
       authenticated: false,
-      user: {}
+      user: {},
+      photographer: {}
     }
     case FETCH_USER_REQUEST: {
       return {

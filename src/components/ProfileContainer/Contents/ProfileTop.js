@@ -30,7 +30,7 @@ function ProfileTop({ user }) {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}> 
-        <img alt='프로필 사진'/>
+        <img src="https://i.smalljoys.me/2020/04/img_5e96ad75617c7.png?w=615&ssl=1&strip=all" alt='프로필 사진'/>
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.info}>

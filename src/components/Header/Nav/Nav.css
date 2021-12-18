@@ -14,8 +14,9 @@
   align-items: flex-end;
 }
 
-.logo img {
-  width: 40px;
+.logo * {
+  text-decoration: none;
+  /* width: 40px; */
 }
 
 .nav_links li{

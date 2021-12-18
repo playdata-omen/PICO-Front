@@ -11,6 +11,7 @@ export const getUser = (navigate, code, provider) => {
         provider
     })
     .then( async(res) => {
+      console.log(res.data)
       const user = res.data
       localStorage.setItem(ACCESS_TOKEN, user.accessToken)
       dispatch(auth_actions.fetchUserSuccess(user))
