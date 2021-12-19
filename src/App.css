@@ -6,9 +6,9 @@
   display: none;
 }
 
-body {
-  /* background-color: #0D0007; */
-}
+/* body {
+  background-color: var(--secondary-color)
+} */
 
 .App-logo {
   height: 40vmin;
