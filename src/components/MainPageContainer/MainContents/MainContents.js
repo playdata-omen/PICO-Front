@@ -80,7 +80,7 @@ function MainContents() {
 
         <div className={styles.categoryBtn}>
           {
-            !err &&
+            categories &&
               categories.map(category =>
                 <button key={category.categoryIdx} onClick={() => handleCategorySearch(category.categoryIdx)}>{category.kind}</button>
               )
