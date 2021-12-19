@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ACCESS_TOKEN, SERVER_URL } from '../constants'
-import RedirectHandler, { handleServerErr } from '../service/RedirectHandler';
+import RedirectHandler from '../service/RedirectHandler';
+import { useNavigate } from "react-router"
 
 const API = axios.create({
   baseURL: SERVER_URL,
@@ -29,9 +30,9 @@ API.interceptors.response.use(
     return response
   },
   error => {
-    if (!error.response && error.response.status === 404) {
-      alert('404')
-      // RedirectHandler.handleServerErr()
+    if (!error.response) {
+      alert(error.message)
+      // RedirectHandler()
     }
     return Promise.reject(error)
   }

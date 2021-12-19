@@ -44,7 +44,7 @@ function MyPageContents({user}) {
     <div className={styles.container}>
       <div className={styles.cardList}>
         <label>마이페이지</label>
-        <div className={styles.cardBtn} onClick={myProfilePage} onTouchStart={myProfilePage}>
+        <div onClick={myProfilePage} onTouchStart={myProfilePage}>
           <MyInfoCard user={user}/>
         </div>
       </div>

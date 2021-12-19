@@ -16,16 +16,6 @@ import { useDispatch } from 'react-redux';
 import { auth_actions } from '../../../_actions/auth_action.js'
 import { useNavigate } from 'react-router';
 
-
-
-// hasStudio,
-// activityAddress,
-
-// activityCity,
-// category,
-// studioAddress,
-// studioCity
-
 function RegForm() {
 
   let navigate = useNavigate()
@@ -102,7 +92,6 @@ function RegForm() {
 
   return (
     <div className={styles.formContainer}>
-      {`${hasStudio}`}
       <div className={styles.inputContainer}>
         <label>이름</label>
         <input type="text" value={name} onChange={e => setName(e.target.value)} />
@@ -218,15 +207,8 @@ function RegFormPhotographer(
     console.log(studioAddress)
   }
 
-  const test = true
-
-  // useEffect(() => {
-  //   console.log('rerender')
-  // }, [hasStudio])
-
   return (
     <div>
-      {`${hasStudio}`}
       <div className={styles.inputContainer}>
         <label>활동분야</label>
         <div className={`${styles.radioContainer} ${styles.categoryRadio}`}>

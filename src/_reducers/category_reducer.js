@@ -27,6 +27,7 @@ const category_reducer = (state = initialState, action) => {
     }
     case FETCH_CATEGORY_FAILURE: return {
       ...state,
+      categories: [],
       error: action.payload
     }
     default: return state
