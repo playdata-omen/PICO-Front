@@ -147,7 +147,7 @@
 
 
 @media screen and (width<=768px){
-  .content {
+  .container {
     width: 90%;
   }
   .contentLeft {

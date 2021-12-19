@@ -2,9 +2,6 @@ import React from 'react'
 import styles from '../Cards.module.css'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
-
 
 function MyInfoCard({ user }) {
 
