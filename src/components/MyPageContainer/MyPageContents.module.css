@@ -21,10 +21,6 @@
   cursor: pointer;
 }
 
-.cardBtn * {
-  z-index: 0;
-}
-
 @media screen and (width<=768px){
   .container{
     width: 90%;

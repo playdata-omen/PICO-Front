@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { uploadWork } from '../../api/Work'
 import { getBase64 } from '../../service/FileUtils'
@@ -9,32 +10,35 @@ import styles from './UploadWorkContainer.module.css'
 function UploadWorkContainer() {
 
   let navigate = useNavigate()
+  const photographerIdx = useSelector(store => store.auth.photographer.photographerIdx)
 
   const [page, setPage] = useState(1)
   const [category, setCategory] = useState(6)
   const [title, setTitle] = useState('')
-  const [files, setFiles] = useState([])
-  const [converted, setConverted] = useState([])
+  const [images, setImages] = useState([])
   const [content, setContent] = useState('')
-
+  
   const nextPage = () => {
     if(page == 2 && title === '') alert('작품이름을 작성해주세요')
-    else if(page == 3 && files.length === 0) alert('사진을 업로드 해주세요')
+    else if(page == 3 && images.length === 0) alert('사진을 업로드 해주세요')
     else page < 4 && setPage(page => page + 1)
   }
-
+  
   const prevPage = () => page > 1 && setPage(page => page - 1)
-
+  
   const upload = async() => {
-    files.forEach(file => getBase64(file, converted, setConverted))
-
-    // console.log(converted)
-    uploadWork(navigate, category, title, converted, content)
+    let converted = []
+    images.forEach(async(image) => {
+      const base64 = await getBase64(image)
+      // console.log(base64)
+      converted.push(base64)
+    })    
+    uploadWork(navigate, photographerIdx, category, title, converted, content)
   }
 
-  useEffect(() => {
-    console.log(converted)
-  },[converted])
+  // useEffect(() => {
+  //   console.log(converted)
+  // },[converted])
  
   return (
     <div className={styles.container}>
@@ -43,7 +47,7 @@ function UploadWorkContainer() {
       <div>
         {page === 1 &&  <Form1 category={category} setCategory={setCategory}/>}
         {page === 2 &&  <Form2 setTitle={setTitle}/>}
-        {page === 3 &&  <Form3 files={files} setFiles={setFiles}/>}
+        {page === 3 &&  <Form3 images={images} setImages={setImages}/>}
         {page === 4 &&  <Form4 setContent={setContent}/>}
       </div>
 

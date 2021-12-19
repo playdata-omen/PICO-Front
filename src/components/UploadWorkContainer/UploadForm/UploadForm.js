@@ -47,20 +47,20 @@ export const Form2 = ({ setTitle }) => {
   )
 }
 
-export const Form3 = ({files, setFiles}) => {
+export const Form3 = ({images, setImages}) => {
 
   const {getRootProps, getInputProps} = useDropzone({
     accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      acceptedFiles.map(file => Object.assign(file, {
+    onDrop: (acceptedimages) => {
+      acceptedimages.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
-      })).forEach(file => setFiles([...files, file]))
+      })).forEach(file => setImages([...images, file]))
     }
   })
 
   const deleteImg = name => {
-    files.forEach((file, index) => {
-      file.name === name && setFiles(files.filter((f, i) => i != index))
+    images.forEach((file, index) => {
+      file.name === name && setImages(images.filter((f, i) => i != index))
     })
   }
 
@@ -69,7 +69,7 @@ export const Form3 = ({files, setFiles}) => {
     deleteImg(name)
   }
 
-  const images = files.map((file, i) => 
+  const imageContainer = images.map((file, i) => 
     <div key={`${file.name}${i}`} className={styles.image}>
       <div onClick={()=> deleteImg(file.name)}>
         <img src={file.preview} alt=""/>
@@ -81,13 +81,13 @@ export const Form3 = ({files, setFiles}) => {
     <div {...getRootProps()} className={styles.dropZoneContainer}> 
       <input {...getInputProps()}/>
       <AddButton />
-      <span>Drop Files here</span>
+      <span>Drop images here</span>
     </div>
   )
 
   useEffect(() => {
-    files.length > 6 && handleImgLimit(files.slice(-1)[0].name)
-  },[files])
+    images.length > 6 && handleImgLimit(images.slice(-1)[0].name)
+  },[images])
 
   return(
     <div className={styles.container}>
@@ -97,7 +97,7 @@ export const Form3 = ({files, setFiles}) => {
           { dropZone }
         </div>
           <div className={styles.previewContainer}>
-            {images}
+            {imageContainer}
           </div>
       </div>
     </div>

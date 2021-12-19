@@ -7,9 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import picoLogo from '../../../img/pico-logo.png'
 import { category_actions } from '../../../_actions/category_actions';
-import { FETCH_CATEGORY_REQUEST } from '../../../_actions/type';
 
 function MainContents() {
 
@@ -35,7 +33,6 @@ function MainContents() {
   }
 
   useEffect(() => {
-    console.log(categories)
     dispatch(category_actions.fetchCategories())
   }, [])
 
@@ -82,22 +79,17 @@ function MainContents() {
         <hr />
 
         <div className={styles.categoryBtn}>
-
           {
-            !err ?
+            !err &&
               categories.map(category =>
                 <button key={category.categoryIdx} onClick={() => handleCategorySearch(category.categoryIdx)}>{category.kind}</button>
               )
-
-              :
-
-              <div>{err}</div>
           }
         </div>
 
       </div>
 
-      <ConentRight />
+      <ContentRight />
 
 
     </div>
@@ -106,7 +98,7 @@ function MainContents() {
 
 export default MainContents
 
-function ConentRight() {
+function ContentRight() {
 
   const [index, setIndex] = useState(0)
   const [categories, setCategories] = useState(['Wedding', 'Product', 'Event', 'Snap', 'Look Book'])
@@ -133,7 +125,7 @@ function ConentRight() {
         <div className={styles.animationContainer}>
           {
             categories.map((cat, i) =>
-            <div>
+            <div key={cat}>
               <div key={cat} className={styles.radio}>
                 <input
                   type="radio"
