@@ -29,20 +29,6 @@ export const getUser = (navigate, code, provider) => {
 }
 
 export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegister) => {
-
-  let form = new FormData()
-  form.append('userIdx', userIdx)
-  form.append("name", name)
-  form.append('nickName', nickName)
-  form.append('email', email)
-  form.append('phone', phone)
-  form.append('isPhotographer', isPhotographer)
-  form.append('isRegister', isRegister)
-
-  console.log(Array.from(form))
-
-  form.forEach(v => console.log(v))
-
   return dispatch => {
     console.log(userIdx)
     dispatch(auth_actions.fetchUserRequest)
@@ -64,28 +50,6 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
     })
   }
 }
-
-// {
-//   "activityAddress": "string",
-//   "activityCity": "string",
-//   "category": [
-//     0
-//   ],
-//   "hasStudio": true,
-//   "isOtherArea": true,
-//   "photographerIdx": 0,
-//   "studioAddress": "string",
-//   "studioCity": "string",
-//   "userIdx": 0
-// }
-
-// activityCity,
-// activityAddress,
-// category,
-// hasStudio,
-// isOtherArea,
-// studioAddress,
-// studioCity,
 
 export const registerPhotographer = (userIdx, activityCity, activityAddress, category, hasStudio, isOtherArea, studioAddress, studioCity) => {
   return dispatch => {

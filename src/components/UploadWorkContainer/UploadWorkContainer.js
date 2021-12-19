@@ -12,6 +12,7 @@ function UploadWorkContainer() {
   let navigate = useNavigate()
   const photographerIdx = useSelector(store => store.auth.photographer.photographerIdx)
 
+  const [converted, setConverted] = useState([])
   const [page, setPage] = useState(1)
   const [category, setCategory] = useState(6)
   const [title, setTitle] = useState('')
@@ -26,19 +27,14 @@ function UploadWorkContainer() {
   
   const prevPage = () => page > 1 && setPage(page => page - 1)
   
-  const upload = async() => {
-    let converted = []
-    images.forEach(async(image) => {
-      const base64 = await getBase64(image)
-      // console.log(base64)
-      converted.push(base64)
-    })    
+  const upload = () => {
+    images.forEach(async(image) => await getBase64(image, converted, setConverted))
     uploadWork(navigate, photographerIdx, category, title, converted, content)
   }
 
-  // useEffect(() => {
-  //   console.log(converted)
-  // },[converted])
+  useEffect(() => {
+    console.log(converted)
+  },[converted])
  
   return (
     <div className={styles.container}>

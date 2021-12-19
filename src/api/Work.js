@@ -1,17 +1,31 @@
+import { getBase64 } from "../service/FileUtils";
 import API from "./API";
 
+// "title" : "title",
+//     "content" : "content",
+//     "photographerIdx" : 2,
+//     "categoryIdx" : 2,
+//     "images" : ["dat
+
 export const uploadWork = async (navigate, photographerIdx, categoryIdx, title, images, content) => {
+
+  // images.map(async(image) => {
+  //   image = await getBase64(image).then(res => {return res})
+  // })
   await API.post('uploadWork', {
-    photographerIdx, categoryIdx, title, images, content
+    photographerIdx, categoryIdx, title, content, images
   })
   .then(res => {
     console.log(res.data)
   })
   .catch(err => {
     console.log(err.message);
+    // console.log(photographerIdx)
+    // console.log(categoryIdx)
+    // console.log(title)
     console.log(images);
+    // console.log(content)
   })
-  navigate('/myPage')
 }
 
 export const getWorksList = async (userIdx)  => {

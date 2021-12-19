@@ -10,8 +10,6 @@ const initialState = {
     // {"categoryIdx":6,"kind":"기타"},
   ],
   error: '',
-  test: 'test'
-
 }
 
 const category_reducer = (state = initialState, action) => {
