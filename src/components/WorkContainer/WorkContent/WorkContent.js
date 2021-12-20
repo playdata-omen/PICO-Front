@@ -12,7 +12,7 @@ function WorkContent({work}) {
     </div>
   )
 
-  const categoryLabel = categories[categories.indexOf(categories.filter(cat => cat.categoryIdx === work.category)[0])].kind
+  // const categoryLabel = categories[categories.indexOf(categories.filter(cat => cat.categoryIdx === work.category)[0])].kind
   
   return (
     <div className={styles.container}>
@@ -22,7 +22,7 @@ function WorkContent({work}) {
         {work.content}<br/>
       </div>
       <div className={styles.categoryLabel}>
-        <label>{categoryLabel}</label>
+        {/* <label>{categoryLabel}</label> */}
       </div>
       {/* 사진 컨테이너 */}
       <div className={styles.workImgContainer}>

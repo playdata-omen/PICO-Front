@@ -13,6 +13,45 @@ function EstimateDetail({ estimateIdx }) {
   const [ estimate, setEstimate ] = useState({})
   const [ loading, setLoading ] = useState(true)
 
+  // {
+  //   "estimateIdx": 1,
+  //   "userIdx": 1,
+  //   "categoryIdx": 2,
+  //   "city": "서울",
+  //   "address": "은평구",
+  //   "startDate": "2021-12-15",
+  //   "endDate": "2021-12-20",
+  //   "content": "String content",
+  //   "applyList": [
+  //     {
+  //       // ApplyDTO
+  //       "applyIdx": 1,
+  //       "user": {
+  //         "userIdx": 1,
+  //         "name": "이기환",
+  //       },
+  //       // UserDTO.ApplyUserCard
+  //       "photographer": {
+  //         "photographerIdx": 2,
+  //         "grade": 4.5
+  //       }
+  //     },
+  //     {
+  //       // ApplyDTO
+  //       "applyIdx": 1,
+  //       "user": {
+  //         "userIdx": 1,
+  //         "name": "이기환",
+  //       },
+  //       // UserDTO.ApplyUserCard
+  //       "photographer": {
+  //         "photographerIdx": 2,
+  //         "grade": 4.5
+  //       }
+  //     }
+  //   ]
+  // }
+
   let navigate = useNavigate();
   
   useEffect(async()=> {
@@ -58,9 +97,9 @@ function EstimateDetail({ estimateIdx }) {
         <label>받은 견적서</label>
         {
           !estimate.applyList.length == 0?
-          estimate.applyList.map(photographer => 
-            <div onClick={() => navigate(`chat/${photographer.userIdx}`)} >
-              <EstimateResCard photographer={photographer} />
+          estimate.applyList.map(apply => 
+            <div onClick={() => navigate(`/chat/${apply.photographer.photographerIdx}/${apply.applyIdx}`)} >
+              <EstimateResCard photographer={apply.photographer} />
             </div>
           )
           :

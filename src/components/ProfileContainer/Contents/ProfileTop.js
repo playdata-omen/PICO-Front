@@ -3,10 +3,11 @@ import styles from './ProfileTop.module.css'
 
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import Stars from '../../Stars/Stars'
 
 
 
-function ProfileTop({ user }) {
+function ProfileTop({ user, grade }) {
 
   const userIdx = useSelector(store => store.auth.user.userIdx)
   let navigate = useNavigate()
@@ -14,7 +15,7 @@ function ProfileTop({ user }) {
   const updateProfile = () => {
     setTimeout(
       function(){
-        navigate('update')
+        navigate('/user/update')
       }, 700
     )
   }
@@ -35,6 +36,7 @@ function ProfileTop({ user }) {
       <div className={styles.infoContainer}>
         <div className={styles.info}>
           <span>{user.name} { user.isPhotographer ? '작가님' : '고객님'}</span>
+          <Stars grade={grade}/>
         </div>
         { 
           userIdx === user.userIdx ?

@@ -6,18 +6,18 @@ import { useNavigate } from 'react-router';
 
 function EstimateReqCard({ estimateIdx }) {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const estimateDetailPage = () => {
-    setTimeout(
-      function(){
-        navigate(`estimate/${estimateIdx}`)
-      }, 500
-    )
-  }
+  // const estimateDetailPage = () => {
+  //   setTimeout(
+  //     function(){
+  //       navigate(`/estimate/${estimateIdx}`)
+  //     }, 500
+  //   )
+  // }
 
   return (
-    <div className={styles.card} onClick={estimateDetailPage}>
+    <div className={styles.card}>
       <div className={styles.imgContainer}> 
         { estimateIdx }
       </div>

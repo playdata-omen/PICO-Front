@@ -12,7 +12,7 @@ export const uploadWork = async (navigate, photographerIdx, categoryIdx, title, 
   // images.map(async(image) => {
   //   image = await getBase64(image).then(res => {return res})
   // })
-  await API.post('uploadWork', {
+  await API.post('work', {
     photographerIdx, categoryIdx, title, content, images
   })
   .then(res => {
@@ -29,7 +29,7 @@ export const uploadWork = async (navigate, photographerIdx, categoryIdx, title, 
 }
 
 export const getWorksList = async (userIdx)  => {
-  const data = await API.get(`getWorksList/${userIdx}`)
+  const data = await API.get(`user/${userIdx}/work`)
   .then(res => {
     return res.data
   })
@@ -64,7 +64,7 @@ export const getWorksList = async (userIdx)  => {
 }
 
 export const getWorkDetail = async (workIdx) => {
-  const data = await API.get(`getWork${workIdx}`)
+  const data = await API.get(`work/${workIdx}`)
   .then(res => {
     return res.data
   })
@@ -81,6 +81,7 @@ export const getWorkDetail = async (workIdx) => {
           "imgUrl2",
           "imgUrl3"
         ],
+        "thumbnail": "imgUrl1"
       }
     )
   })
