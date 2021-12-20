@@ -86,6 +86,9 @@ export const Form3 = ({setStartDate, setEndDate }) => {
     
     sDate != null && setStartDate(sDate.toLocaleDateString())
     eDate != null && setEndDate(eDate.toLocaleDateString())
+    
+    // sDate != null && setStartDate(sDate)
+    // eDate != null && setEndDate(eDate)
     // (eDate && sDate && eDate > sDate) && setEDate(sDate.toLocaleDateString())
     console.log(sDate,eDate)
   },[sDate, eDate])

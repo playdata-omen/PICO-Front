@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getPUserWithPIdx } from '../../api/User'
+import { getUserWithPIdx } from '../../api/User'
 import { getWorkDetail } from '../../api/Work'
 import ProfileTop from '../ProfileContainer/Contents/ProfileTop'
 import Spinner from '../Spinner/Spinner'
@@ -14,10 +14,9 @@ function WorkContainer({ workIdx }) {
 
   useEffect(async() => {
     const data = await getWorkDetail(workIdx)
-    const userData = await getPUserWithPIdx(data.photgrapherIdx)
+    const userData = await getUserWithPIdx(data.photographerIdx)
     setWork(data)
     setUser(userData)
-    console.log(userData)
     setLoading(false)
   },[])
   return (

@@ -3,11 +3,12 @@ import ProfileContainer from '../ProfileContainer/ProfileContainer'
 import ChatContainer from './ChatContainer/ChatContainer'
 import styles from './ChatRoomContainer.module.css'
 
-function ChatRoomContainer({ user }) {
+function ChatRoomContainer({ user, applyIdx }) {
+
   return (
     <div className={styles.container}>
       <div className={styles.chatContainer}>
-        <ChatContainer />
+        <ChatContainer applyIdx={applyIdx}/>
       </div>
       <div className={styles.profileContainer}>
         <ProfileContainer user={user}/>

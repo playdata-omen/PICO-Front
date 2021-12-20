@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { getPhotographerUser } from '../../api/User'
+import { getUserWithPIdx } from '../../api/User'
 
 import ProfileContainer from '../../components/ProfileContainer/ProfileContainer'
 import styles from '../Pages.module.css'
 
 function ProfilePage({ user }) {
 
-  const { userIdx } = useParams()
+  const { photographerIdx } = useParams()
 
   const [pUser, setPUser] = useState(user)
 
   useEffect(async() => {
-    console.log(userIdx)
-    userIdx && setPUser(await getPhotographerUser(userIdx))
-    console.log(userIdx)
+    console.log(photographerIdx)
+    photographerIdx && setPUser(await getUserWithPIdx(photographerIdx))
   }, [])
+  
   return (
     <div className={styles.container}>
       <div className={styles.componentContainer}>

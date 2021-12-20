@@ -26,6 +26,7 @@ function Work({ user }) {
     console.log(user.userIdx)
     const data = await getWorksList(user.userIdx)
     setWorks(data)
+    console.log(data)
     setLoading(false)
   },[])
 

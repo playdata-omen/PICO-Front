@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form1, Form2, Form3, Form4 } from './ReqForm/EstimateReqForm'
 import styles from './EstimateReqFormContainer.module.css'
 import { reqEstimate } from '../../api/Estimate'
@@ -43,7 +43,7 @@ function EstimateReqFormContainer({ photographerIdx }) {
   const prevPage = () => page > 1 && setPage(page => page - 1)
 
   const submitEstimate = () => {
-    reqEstimate(navigate, category, content, city, address, startDate, endDate)
+    reqEstimate(navigate, category, content, city, address, startDate, endDate, photographerIdx)
   }
   
   return (

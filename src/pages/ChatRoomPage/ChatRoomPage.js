@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import { getPhotographerUser } from '../../api/User';
+import { getUserWithPIdx } from '../../api/User';
 import ChatRoomContainer from '../../components/ChatRoomContainer/ChatRoomContainer';
 import styles from '../Pages.module.css'
 
 
 function ChatRoomPage() {
 
-  let { userIdx } = useParams();
+  let { photographerIdx, applyIdx } = useParams();
 
   const [user, setUser] = useState({})
 
   useEffect(async() => {
-    const response = await getPhotographerUser(userIdx)
-    setUser(response)
-    console.log(user)
-  }, [])
-
+    const data = await getUserWithPIdx(photographerIdx)
+    setUser(data)
+    console.log(data)
+    console.log(applyIdx)
+  },[])
 
   return (
     <div className={styles.container}>
-      <ChatRoomContainer user={user}/>
+      <ChatRoomContainer user={user} applyIdx={applyIdx}/>
     </div>
   )
 }

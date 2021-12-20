@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route exact path="/work/:workIdx" element={<WorkPage />}/>
         <Route exact path="/imageRecommended" element={<imageRecommendedPage />}/>
-        <Route exact path="/profile/:userIdx" element={<ProfilePage user={auth.user}/>}/>
+        <Route exact path="/profile/:userIdx" element={<ProfilePage />}/>
         <Route 
           exact path="/myPage"
           element={
@@ -48,12 +48,13 @@ function App() {
           exact path="/myPage/profile"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
+              {/* <ProfilePage />        */}
               <ProfilePage user={auth.user}/>       
             </PrivateRoute>
           }
         />
         <Route 
-          path="/myPage/profile/update"
+          path="/user/update"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <ProfileUpdatePage user={auth.user}/>
@@ -61,7 +62,7 @@ function App() {
           }
         />
         <Route 
-          exact path="/myPage/estimate/:estimateIdx"
+          exact path="/estimate/:estimateIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimatePage/>
@@ -69,7 +70,7 @@ function App() {
           }
         />
         <Route 
-          exact path="/myPage/estimate/:estimateIdx/chat/:userIdx"
+          exact path="/chat/:photographerIdx/:applyIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <ChatRoomPage />
