@@ -54,12 +54,6 @@ function EstimateReqFormContainer({ photographerIdx }) {
 
       <div>
         {page === 1 &&  <Form1 category={category} setCategory={setCategory} photographerIdx={photographerIdx}/>}
-        {/* {page === 1 && (
-          photographerIdx ?
-          <Form1 category={category} setCategory={setCategory} photographerIdx={photographerIdx}/>
-          :
-          <Form1 category={category} setCategory={setCategory}/>
-        )} */}
         {page === 2 && <Form2 city={city} address={address} handleCityChange={handleCityChange} setAddress={setAddress}/>}
         {page === 3 && <Form3 setStartDate={setStartDate} setEndDate={setEndDate} />}
         {page === 4 && <Form4 setContent={setContent}/>}

@@ -84,8 +84,8 @@ export const Form3 = ({setStartDate, setEndDate }) => {
     //   setSDate(eDate)
     // }
     
-    sDate != null && setStartDate(sDate.toLocaleDateString())
-    eDate != null && setEndDate(eDate.toLocaleDateString())
+    sDate != null && setStartDate(sDate.toLocaleDateString('ko-KR'))
+    eDate != null && setEndDate(eDate.toLocaleDateString('ko-KR'))
     
     // sDate != null && setStartDate(sDate)
     // eDate != null && setEndDate(eDate)

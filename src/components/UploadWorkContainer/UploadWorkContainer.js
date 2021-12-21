@@ -27,14 +27,17 @@ function UploadWorkContainer() {
   
   const prevPage = () => page > 1 && setPage(page => page - 1)
   
-  const upload = () => {
-    images.forEach(async(image) => await getBase64(image, converted, setConverted))
-    uploadWork(navigate, photographerIdx, category, title, converted, content)
+  const upload = async() => {
+    await uploadWork(navigate, photographerIdx, category, title, converted, content)
   }
 
   useEffect(() => {
+    setConverted([])
+    images.forEach(async(image) => {
+      setConverted([...converted, await getBase64(image, converted, setConverted)])
+    })
     console.log(converted)
-  },[converted])
+  },[images])
  
   return (
     <div className={styles.container}>
@@ -46,7 +49,7 @@ function UploadWorkContainer() {
         {page === 3 &&  <Form3 images={images} setImages={setImages}/>}
         {page === 4 &&  <Form4 setContent={setContent}/>}
       </div>
-
+      
       <div className={styles.formBtnContainer}>
         {page > 1 && <button className={styles.formBtn} onClick={prevPage}>이전</button> }
         {page < 4 && <button className={styles.formBtn} onClick={nextPage}>다음</button> }

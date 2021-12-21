@@ -25,6 +25,10 @@
   justify-content: center;
 }
 
+.gridBtn {
+  aspect-ratio: 1/1;
+}
+
 .addBtnContainer label {
   padding-top: 20px;
   font-size: 14px;

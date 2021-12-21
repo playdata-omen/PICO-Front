@@ -35,7 +35,7 @@ function ProfileTop({ user, grade }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.info}>
-          <span>{user.name} { user.isPhotographer ? '작가님' : '고객님'}</span>
+          <span>{user.nickName} { user.isPhotographer ? '작가님' : '고객님'}</span>
           <Stars grade={grade}/>
         </div>
         { 

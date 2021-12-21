@@ -12,7 +12,7 @@ export const getBase64 = (image, converted, setConverted) => {
     // on reader load somthing...
     reader.onload = () => {
       baseURL = reader.result;
-      setConverted([...converted, baseURL])
+      // setConverted([...converted, baseURL])
       // console.log(baseURL);
 
       resolve(baseURL);
@@ -20,7 +20,7 @@ export const getBase64 = (image, converted, setConverted) => {
     };
   });
 };
-// export const getBase64 = image => {
+// export const getBase64 = (image, converted, setConverted) => {
 //   return new Promise(resolve => {
 //     // let imageInfo;
 //     let baseURL = "";
@@ -34,6 +34,7 @@ export const getBase64 = (image, converted, setConverted) => {
 //     // on reader load somthing...
 //     reader.onload = () => {
 //       baseURL = reader.result;
+//       setConverted([...converted, baseURL])
 //       // console.log(baseURL);
 
 //       resolve(baseURL);
