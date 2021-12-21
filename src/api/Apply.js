@@ -25,17 +25,17 @@ export const getApplyDetail = async applyIdx => {
 
 // token.user.userIdx
 export const getApplyList = async () => {
-  const data = await API.get('getApplyList')
+  const data = await API.get('apply')
     .then(res => {
-      // return res.data
       return res.data
     })
-    .catch(err => {
-      return [
-        { "applyIdx": 1, "estimateIdx": 1, "photographerIdx": "1", "created": {} },
-        { "applyIdx": 1, "estimateIdx": 1, "status": "1", "created": {} },
-        { "applyIdx": 1, "estimateIdx": 1, "status": "1", "created": {} },
-      ]
-    })
+    // .catch(err => {
+    //   return [
+    //     { "applyIdx": 1, "estimateIdx": 1, "photographerIdx": "1", "created": {} },
+    //     { "applyIdx": 1, "estimateIdx": 1, "status": "1", "created": {} },
+    //     { "applyIdx": 1, "estimateIdx": 1, "status": "1", "created": {} },
+    //   ]
+    // })
+  console.log(data)
   return data
 }

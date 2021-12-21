@@ -22,22 +22,13 @@ function MyPageContents({ user }) {
     )
   }
 
-  const estimateDetailPage = estimateIdx => {
+  const estimateDetailPage = (estimateIdx, applyIdx) => {
     setTimeout(
       function () {
-        navigate(`/estimate/${estimateIdx}`)
+        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
       }, 500
     )
   }
-
-  const chatPage = (estimateIdx, applyIdx) => {
-    setTimeout(
-      function () {
-        navigate(`/chat/${estimateIdx}/${applyIdx}`)
-      }, 500
-    )
-  }
-
 
   useEffect(async () => {
     const estimateData = await getEstimateReqList();
@@ -45,7 +36,7 @@ function MyPageContents({ user }) {
     // console.log(data)
     setEstimates(estimateData)
     setApplyList(applyListData)
-    console.log(estimates)
+    console.log(applyList)
     setLoading(false)
   }, [])
 
@@ -69,7 +60,7 @@ function MyPageContents({ user }) {
           {
             estimates.map(estimate =>
               <div onClick={() => estimateDetailPage(estimate.estimateIdx)}>
-                <EstimateReqCard estimateIdx={estimate.estimateIdx} />
+                <EstimateReqCard estimate={estimate} />
               </div>
             )
           }
@@ -81,8 +72,8 @@ function MyPageContents({ user }) {
             <label>의뢰지원</label>
             {
               applyList.map(apply =>
-                <div onClick={() => chatPage(apply.estimateIdx, apply.applyIdx)}>
-                  <EstimateReqCard estimateIdx={apply.estimateIdx} />
+                <div onClick={() => estimateDetailPage(apply.estimateIdx, apply.applyIdx)}>
+                  <EstimateReqCard apply={apply} />
                 </div>
               )
             }

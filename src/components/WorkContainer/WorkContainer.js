@@ -15,6 +15,7 @@ function WorkContainer({ workIdx }) {
   useEffect(async() => {
     const data = await getWorkDetail(workIdx)
     const userData = await getUserWithPIdx(data.photographerIdx)
+    console.log(data)
     setWork(data)
     setUser(userData)
     setLoading(false)

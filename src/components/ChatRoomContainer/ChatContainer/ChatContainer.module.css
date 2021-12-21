@@ -16,13 +16,14 @@
 .top {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid var(--primary-color);
 }
 
 .top button {
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
   width: 100px;
   margin-left: 10px;
   border: none;
