@@ -2,12 +2,13 @@ import { Button } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
+import { getApplyDetail } from '../../api/Apply'
 import { applyEstimate, getEstimateDetail } from '../../api/Estimate'
 import EstimateResCard from '../Cards/EstimateCard/EstimateResCard'
 import Spinner from '../Spinner/Spinner'
 import styles from './EstimateDetail.module.css'
 
-function EstimateDetail({ estimateIdx }) {
+function EstimateDetail({ estimateIdx, applyIdx }) {
 
   const categories = useSelector(store => store.categories.categories)
   const user = useSelector(store => store.auth.user)
@@ -16,20 +17,23 @@ function EstimateDetail({ estimateIdx }) {
   const [estimate, setEstimate] = useState({})
   const [loading, setLoading] = useState(true)
   const [category, setCategory] = useState(null)
+  const [applied, setApplied] = useState(null)
 
   useEffect(async () => {
     const data = await getEstimateDetail(estimateIdx)
-    setEstimate(data)
-    console.log(data)
-    setCategory(categories.filter(cat => cat.categoryIdx === data.categoryIdx)[0].kind)
+    setEstimate(await getEstimateDetail(estimateIdx))
+    const cat = await categories.filter(cat => cat.categoryIdx === data.categoryIdx)[0].kind
+    const apply = await getApplyDetail(applyIdx)
+    setApplied(apply.isApplied)
+    setCategory(cat)
     setLoading(false)
   }, [])
 
   const categoryLabel = categories.filter(async (cat) => cat.categoryIdx === await estimate.categoryIdx)[0].kind
 
-  const apply = async() => {
-    const response = await applyEstimate(estimateIdx, photographerIdx)
-    alert(response)
+  const applyEstimateHandler = async() => {
+    setEstimate(await applyEstimate(estimateIdx, photographerIdx))
+    console.log(estimate)
   }
 
   return (
@@ -69,7 +73,15 @@ function EstimateDetail({ estimateIdx }) {
                 </React.Fragment>
                 :
                 <React.Fragment>
-                  <button onClick={apply}>지원하기</button>
+                  {
+                    applied ?
+                    
+                    <label>지원완료</label>
+
+                    :
+
+                    <button onClick={applyEstimateHandler}>지원하기</button>
+                  }
                 </React.Fragment>
             }
           </div>

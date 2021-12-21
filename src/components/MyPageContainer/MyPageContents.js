@@ -22,18 +22,10 @@ function MyPageContents({ user }) {
     )
   }
 
-  const estimateDetailPage = estimateIdx => {
+  const estimateDetailPage = (estimateIdx, applyIdx) => {
     setTimeout(
       function () {
-        navigate(`/estimate/${estimateIdx}`)
-      }, 500
-    )
-  }
-
-  const chatPage = (estimateIdx, applyIdx) => {
-    setTimeout(
-      function () {
-        navigate(`/chat/${estimateIdx}/${applyIdx}`)
+        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
       }, 500
     )
   }
@@ -44,7 +36,7 @@ function MyPageContents({ user }) {
     // console.log(data)
     setEstimates(estimateData)
     setApplyList(applyListData)
-    console.log(estimates)
+    console.log(applyList)
     setLoading(false)
   }, [])
 
@@ -80,7 +72,7 @@ function MyPageContents({ user }) {
             <label>의뢰지원</label>
             {
               applyList.map(apply =>
-                <div onClick={() => estimateDetailPage(apply.estimateIdx)}>
+                <div onClick={() => estimateDetailPage(apply.estimateIdx, apply.applyIdx)}>
                   <EstimateReqCard apply={apply} />
                 </div>
               )

@@ -127,10 +127,6 @@ export const confirmEstimate = async(estimateIdx, photgrapherIdx) => {
 
 export const confirmOrder = async(estimateIdx, photgrapherIdx) => {
   await API.post(`confirmOrder/${estimateIdx}/${photgrapherIdx}`)
-
-
-
-confirmOrder
   .then(res => {
     return res.data
   })
@@ -141,9 +137,9 @@ confirmOrder
 
 // /estimate/{estimateId}/photographer/{photographerId}/apply
 export const applyEstimate = async(estimateIdx, photographerIdx) => {
-  const response = await API.put(`estimate/${estimateIdx}/photographer/${photographerIdx}/apply`)
+  const data = await API.put(`estimate/${estimateIdx}/photographer/${photographerIdx}/apply`)
   .then(res => {
     return res.data
   })
-  return response
+  return data
 }
