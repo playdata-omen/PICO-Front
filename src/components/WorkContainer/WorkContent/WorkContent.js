@@ -62,23 +62,25 @@ const ImageViewerContainer = ({ setImageViewer, image, setImage, photos }) => {
     setImage(null)
   }
 
-  const prevIndex = () => {
+  const prevIndex = e => {
+    e.stopPropagation();
     index == 0 ? setIndex(photos.length - 1) : setIndex(index - 1)
   }
-  
-  const nextIndex = () => {
+
+  const nextIndex = e => {
+    e.stopPropagation();
     index < photos.length - 1 ? setIndex(index + 1) : setIndex(0)
   }
 
   return (
-    <div className={styles.imageViewerContainer}>
+    <div className={styles.imageViewerContainer} onClick={closeImageViewer}>
       <div className={styles.imageViewer} >
-        <div className={styles.imgContainer} onClick={closeImageViewer}>
+        <div className={styles.imgContainer}>
           <img src={photos[index]} />
         </div>
         <div className={styles.btnContainer}>
-          <label onClick={prevIndex}><ArrowCircleLeftIcon/></label>
-          <label onClick={nextIndex}><ArrowCircleRightIcon/></label>
+          <label onClick={e => prevIndex(e)}><ArrowCircleLeftIcon /></label>
+          <label onClick={e => nextIndex(e)}><ArrowCircleRightIcon /></label>
         </div>
       </div>
     </div>

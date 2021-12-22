@@ -14,7 +14,7 @@ function Info({ user }) {
   const updateProfile = () => {
     setTimeout(
       function () {
-        navigate('update')
+        navigate('/user/update')
       }, 700
     )
   }

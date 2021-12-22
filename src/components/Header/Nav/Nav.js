@@ -30,6 +30,7 @@ function Nav() {
   const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN)
     dispatch(auth_actions.logout())
+    navigate('/')
     setBurger(false)
   }
 

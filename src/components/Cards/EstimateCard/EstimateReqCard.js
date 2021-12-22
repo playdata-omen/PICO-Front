@@ -55,19 +55,19 @@ const EstimateCard = ({ estimate }) => {
 }
 
 const ApplyCard = ({ apply }) => {
-  const applyStatus = parseInt(apply.status)
+  console.log(apply.isApplied)
   return (
     <div className={styles.card}>
       <div className={styles.imgContainer}>
         <label className={styles.statusLabel}>
-          {(applyStatus === 1 || applyStatus === 2) && "지원 대기중"}
-          {((applyStatus === 1 || applyStatus === 2) && apply.isApplied === 1) && "지원 완료"}
-          {applyStatus === 3 && "수행중"}
-          {applyStatus === 4 && "매칭실패"}
-          {applyStatus === 5 && "수행완료"}
-          {applyStatus === 6 && "수행완료"}
-          {applyStatus === 7 && "요청취소"}
-          {applyStatus === 8 && "거절"}
+          {((apply.status === 1 || apply.status === 2) && !apply.isApplied) && "지원 대기중"}
+          {((apply.status === 1 || apply.status === 2) && apply.isApplied) && "지원 완료"}
+          {apply.status === 3 && "수행중"}
+          {apply.status === 4 && "매칭실패"}
+          {apply.status === 5 && "수행완료"}
+          {apply.status === 6 && "수행완료"}
+          {apply.status === 7 && "요청취소"}
+          {apply.status === 8 && "거절"}
         </label>
       </div>
       <div className={styles.cardInfoContainer}>

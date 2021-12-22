@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { getApplyDetail } from '../../api/Apply'
 import { applyEstimate, getEstimateDetail } from '../../api/Estimate'
+import { getUserWithUserIdx } from '../../api/User'
 import EstimateResCard from '../Cards/EstimateCard/EstimateResCard'
+import MyInfoCard from '../Cards/MyInfoCard/MyInfoCard'
 import Spinner from '../Spinner/Spinner'
 import styles from './EstimateDetail.module.css'
 
@@ -18,20 +20,24 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
   const [loading, setLoading] = useState(true)
   const [category, setCategory] = useState(null)
   const [apply, setApply] = useState(null)
+  const [reqUser, setReqUser] = useState(null)
 
   const applyEstimateHandler = async () => {
     const data = await applyEstimate(estimateIdx, photographerIdx)
-    data && setEstimate(data)
+    setEstimate(data)
     const applyData = await getApplyDetail(applyIdx)
     setApply(applyData)
   }
 
   useEffect(async () => {
-    const data = await getEstimateDetail(estimateIdx)
+    const estimateData = await getEstimateDetail(estimateIdx)
+    console.log(estimateData)
     setEstimate(await getEstimateDetail(estimateIdx))
-    const cat = await categories.filter(cat => cat.categoryIdx === data.categoryIdx)[0].kind
     const applyData = await getApplyDetail(applyIdx)
+    const userData = await user.userIdx !== estimate.userIdx && await getUserWithUserIdx(estimateData.userIdx)
+    setReqUser(userData)
     setApply(applyData)
+    const cat = await categories.filter(cat => cat.categoryIdx === estimateData.categoryIdx)[0].kind
     setCategory(cat)
     setLoading(false)
   }, [])
@@ -91,18 +97,17 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
           {
             user.userIdx === estimate.userIdx &&
             <React.Fragment>
-              <label>지원한 작가</label>
+              <label>{estimate.status < 3 ? "지원한 작가" : "매칭된 작가"}</label>
               <EstimateRes estimate={estimate} />
             </React.Fragment>
 
-
-
           }
+
           {
-            (user.userIdx !== estimate.userIdx && apply.status !== 4) &&
+            ((user.userIdx === estimate.userIdx) && apply.isApplied) &&
             <React.Fragment>
               <label>요청고객</label>
-              <EstimateRes estimate={estimate} />
+              <EstimateReq user={reqUser} photographerIdx={photographerIdx} />
             </React.Fragment>
           }
 
@@ -124,7 +129,7 @@ const EstimateRes = ({ estimate }) => {
   )
 
   const matched = (
-    estimate.applyList.filter(apply => apply.status === 3).map(apply =>
+    estimate.applyList.filter(apply => (apply.status !== 4 && apply.status > 2)).map(apply =>
       <div onClick={() => navigate(`/chat/${apply.photographer.photographerIdx}/${apply.applyIdx}`)} >
         <EstimateResCard photographer={apply.photographer} />
       </div>
@@ -136,11 +141,22 @@ const EstimateRes = ({ estimate }) => {
     !estimate.applyList.length == 0 ?
 
       <div>
-        {estimate.status < 3 ? unmatched : matched}
+        {estimate.status < 3 && estimate.status !== 4 ? unmatched : matched}
       </div>
 
       :
 
-      <div>아직 받은 견적이 없습니다</div>
+      <div>
+        <span>아직 받은 견적이 없습니다</span>
+      </div>
+  )
+}
+
+const EstimateReq = ({ user, photographerIdx }) => {
+  let navigate = useNavigate();
+  return (
+    <div onClick={() => navigate(`/chat/${photographerIdx}/${1}`)} >
+      {/* <MyInfoCard user={user} /> */}
+    </div>
   )
 }
