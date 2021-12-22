@@ -49,6 +49,12 @@
   font-size: 12px;
 }
 
+.cardsContainer label{
+  display: block;
+  padding: 10px;
+  font-weight: 700;
+}
+
 @media screen and (width<=768px){
   .container{
     width: 90%;

@@ -20,56 +20,56 @@ function Work({ user }) {
   const uploadWorkPage = () => {
     navigate('/uploadWork')
   }
- 
 
-  useEffect(async()  => {
+
+  useEffect(async () => {
     console.log(user.userIdx)
     const data = await getWorksList(user.userIdx)
     setWorks(data)
     console.log(data)
     setLoading(false)
-  },[])
+  }, [])
 
   return (
 
     <div className={styles.container}>
       {
         loading ?
-        <div>
-          작업 불러오는 중...
-        </div>
-        :
-        <div>
-          {
-            works.length !== 0 &&
-            <div className={styles.workCardContainer}>
-              {
-                works.map(work =>
-                  <div onClick={() => workPage(work.workIdx)}>
-                    <WorkCard work={work}/>
-                  </div>
-                )
-              }
+          <div>
+            작업 불러오는 중...
+          </div>
+          :
+          <div>
+            {
+              works.length !== 0 &&
+              <div className={styles.workCardContainer}>
+                {
+                  works.map(work =>
+                    <div onClick={() => workPage(work.workIdx)}>
+                      <WorkCard work={work} />
+                    </div>
+                  )
+                }
 
-              {
-                user.userIdx === userIdx &&
+                {
+                  user.userIdx === userIdx &&
+                  <div className={`${styles.addBtnContainer} ${styles.gridBtn}`} onClick={uploadWorkPage}>
+                    <AddButton />
+                  </div>
+                }
+              </div>
+            }
+            {
+              (user.userIdx === userIdx && works.length === 0) &&
+              <div className={styles.add}>
                 <div className={styles.addBtnContainer} onClick={uploadWorkPage}>
                   <AddButton />
+                  <label>작품을 업로드 하세요</label>
                 </div>
-              }
-            </div>
-          }
-          {
-            (user.userIdx === userIdx && works.length === 0) && 
-            <div className={styles.add}>
-              <div className={styles.addBtnContainer} onClick={uploadWorkPage}>
-                <AddButton />
-                <label>작품을 업로드 하세요</label>
               </div>
-            </div>
-          }
-        </div>
-        
+            }
+          </div>
+
       }
 
     </div>

@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/register" element={<RegisterPage />}/>
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route exact path="/work/:workIdx" element={<WorkPage />}/>
-        <Route exact path="/profile/:userIdx" element={<ProfilePage />}/>
+        <Route exact path="/profile/:photographerIdx" element={<ProfilePage />}/>
         <Route 
           exact path="/myPage"
           element={
@@ -61,7 +61,7 @@ function App() {
           }
         />
         <Route 
-          exact path="/estimate/:estimateIdx"
+          exact path="/estimate/:estimateIdx/:applyIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <EstimatePage/>

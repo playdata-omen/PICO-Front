@@ -27,12 +27,28 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.workImgContainer * {
+  transition: ease 300ms;
+}
+
 .imgCard {
+  position: relative;
+  overflow: hidden;
   border-radius: 10px;
   aspect-ratio: 1/1;
-  border: 1px solid green;
+  /* border: 1px solid red; */
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
 }
 
 .imgCard img {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  z-index: -3;
+}
+
+.imgCard:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
