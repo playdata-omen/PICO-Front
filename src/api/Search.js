@@ -11,9 +11,10 @@ export const categorySearch = async (categoryIdx) => {
           {
             "photographerIdx": 10,
             "user": {
-              "userIdx": 10,
+              "userIdx": 1,
               "name": "임우송",
-              "email": "kingdomduner@gmail.com"
+              "email": "kingdomduner@gmail.com",
+              "isPhotographer": true
             }
           },
           {
@@ -21,7 +22,8 @@ export const categorySearch = async (categoryIdx) => {
             "user": {
               "userIdx": 11,
               "name": "김지명",
-              "email": "kim-pick@gmail.com"
+              "email": "kim-pick@gmail.com",
+              "isPhotographer": true
             }
           },
         ]
