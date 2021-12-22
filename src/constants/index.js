@@ -1,6 +1,7 @@
 export const ACCESS_TOKEN = "accessToken";
 
 export const SERVER_URL = process.env.REACT_APP_SERVER_URL
+export const AI_URL = process.env.REACT_APP_AI_URL
 
 // Google
 export const API_BASE_URL_GOOGLE = "https://accounts.google.com/o/oauth2/v2/auth?"
