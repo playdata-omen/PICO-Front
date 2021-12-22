@@ -15,6 +15,7 @@ function ProfileContainer({ user }) {
   const [loading, setLoading] = useState(true)
   
   useEffect(async() => {
+    console.log(user)
     user.isPhotographer && setPhotograpHer(await getPhotographerDetail(user.useridx))
   })
 

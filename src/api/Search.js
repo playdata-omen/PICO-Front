@@ -9,7 +9,7 @@ export const categorySearch = async (categoryIdx) => {
       return (
         [
           {
-            "photographerIdx": 10,
+            "photographerIdx": 1,
             "user": {
               "userIdx": 1,
               "name": "임우송",
@@ -18,7 +18,7 @@ export const categorySearch = async (categoryIdx) => {
             }
           },
           {
-            "photographerIdx": 11,
+            "photographerIdx": 2,
             "user": {
               "userIdx": 11,
               "name": "김지명",
