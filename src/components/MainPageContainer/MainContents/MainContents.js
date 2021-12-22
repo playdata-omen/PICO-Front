@@ -15,7 +15,6 @@ function MainContents() {
 
   let navigate = useNavigate();
   const categories = useSelector(store => store.categories.categories)
-  const err = useSelector(store => store.categories.error)
 
   const [searchField, setSearchField] = useState("")
 
@@ -119,8 +118,8 @@ function ContentRight() {
     <div className={styles.contentRight}>
       <div className={styles.imgContainer}>
         <div className={styles.logo}>
-          PIC<span>ture</span>
-          O<span>f</span>
+          <span className={styles.big}>PIC</span><span className={styles.small}>ture</span>
+          <span className={styles.big}>O</span><span className={styles.small}>f</span>
         </div>
         <div className={styles.animationContainer}>
           {

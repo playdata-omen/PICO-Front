@@ -2,12 +2,16 @@
   text-align: center;
 }
 
+.App * {
+  color: var(--font-color);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
 
 /* body {
-  background-color: var(--secondary-color)
+  background-color: #e8dcff3a;
 } */
 
 .App-logo {

@@ -8,7 +8,7 @@ function EstimatePage() {
   let { estimateIdx, applyIdx } = useParams()
   return (
     <div className={styles.container}>
-      <EstimateDetail estimateIdx={estimateIdx} applyIdx={applyIdx}/>
+      <EstimateDetail estimateIdx={estimateIdx} applyIdx={applyIdx} />
     </div>
   )
 }

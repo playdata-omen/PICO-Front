@@ -13,7 +13,7 @@ function MyPageContents({ user }) {
   const [loading, setLoading] = useState(true)
   const [estimates, setEstimates] = useState([])
   const [applyList, setApplyList] = useState([])
-  
+
   const myProfilePage = () => {
     setTimeout(
       function () {
@@ -22,13 +22,7 @@ function MyPageContents({ user }) {
     )
   }
 
-  const estimateDetailPage = (estimateIdx, applyIdx) => {
-    setTimeout(
-      function () {
-        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
-      }, 500
-    )
-  }
+
 
   useEffect(async () => {
     const estimateData = await getEstimateReqList();
@@ -56,17 +50,14 @@ function MyPageContents({ user }) {
         </div>
 
         <div className={styles.cardList}>
-          <label>견적요청</label>
-          {
-            estimates.map(estimate =>
-              <div onClick={() => estimateDetailPage(estimate.estimateIdx)}>
-                <EstimateReqCard estimate={estimate} />
-              </div>
-            )
-          }
+          {estimates.length !== 0 && <EstimateCardsContainer estimates={estimates} />}
         </div>
 
-        {
+        <div className={styles.cardList}>
+          {applyList.length !== 0 && <ApplyCardsContainer applyList={applyList} />}
+        </div>
+
+        {/* {
           user.isPhotographer &&
           <div className={styles.cardList}>
             <label>의뢰지원</label>
@@ -78,10 +69,61 @@ function MyPageContents({ user }) {
               )
             }
           </div>
-        }
+        } */}
       </div>
 
   )
 }
 
 export default MyPageContents
+
+const EstimateCardsContainer = ({ estimates }) => {
+
+  let navigate = useNavigate();
+
+  const estimateDetailPage = (estimateIdx, applyIdx) => {
+    setTimeout(
+      function () {
+        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
+      }, 500
+    )
+  }
+
+  return (
+    <div className={styles.cardList}>
+      <label>견적요청서</label>
+      {
+        estimates.map(estimate =>
+          <div onClick={() => estimateDetailPage(estimate.estimateIdx)}>
+            <EstimateReqCard estimate={estimate} />
+          </div>
+        )
+      }
+    </div>
+  )
+}
+const ApplyCardsContainer = ({ applyList }) => {
+
+  let navigate = useNavigate();
+
+  const estimateDetailPage = (estimateIdx, applyIdx) => {
+    setTimeout(
+      function () {
+        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
+      }, 500
+    )
+  }
+
+  return (
+    <div className={styles.cardList}>
+      <label>의뢰요청서</label>
+      {
+        applyList.map(apply =>
+          <div onClick={() => estimateDetailPage(apply.estimateIdx, apply.applyIdx)}>
+            <EstimateReqCard apply={apply} />
+          </div>
+        )
+      }
+    </div>
+  )
+}
