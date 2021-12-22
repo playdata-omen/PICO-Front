@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
         <Route exact path="/work/:workIdx" element={<WorkPage />}/>
         <Route exact path="/imageRecommended" element={<imageRecommendedPage />}/>
-        <Route exact path="/profile/:userIdx" element={<ProfilePage />}/>
+        <Route exact path="/profile/:photographerIdx" element={<ProfilePage />}/>
         <Route 
           exact path="/myPage"
           element={
