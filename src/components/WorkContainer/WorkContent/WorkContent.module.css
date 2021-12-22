@@ -16,7 +16,7 @@
 
 .categoryLabel label {
   width: 100px;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   background-color: var(--primary-color);
 }
@@ -32,6 +32,7 @@
 }
 
 .imgCard {
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -51,4 +52,69 @@
 
 .imgCard:hover {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.imageViewerContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.imageViewerContainer * {
+  transition: ease 300ms;
+}
+
+.imageViewer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.imgContainer {
+  cursor: pointer;
+  width: 80%;
+  overflow: hidden;
+}
+
+.imageViewer img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.btnContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnContainer label {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  color:var(--primary-color);
+}
+
+.btnContainer label * {
+  color:var(--primary-color);
+}
+
+.btnContainer label:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color:var(--primary-color);
+}
+
+
+@media screen and (width<=768px){
+  .imgContainer, .btnContainer {
+    width: 100%;
+  }
 }

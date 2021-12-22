@@ -112,9 +112,18 @@
   color: var(--secondary-color)  
 }
 
-.logo span {
+.big {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: var(--secondary-color);
   display: inline;
-  opacity: 0.5;
+  animation: fadeOut 5s 300ms infinite linear alternate;
+}
+
+.small {
+  color: var(--secondary-color);
+  display: inline;
+  animation: small 5s 300ms infinite alternate-reverse;
 }
 
 .animationContainer {
@@ -144,8 +153,6 @@
   opacity: 1;
 }
 
-
-
 @media screen and (width<=768px){
   .container {
     width: 90%;
@@ -160,5 +167,25 @@
 
   .contentRight {
     display: none;
+  }
+}
+
+
+@keyframes fadeOut {
+  from {
+    background-color: transparent;
+  }
+  to {
+    color: rgba(255, 255, 255, 0.616);
+    background-color: var(--secondary-color);
+  }
+}
+@keyframes small {
+  from {
+    /* font-size: transparent; */
+  }
+  to {
+    font-size: 0px;
+    opacity: 0;
   }
 }

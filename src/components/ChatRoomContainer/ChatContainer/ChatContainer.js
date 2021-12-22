@@ -20,14 +20,15 @@ function ChatContainer({ applyIdx }) {
   
   const confirmEstimateHandler = async (estimateIdx, photographerIdx) => {
     const data = await confirmEstimate(estimateIdx, photographerIdx)
-    console.log(data)
+    setApply(data)
   }
   const confirmOrderHandler = async (estimateIdx, photographerIdx) => {
-    await confirmOrder(estimateIdx, photographerIdx)
+    const data = await confirmOrder(estimateIdx, photographerIdx)
+    setApply(data)
   }
   useEffect(async () => {
     setApply(await getApplyDetail(applyIdx))
-    // console.log(apply)
+    console.log(apply)
     setLoading(false)
   }, [])
 
@@ -46,9 +47,9 @@ function ChatContainer({ applyIdx }) {
 
               :
               <div>
-                {(apply.estimate.status === '1' || apply.estimate.status === '2') && <button onClick={() => confirmEstimateHandler(apply.estimate.estimateIdx, apply.photographerIdx)}>의뢰확정</button>}
-                {apply.estimate.status === '3' && <button onClick={() => confirmOrderHandler(apply.estimate.estimateIdx, 4)}>수행완료</button>}
-                {apply.estimate.status === '4' && <button onClick={() => navigate(`/review/${apply.photographerIdx}`)}>리뷰달기</button>}
+                {(apply.estimate.status === 1 || apply.estimate.status === 2) && <button onClick={() => confirmEstimateHandler(apply.estimate.estimateIdx, apply.photographerIdx)}>의뢰확정</button>}
+                {apply.estimate.status === 3 && <button onClick={() => confirmOrderHandler(apply.estimate.estimateIdx, apply.photographerIdx)}>수행완료</button>}
+                {apply.estimate.status === 4 && <button onClick={() => navigate(`/review/${apply.photographerIdx}`)}>리뷰달기</button>}
               </div>
           }
         </div>

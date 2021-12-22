@@ -37,6 +37,17 @@ API.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+// API.interceptors.request.use(config => {
+//   /* some logic */
+//   const CancelToken = axios.CancelToken;
+//   return {
+//     ...config,
+//     cancelToken: new CancelToken((cancel) => cancel('Cancel repeated request'))
+//   };
+// });
+
+
 // API.interceptors.response.use(
 //   response => response,
 //   error => {

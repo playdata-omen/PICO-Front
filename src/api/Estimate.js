@@ -1,12 +1,12 @@
 import API from "./API"
 
 //token.user.userIdx
-export const getEstimateReqList = async() => {
+export const getEstimateReqList = async () => {
   const data = await API.get('estimate')
-  .then(res => {
-    console.log(res.data)
-    return res.data
-  })
+    .then(res => {
+      console.log(res.data)
+      return res.data
+    })
   // .catch(err => {
   //   return [
   //     {"estimateIdx" : 1, "status": "1", "created" : {}},
@@ -22,49 +22,49 @@ export const getEstimateDetail = async estimateIdx => {
   const data = await API.get(`estimate/${estimateIdx}`)
     .then(res => {
       return res.data
-    // }).catch(err => {
-    //   return (
-    //     {
-    //       "estimateIdx": 1,
-    //       "userIdx": 1,
-    //       "categoryIdx": 2,
-    //       "city": "서울",
-    //       "address": "은평구",
-    //       "startDate": "2021-12-15",
-    //       "endDate": "2021-12-20",
-    //       "content": "String content",
-    //       "applyList": [
-    //         {
-    //           // ApplyDTO
-    //           "applyIdx": 3,
-    //           "user": {
-    //             "userIdx": 1,
-    //             "name": "이기환",
-    //           },
-    //           // UserDTO.ApplyUserCard
-    //           "photographer": {
-    //             "photographerIdx": 1,
-    //             "grade": 4.2,
-    //             "name": "이기환",
-    //           }
-    //         },
-    //         {
-    //           // ApplyDTO
-    //           "applyIdx": 4,
-    //           "user": {
-    //             "userIdx": 1,
-    //             "name": "이기환",
-    //           },
-    //           // UserDTO.ApplyUserCard
-    //           "photographer": {
-    //             "photographerIdx": 2,
-    //             "grade": 3.8,
-    //             "name": "차재훈",
-    //           }
-    //         }
-    //       ]
-    //     }
-    //   )
+      // }).catch(err => {
+      //   return (
+      //     {
+      //       "estimateIdx": 1,
+      //       "userIdx": 1,
+      //       "categoryIdx": 2,
+      //       "city": "서울",
+      //       "address": "은평구",
+      //       "startDate": "2021-12-15",
+      //       "endDate": "2021-12-20",
+      //       "content": "String content",
+      //       "applyList": [
+      //         {
+      //           // ApplyDTO
+      //           "applyIdx": 3,
+      //           "user": {
+      //             "userIdx": 1,
+      //             "name": "이기환",
+      //           },
+      //           // UserDTO.ApplyUserCard
+      //           "photographer": {
+      //             "photographerIdx": 1,
+      //             "grade": 4.2,
+      //             "name": "이기환",
+      //           }
+      //         },
+      //         {
+      //           // ApplyDTO
+      //           "applyIdx": 4,
+      //           "user": {
+      //             "userIdx": 1,
+      //             "name": "이기환",
+      //           },
+      //           // UserDTO.ApplyUserCard
+      //           "photographer": {
+      //             "photographerIdx": 2,
+      //             "grade": 3.8,
+      //             "name": "차재훈",
+      //           }
+      //         }
+      //       ]
+      //     }
+      //   )
     })
   return data
 }
@@ -96,7 +96,7 @@ export const getEstimateDetail = async estimateIdx => {
 
 // reqEstimate(navigate, category, content, city, address, startDate, endDate, photographerIdx)
 // reqEstimate(navigate, category, content, city, address, startDate, endDate)
-export const reqEstimate = async(navigate, categoryIdx, content, city, address, startDate, endDate, photographerIdx) => {
+export const reqEstimate = async (navigate, categoryIdx, content, city, address, startDate, endDate, photographerIdx) => {
   let re1 = /\.\s/gi;
   let re2 = /\./gi
   startDate = startDate.replace(re1, '-').replace(re2, '')
@@ -108,38 +108,36 @@ export const reqEstimate = async(navigate, categoryIdx, content, city, address, 
     .catch(err => {
       alert(err.message)
     })
-  navigate('/myPage') 
+  navigate('/myPage')
 }
 
 // /estimate/confirmEstimate/{estimateIdx}/{photographerIdx}
 // /photographer/{photographerIdx}/estimate/{estimateIdx}
-export const confirmEstimate = async(estimateIdx, photgrapherIdx) => {
-  const data = await API.put(`photographer/${photgrapherIdx}/estimate/${estimateIdx}`)
-  // const data = await API.put(`estimate/confirmEstimate/${estimateIdx}/${photgrapherIdx}`)
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    return err.message
-  })
+export const confirmEstimate = async (estimateIdx, photographerIdx) => {
+  const data = await API.put(`estimate/${estimateIdx}/confirmEstimate/photographer/${photographerIdx}`)
+    // const data = await API.put(`photographer/${photgrapherIdx}/estimate/${estimateIdx}`)
+    .then(res => {
+      return res.data
+    })
+    .catch(err => {
+      return err.message
+    })
   return data
 }
 
-export const confirmOrder = async(estimateIdx, photgrapherIdx) => {
-  await API.post(`confirmOrder/${estimateIdx}/${photgrapherIdx}`)
-  .then(res => {
-    return res.data
-  })
-  .catch(err => {
-    return err.message
-  })
+export const confirmOrder = async (estimateIdx, photographerIdx) => {
+  const data = await API.put(`estimate/${estimateIdx}/confirmOrder/photographer/${photographerIdx}`)
+    .then(res => {
+      return res.data
+    })
+  return data
 }
 
 // /estimate/{estimateId}/photographer/{photographerId}/apply
-export const applyEstimate = async(estimateIdx, photographerIdx) => {
+export const applyEstimate = async (estimateIdx, photographerIdx) => {
   const data = await API.put(`estimate/${estimateIdx}/photographer/${photographerIdx}/apply`)
-  .then(res => {
-    return res.data
-  })
+    .then(res => {
+      return res.data
+    })
   return data
 }
