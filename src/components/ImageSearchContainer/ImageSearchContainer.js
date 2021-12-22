@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import styles from './ImageSearchContainer.module.css'
-import { ImagePreviewBox, ImagePreviewBox2, ImagePreviewBox3 } from './ImagePreviewBox/ImagePreviewBox'
+import { ImagePreviewBox, ImagePreviewBox2 } from './ImagePreviewBox/ImagePreviewBox'
 import { ImageUploadBox } from './ImageUploadBox/ImageUploadBox'
 import { AddButton } from '../Button/Button';
-import { getRecommendListFromFlask } from '../../api/Recommend'
+import { getRecommendList } from '../../api/AI_API/imageSearch'
 
 
 function ImageSearchContainer() {
@@ -36,7 +36,7 @@ function ImageSearchContainer() {
     let reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onload = async () => {
-      const resData = await getRecommendListFromFlask(reader.result);
+      const resData = await getRecommendList(reader.result);
       if (resData) {
         setRecommendImages([])
         await setRecommendImages(resData["search_result"]);
