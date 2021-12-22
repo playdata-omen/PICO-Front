@@ -18,19 +18,3 @@ export const ErrRedirectHandler = () => {
   )
 }
 
-
-export const UploadWorkRedirectHandler = ({}) => {
-
-  const [loading, setLoading] = useState(true)
-  return (
-
-    loading ?
-    <Spinner /> 
-
-    :
-
-    <Navigate to="/myPage" />
-  )
-}
-
-

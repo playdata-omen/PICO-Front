@@ -19,8 +19,6 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
   const [category, setCategory] = useState(null)
   const [apply, setApply] = useState(null)
 
-  const categoryLabel = categories.filter(async (cat) => cat.categoryIdx === await estimate.categoryIdx)[0].kind
-
   const applyEstimateHandler = async () => {
     const data = await applyEstimate(estimateIdx, photographerIdx)
     data && setEstimate(data)
