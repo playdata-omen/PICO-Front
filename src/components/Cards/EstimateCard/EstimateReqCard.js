@@ -18,7 +18,7 @@ function EstimateReqCard({ estimate, apply }) {
 export default EstimateReqCard
 
 const EstimateCard = ({ estimate }) => {
-  let estimateStatus = parseInt(estimate.status)
+  
   const created = estimate.created.split('T')[0]
 
   return (
@@ -26,21 +26,21 @@ const EstimateCard = ({ estimate }) => {
       <div className={styles.imgContainer}>
         <label className={styles.statusLabel}>
           {
-            estimateStatus === 1 &&
+            estimate.status === 1 &&
             <div>
               <span>글로벌 견적</span>
               <span>매칭중</span>
             </div>
           }
           {
-            estimateStatus === 2 &&
+            estimate.status === 2 &&
             <div>
               <span>지정 견적</span>
               <span>매칭중</span>
             </div>
           }
-          {estimateStatus === 3 && "수행중"}
-          {estimateStatus === 4 && "수행완료"}
+          {estimate.status === 3 && "수행중"}
+          {estimate.status === 4 && "수행완료"}
         </label>
       </div>
       <div className={styles.cardInfoContainer}>
@@ -61,9 +61,9 @@ const ApplyCard = ({ apply }) => {
       <div className={styles.imgContainer}>
         <label className={styles.statusLabel}>
           {(applyStatus === 1 || applyStatus === 2) && "지원 대기중"}
-          {((applyStatus === 1 || applyStatus === 2) && apply.isApplied === 1) && "지원 대기중"}
+          {((applyStatus === 1 || applyStatus === 2) && apply.isApplied === 1) && "지원 완료"}
           {applyStatus === 3 && "수행중"}
-          {applyStatus === 4 && "보류"}
+          {applyStatus === 4 && "매칭실패"}
           {applyStatus === 5 && "수행완료"}
           {applyStatus === 6 && "수행완료"}
           {applyStatus === 7 && "요청취소"}

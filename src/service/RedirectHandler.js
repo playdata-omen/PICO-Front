@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router"
+import Spinner from '../components/Spinner/Spinner'
+import { Navigate } from 'react-router'
 
 
 
-function RedirectHandler() {
+export const ErrRedirectHandler = () => {
   let navigate = useNavigate()
-  
+
   useEffect(() => {
     navigate('/err')
   }, [])
@@ -16,5 +18,19 @@ function RedirectHandler() {
   )
 }
 
-export default RedirectHandler
+
+export const UploadWorkRedirectHandler = ({}) => {
+
+  const [loading, setLoading] = useState(true)
+  return (
+
+    loading ?
+    <Spinner /> 
+
+    :
+
+    <Navigate to="/myPage" />
+  )
+}
+
 

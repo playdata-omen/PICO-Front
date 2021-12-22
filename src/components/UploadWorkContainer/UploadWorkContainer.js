@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { uploadWork } from '../../api/Work'
 import { getBase64 } from '../../service/FileUtils'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
+import Spinner from '../Spinner/Spinner'
 import { Form1, Form2, Form3, Form4 } from './UploadForm/UploadForm'
 import styles from './UploadWorkContainer.module.css'
 
@@ -18,6 +19,7 @@ function UploadWorkContainer() {
   const [title, setTitle] = useState('')
   const [images, setImages] = useState([])
   const [content, setContent] = useState('')
+  const [loading, setLoading] = useState(false)
   
   const nextPage = () => {
     if(page == 2 && title === '') alert('작품이름을 작성해주세요')
@@ -28,7 +30,9 @@ function UploadWorkContainer() {
   const prevPage = () => page > 1 && setPage(page => page - 1)
   
   const upload = async() => {
-    await uploadWork(navigate, photographerIdx, category, title, converted, content)
+    setLoading(true)
+    const response = await uploadWork(photographerIdx, category, title, converted, content)
+    response && setLoading(false)
   }
 
   useEffect(() => {
@@ -40,6 +44,12 @@ function UploadWorkContainer() {
   },[images])
  
   return (
+
+    loading ?
+    <Spinner />
+
+    :
+
     <div className={styles.container}>
       <ProgressBar page={page} num={4}/>
       <br/>
