@@ -11,7 +11,7 @@ function SearchResultContainer({ type, search }) {
   const [loading, setLoading] = useState(true)
   const [result, setResult] = useState()
 
-  const PhotographerPage = userIdx => navigate(`/profile/${userIdx}`)
+  const photographerPage = userIdx => navigate(`/profile/${userIdx}`)
 
   useEffect( async() => {
     console.log(type)
@@ -35,7 +35,7 @@ function SearchResultContainer({ type, search }) {
       <div className={styles.container}>
         {
           result.map(res =>
-            <div onClick={() => PhotographerPage(res.user.userIdx)}>
+            <div onClick={() => photographerPage(res.user.userIdx)}>
               <MyInfoCard user={res.user} />
             </div>
           )
