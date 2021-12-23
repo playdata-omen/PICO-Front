@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { confirmEstimate, confirmOrder } from '../../../api/Estimate';
 
-import SockJsClient from 'react-stomp'
+import SockJsClient from 'react-stomp';
+import SockJS from 'sockjs-client';
 import { SERVER_URL } from '../../../constants';
 
 function ChatContainer({ applyIdx, chatRoomIdx }) {
@@ -67,8 +68,10 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
 
 
   const handleMsg = msg => { console.log(msg); };
-  const handleClickSendTo = () => { $websocket.current.sendMessage('/sendTo'); };
   const handleClickSendTemplate = () => { $websocket.current.sendMessage('/Template'); };
+  const handleClickSendTo = () => {
+    $websocket.current.sendMessage(message);
+  };
 
 
   return (
@@ -98,19 +101,33 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
 
       <div className={styles.read}>
         <div className={styles.chat}>
+          {chatMessageList.map(chatMessage => <MessageBox message={chatMessage} userIdx={userIdx} />)}
+
           {/* 
             url : WebSocketConfig endpoint = baseUrl/start
             topic : 서버가 메시지를 보낼 시 수신할 토픽을 지정. 다중지정 가능 = @sendTo(여기있는 url)
           */}
-          <SockJsClient
+          {/* <SockJsClient
             url={`${SERVER_URL}start`}
-            message={message}
             topics={[`/topics/sendTo/${chatRoomIdx}`]}
-            onMessage={msg => { console.log(msg); }}
-            ref={$websocket}
-          />
+            onMessage={msg => setMessage([msg])} ref={$websocket}
+          /> */}
 
-          {chatMessageList.map(chatMessage => <MessageBox chatMessage={chatMessage} userIdx={userIdx} />)}
+          <SockJsClient url={`${SERVER_URL}start`} topics={[`/topics/sendTo/${chatRoomIdx}/${message}`]}
+            onMessage={msg =>
+              setMessage([message, msg])
+            } ref={$websocket} />
+          <button onClick={handleClickSendTo}>SendTo</button>
+          <button onClick={handleClickSendTemplate}>SendTemplate</button>
+          <button onClick={handleClickSendTo}>SendTo</button>
+
+
+          {/* {
+            JSON.parse(message).map(message => {
+              <MessageBox message={message} />
+            })
+          } */}
+
         </div>
       </div>
 
@@ -129,25 +146,25 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
 
 export default ChatContainer
 
-const MessageBox = ({ chatMessage, userIdx }) => {
+const MessageBox = ({ message, userIdx }) => {
 
   const messageBox = (
     <div className={styles.box}>
-      <label>{chatMessage.user.nickName}</label>
+      <label>{message.user.nickName}</label>
       <div>
-        {chatMessage.message}
+        {message.message}
       </div>
     </div>
   )
   return (
-    chatMessage.user.userIdx === userIdx ?
-      <div className={styles.otherMessage}>
+    message.user.userIdx === userIdx ?
+      <div className={styles.myMessage}>
         {messageBox}
       </div>
 
       :
 
-      <div className={styles.myMessage}>
+      <div className={styles.otherMessage}>
         {messageBox}
       </div>
   )
