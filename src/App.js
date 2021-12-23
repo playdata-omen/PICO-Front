@@ -18,6 +18,7 @@ import ChatRoomPage from './pages/ChatRoomPage/ChatRoomPage';
 import ProfileUpdatePage from './pages/ProfileUpdatePage/ProfileUpdatePage';
 import UploadWorkPage from './pages/UploadWorkPage/UploadWorkPage';
 import WorkPage from './pages/WorkPage/WorkPage';
+import ReviewPage from './pages/ReviewPage/ReviewPage';
 
 function App() {
 
@@ -69,7 +70,7 @@ function App() {
           }
         />
         <Route 
-          exact path="/chat/:photographerIdx/:applyIdx"
+          exact path="/chat/:photographerIdx/:applyIdx/:chatRoomIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <ChatRoomPage />
@@ -98,6 +99,14 @@ function App() {
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               <UploadWorkPage />
+            </PrivateRoute>
+          }
+        />
+        <Route 
+          path="/review/:photographerIdx/:applyIdx"
+          element={
+            <PrivateRoute authenticated={auth.authenticated}>
+              <ReviewPage />
             </PrivateRoute>
           }
         />

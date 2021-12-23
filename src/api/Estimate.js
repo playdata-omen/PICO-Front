@@ -4,17 +4,8 @@ import API from "./API"
 export const getEstimateReqList = async () => {
   const data = await API.get('estimate')
     .then(res => {
-      console.log(res.data)
       return res.data
     })
-  // .catch(err => {
-  //   return [
-  //     {"estimateIdx" : 1, "status": "1", "created" : {}},
-  //     {"estimateIdx" : 2, "status": "1", "created" : {}},
-  //     {"estimateIdx" : 3, "status": "1", "created" : {}},
-  //     {"estimateIdx" : 4, "status": "1", "created" : {}},
-  //   ]
-  // })
   return data
 }
 
@@ -22,49 +13,6 @@ export const getEstimateDetail = async estimateIdx => {
   const data = await API.get(`estimate/${estimateIdx}`)
     .then(res => {
       return res.data
-      // }).catch(err => {
-      //   return (
-      //     {
-      //       "estimateIdx": 1,
-      //       "userIdx": 1,
-      //       "categoryIdx": 2,
-      //       "city": "서울",
-      //       "address": "은평구",
-      //       "startDate": "2021-12-15",
-      //       "endDate": "2021-12-20",
-      //       "content": "String content",
-      //       "applyList": [
-      //         {
-      //           // ApplyDTO
-      //           "applyIdx": 3,
-      //           "user": {
-      //             "userIdx": 1,
-      //             "name": "이기환",
-      //           },
-      //           // UserDTO.ApplyUserCard
-      //           "photographer": {
-      //             "photographerIdx": 1,
-      //             "grade": 4.2,
-      //             "name": "이기환",
-      //           }
-      //         },
-      //         {
-      //           // ApplyDTO
-      //           "applyIdx": 4,
-      //           "user": {
-      //             "userIdx": 1,
-      //             "name": "이기환",
-      //           },
-      //           // UserDTO.ApplyUserCard
-      //           "photographer": {
-      //             "photographerIdx": 2,
-      //             "grade": 3.8,
-      //             "name": "차재훈",
-      //           }
-      //         }
-      //       ]
-      //     }
-      //   )
     })
   return data
 }

@@ -49,7 +49,6 @@ function EstimateReqFormContainer({ photographerIdx }) {
   return (
     <div className={styles.container}>
       <ProgressBar page={page} num={4} />
-      {/* <ProgressBar page={page} num={4}/> */}
       <br/>
 
       <div>
