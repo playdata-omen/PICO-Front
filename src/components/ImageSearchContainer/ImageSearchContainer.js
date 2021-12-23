@@ -33,6 +33,7 @@ function ImageSearchContainer() {
 
   const analize = async (image) => {
     setMessage("이미지 분석 중입니다");
+    setRecommendImages([])
     let reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onload = async () => {
@@ -54,7 +55,7 @@ function ImageSearchContainer() {
             <div className={styles.upperContainer}>
               {
                 isDragActive ?
-                  <div className={styles.upperSubContainer}>
+                  <div className={styles.upperLeftContainer}>
                     {
                       isDragReject ?
                         <div className={styles.upperLeftReject} {...getRootProps()}>
@@ -69,7 +70,7 @@ function ImageSearchContainer() {
                     }
                   </div>
                 :
-                  <div className={styles.upperSubContainer}>
+                  <div className={styles.upperLeftContainer}>
                     <div className={styles.upperLeft} {...getRootProps()}>
                       <input {...getInputProps()} />
                       <div className={styles.hideUploadBox}>
@@ -84,11 +85,11 @@ function ImageSearchContainer() {
                     </div> 
                   </div>
               }
-              <div className={styles.upperRight}>
-                <label>
+              <div className={styles.upperRightContainer}>
+                <div>
                   <h3>분석 결과</h3>
-                </label>
-                <div className={styles.recommendFirst}>
+                </div>
+                <div className={styles.upperRight}>
                   {
                     loading ?  
                       <div>
@@ -114,6 +115,9 @@ function ImageSearchContainer() {
             <div>
               {recommendImages[1] &&
                 <div className={styles.lowerContainer}>
+
+                  <hr />
+
                   <span>
                     <h3>다른 사진들은 어떠신가요?</h3> 
                   </span>
