@@ -1,14 +1,17 @@
 .container {
+  /* width: 100%; */
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.27);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .subContainer {
-  width: 100%;
-  height: 100%;
+  margin: 20px;
+  /* width: 100%;
+  height: 100%; */
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 5px rgba(255, 0, 0, 0.27);
 }
 
 .subContainerMain {
@@ -24,11 +27,6 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
-.upperSubContainer {
-  width: 100%;
-  aspect-ratio: 1/1;
-}
-
 .lowerContainer {
   width: 100%;
   display: flex;
@@ -36,9 +34,16 @@
   align-items: center;
 }
 
-.upperLeft, .upperLeftAccept, .upperLeftReject {
+.upperLeftContainer {
   width: 100%;
-  height: 100%;
+  /* aspect-ratio: 1/1; */
+}
+
+.upperLeft, .upperLeftAccept, .upperLeftReject {
+  /* padding: 20px; */
+  width: 100%;
+  /* height: 100%; */
+  aspect-ratio: 1/1;
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
@@ -60,16 +65,9 @@
   grid-column-start:1;
 }
 
-.upperRight {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .hideUploadBox {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,13 +90,38 @@
 
 .previewContainer {
   width: 100%;
-  padding: 20px;
+  aspect-ratio: 1/1;
+  /* padding: 20px; */
   overflow: hidden;
 }
 
+.upperRightContainer {
+  width: 100%;
+  aspect-ratio: 1/1;
+  /* display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  background-color: aqua;
+}
+
+.upperRight {
+  padding: 40px;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* aspect-ratio: 1/1; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: antiquewhite;
+}
+
 .recommendFirst {
+  /* margin: 20px;
   width: 80%;
-  height: 80%;
+  height: 80%; */
   display: flex;
   flex-direction: column;
   align-items: center;
