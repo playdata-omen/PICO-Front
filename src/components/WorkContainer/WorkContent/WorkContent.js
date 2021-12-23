@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import styles from './WorkContent.module.css'
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import styles from './WorkContent.module.css';
 
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
@@ -18,9 +18,12 @@ function WorkContent({ work }) {
     console.log(photoUrl)
   }
 
-  useEffect(async () => {
-    const cat = await categories.filter(cat => cat.categoryIdx === work.categoryIdx)[0].kind
-    setCategory(cat)
+  useEffect(() => {
+    const fetchData = async() => {
+      const cat = await categories.filter(cat => cat.categoryIdx === work.categoryIdx)[0].kind
+      setCategory(cat)
+    }
+    fetchData()
   }, [])
 
   const imgContainer = work.photos.map(photoUrl =>

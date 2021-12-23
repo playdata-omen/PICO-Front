@@ -7,20 +7,22 @@ import styles from '../Pages.module.css'
 
 function ChatRoomPage() {
 
-  let { photographerIdx, applyIdx } = useParams();
+  let { photographerIdx, applyIdx, chatRoomIdx } = useParams();
 
   const [user, setUser] = useState({})
 
-  useEffect(async() => {
-    const data = await getUserWithPIdx(photographerIdx)
-    setUser(data)
-    console.log(data)
-    console.log(applyIdx)
+  useEffect(() => {
+    const fetchData = async() => {
+      const data = await getUserWithPIdx(photographerIdx)
+      setUser(data)
+      console.log(data)
+    }
+    fetchData()
   },[])
 
   return (
     <div className={styles.container}>
-      <ChatRoomContainer user={user} applyIdx={applyIdx}/>
+      <ChatRoomContainer user={user} applyIdx={applyIdx} chatRoomIdx={chatRoomIdx}/>
     </div>
   )
 }

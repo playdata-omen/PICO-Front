@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router'
 
 export const ImagePreviewBox = ({ images }) => {
 	return (
-			<div className={styles.previewContainer}>
-				{images.map(file => 
-					<div key={file.name} className={styles.previewContainer}>
-						<img src={file.preview} alt=""/>
-					</div>
-				)}
-			</div>
+		<div className={styles.previewContainer}>
+			{images.map(file =>
+				<div key={file.name} className={styles.previewContainer}>
+					<img src={file.preview} alt="" />
+				</div>
+			)}
+		</div>
 	)
 }
 
@@ -21,21 +21,21 @@ export const ImagePreviewBox2 = ({ recommendImages }) => {
 		const recommendImage = recommendImages[0]
 		return (
 			<div className={styles.previewContainer}
-				   key={recommendImage["photoIdx"]} 
-					 onClick={navigate(`/profile/${recommendImage["photographerIdx"]}`)}
+				key={recommendImage["photoIdx"]}
+				onClick={() => navigate(`/profile/${recommendImage["photographerIdx"]}`)}
 			>
-				<img src={recommendImage["storedFilePath"]} alt=""/>
+				<img src={recommendImage["storedFilePath"]} alt="" />
 			</div>
 		)
-	}else {
+	} else {
 		return (
 			<div className={styles.previewOthersContainer}>
-				{recommendImages.map(file => 
+				{recommendImages.map(file =>
 					<div className={styles.previewContainer}
-							 key={file["photoIdx"]} 
-							 onClick={navigate(`/profile/${file["photographerIdx"]}`)}
+						key={file["photoIdx"]}
+						onClick={() => navigate(`/profile/${file["photographerIdx"]}`)}
 					>
-						<img src={file["storedFilePath"]} alt=""/>
+						<img src={file["storedFilePath"]} alt="" />
 					</div>
 				)}
 			</div>
