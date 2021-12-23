@@ -87,7 +87,6 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
               :
 
               <div>
-                {apply.estimate.status === 1 && <div>hello</div>}
                 {(apply.estimate.status === 1 || apply.estimate.status === 2) && <button onClick={() => confirmEstimateHandler(apply.estimate.estimateIdx, apply.photographerIdx)}>의뢰확정</button>}
                 {apply.estimate.status === 3 && <button onClick={() => confirmOrderHandler(apply.estimate.estimateIdx, apply.photographerIdx)}>수행완료</button>}
                 {apply.estimate.status === 4 && <button onClick={() => navigate(`/review/${apply.photographerIdx}/${apply.applyIdx}`)}>리뷰달기</button>}
