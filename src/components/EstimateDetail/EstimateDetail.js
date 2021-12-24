@@ -31,7 +31,7 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(typeof(applyIdx))
+      console.log(typeof (applyIdx))
       const estimateData = await getEstimateDetail(estimateIdx)
       setEstimate(estimateData)
       const userData = await user.userIdx !== estimate.userIdx && await getUserWithUserIdx(estimateData.userIdx)
@@ -84,15 +84,9 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
                 </React.Fragment>
                 :
                 <React.Fragment>
-                  {
-                      apply.isApplied ?
-
-                      <label>지원완료</label>
-
-                      :
-
-                      <button onClick={applyEstimateHandler}>지원하기</button>
-                  }
+                  {(apply.isApplied && apply.status !== 4) && <label>지원완료</label>}
+                  {(apply.isApplied && apply.status === 4) && <label>매칭실패</label>}
+                  {!apply.isApplied && <button onClick={applyEstimateHandler}>지원하기</button>}
                 </React.Fragment>
             }
           </div>
@@ -109,10 +103,10 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
           }
 
           {
-            ((user.userIdx !== estimate.userIdx) && apply.isApplied) &&
+            ((user.userIdx !== estimate.userIdx) && (apply.isApplied && apply.status !== 4)) &&
             <React.Fragment>
               <label>요청고객</label>
-              <EstimateReq user={reqUser} photographerIdx={photographerIdx} estimate={estimate}/>
+              <EstimateReq user={reqUser} photographerIdx={photographerIdx} estimate={estimate} />
             </React.Fragment>
           }
 
