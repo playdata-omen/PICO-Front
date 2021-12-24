@@ -1,7 +1,7 @@
 .container {
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 10fr;
   border-right: 1px solid var(--primary-color);
 }
 
@@ -10,17 +10,17 @@
 }
 
 .top {
+  padding: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px;
   border-bottom: 1px solid var(--primary-color);
 }
 
 .top button {
   cursor: pointer;
-  padding: 10px;
   width: 100px;
+  padding: 10px;
   margin-left: 10px;
   border: none;
   border-radius: 5px;
@@ -31,23 +31,34 @@
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
+.bottom {
+  /* border: 1px solid red; */
+  overflow: scroll;
+  display: grid;
+  grid-template-rows: 9fr 1fr;
+  max-height: fill-available;
+}
+
 .read {
+  /* border: 1px solid red; */
   padding: 10px;
+  height: fill-available;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow-y: scroll;
 }
 
 .chat {
-  height: 100%;
+  display: block;
+  height: fill-available;
   padding: 10px;
-  overflow: scroll;
+  overflow-y:scroll;
   box-shadow: 0 0 0 1px var(--primary-color) inset;
 }
 
 .myMessage, .otherMessage {
   display: flex;
-  /* border: 1px solid red; */
   padding-bottom: 10px;
 }
 
@@ -109,8 +120,8 @@
   padding-top: 25%;
 }
 
-@media screen and (width<=768px){
+/* @media screen and (width<=768px){
   .container {
-    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-rows: 1fr 13fr;
   }
-}
+} */

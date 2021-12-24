@@ -2,26 +2,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './ChatContainer.module.css';
 
 import SendIcon from '@mui/icons-material/Send';
-import { getApplyDetail } from '../../../api/Apply';
+import { getApplyDetail } from '../../../api/Apply'
+import { getChatMessageList } from '../../../api/Chat';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { confirmEstimate, confirmOrder } from '../../../api/Estimate';
 
 import SockJsClient from 'react-stomp';
-import SockJS from 'sockjs-client';
-import { SERVER_URL } from '../../../constants';
+import { ACCESS_TOKEN, SERVER_URL } from '../../../constants';
 
 function ChatContainer({ applyIdx, chatRoomIdx }) {
 
-  const $websocket = useRef(null);
+
 
   let navigate = useNavigate()
 
-  const userIdx = useSelector(store => store.auth.user.userIdx)
+
 
   const photographer = useSelector(store => store.auth.photographer)
   const [apply, setApply] = useState({})
-  const [message, setMessage] = useState('')
+
   const [chatMessageList, setChatMessageList] = useState([
     {
       "chatMessageIdx": 4,
@@ -59,6 +59,10 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
   useEffect(() => {
     const fetchData = async () => {
       const applyData = await getApplyDetail(applyIdx)
+      const chatMessageListData = await getChatMessageList(chatRoomIdx)
+      console.log(chatMessageListData)
+      chatMessageListData.sort((a, b) => a.chatMessageIdx - b.chatMessageIdx)
+      setChatMessageList(chatMessageListData)
       setApply(applyData)
       console.log(applyData)
       setLoading(false)
@@ -67,11 +71,6 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
   }, [])
 
 
-  const handleMsg = msg => { console.log(msg); };
-  const handleClickSendTemplate = () => { $websocket.current.sendMessage('/Template'); };
-  const handleClickSendTo = () => {
-    $websocket.current.sendMessage(message);
-  };
 
 
   return (
@@ -98,46 +97,8 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
         </div>
       }
 
-
-      <div className={styles.read}>
-        <div className={styles.chat}>
-          {chatMessageList.map(chatMessage => <MessageBox message={chatMessage} userIdx={userIdx} />)}
-
-          {/* 
-            url : WebSocketConfig endpoint = baseUrl/start
-            topic : 서버가 메시지를 보낼 시 수신할 토픽을 지정. 다중지정 가능 = @sendTo(여기있는 url)
-          */}
-          {/* <SockJsClient
-            url={`${SERVER_URL}start`}
-            topics={[`/topics/sendTo/${chatRoomIdx}`]}
-            onMessage={msg => setMessage([msg])} ref={$websocket}
-          /> */}
-
-          <SockJsClient url={`${SERVER_URL}start`} topics={[`/topics/sendTo/${chatRoomIdx}/${message}`]}
-            onMessage={msg =>
-              setMessage([message, msg])
-            } ref={$websocket} />
-          <button onClick={handleClickSendTo}>SendTo</button>
-          <button onClick={handleClickSendTemplate}>SendTemplate</button>
-          <button onClick={handleClickSendTo}>SendTo</button>
-
-
-          {/* {
-            JSON.parse(message).map(message => {
-              <MessageBox message={message} />
-            })
-          } */}
-
-        </div>
-      </div>
-
-      <div className={styles.send}>
-        <div className={styles.textArea}>
-          <textarea value={message} onChange={e => setMessage(e.target.value)} />
-          <div className={styles.sendBtn} onClick={handleClickSendTo}>
-            <SendIcon />
-          </div>
-        </div>
+      <div className={styles.bottom}>
+        <ChatWebSocketContainer chatRoomIdx={chatRoomIdx} chatMessageList={chatMessageList} setChatMessageList={setChatMessageList} />
       </div>
 
     </div>
@@ -158,14 +119,74 @@ const MessageBox = ({ message, userIdx }) => {
   )
   return (
     message.user.userIdx === userIdx ?
-      <div className={styles.myMessage}>
-        {messageBox}
+    <div className={styles.myMessage}>
+      {messageBox}
+    </div>
+
+    :
+
+    <div className={styles.otherMessage}>
+      {messageBox}
+    </div>
+  )
+}
+
+const ChatWebSocketContainer = ({ chatRoomIdx, chatMessageList, setChatMessageList }) => {
+
+  const userIdx = useSelector(store => store.auth.user.userIdx)
+
+  const $websocket = useRef(null);
+  const [message, setMessage] = useState(null)
+  const [send, setSend] = useState("")
+
+
+
+  const handleClickSendTo = () => {
+    console.log($websocket)
+    console.log(localStorage.getItem(ACCESS_TOKEN))
+    console.log(chatRoomIdx)
+    console.log(message)
+    console.log('start')
+    $websocket.current.sendMessage(`/sendTo/${chatRoomIdx}/${send}/${localStorage.getItem(ACCESS_TOKEN)}`, send);
+    console.log('end')
+  }
+
+  useEffect(() => {
+    message && setChatMessageList([...chatMessageList, message])
+
+    // chatMessageIdx: 16
+    // chatRoomIdx: 1
+    // created: 1640333290982
+    // message: "hello"
+    // userIdx: 1
+
+    console.log(message)
+  }, [message])
+
+
+  return (
+
+    <React.Fragment>
+      <div className={styles.read}>
+        <div className={styles.chat}>
+          {/* onMessage={응답값} */}
+          <SockJsClient url={`${SERVER_URL}start`} topics={[`/topics/sendTo/${chatRoomIdx}`]}
+            onConnect={() => console.log('connected')}
+            onMessage={msg => setMessage(msg)} ref={$websocket}
+          />
+          {chatMessageList.map(chatMessage => <MessageBox message={chatMessage} userIdx={userIdx} key={userIdx} />)}
+        </div>
       </div>
 
-      :
-
-      <div className={styles.otherMessage}>
-        {messageBox}
+      <div className={styles.send}>
+        <div className={styles.textArea}>
+          <textarea onChange={e => setSend(e.target.value)}/>
+          <div className={styles.sendBtn} onClick={handleClickSendTo}>
+            <SendIcon />
+          </div>
+        </div>
       </div>
+    </React.Fragment>
+
   )
 }
