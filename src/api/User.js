@@ -1,3 +1,4 @@
+import reactDom from "react-dom";
 import API from "./API";
 
 export const getUserWithUserIdx = async userIdx => {

@@ -8,7 +8,7 @@ export default function ReviewPage() {
   const { photographerIdx, applyIdx } = useParams()
   return (
     <div className={styles.container}>
-      <ReviewContainer />
+      <ReviewContainer photographerIdx={photographerIdx} applyIdx={applyIdx} />
     </div>
   )
 }

@@ -13,11 +13,12 @@ function ProfilePage({ user }) {
   const [pUser, setPUser] = useState(user)
   const [loading, setLoading] = useState(true)
 
-  useEffect(async() => {
-    console.log(photographerIdx)
-    photographerIdx && setPUser(await getUserWithPIdx(photographerIdx))
-    console.log(pUser)
-    setLoading(false)
+  useEffect(() => {
+    const fetchData = async() => {
+      photographerIdx && setPUser(await getUserWithPIdx(photographerIdx))
+      setLoading(false)
+    }
+    fetchData()
   }, [])
   
   return (

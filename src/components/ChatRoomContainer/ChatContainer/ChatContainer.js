@@ -131,7 +131,7 @@ const ChatWebSocketContainer = ({ chatRoomIdx, chatMessageList, setChatMessageLi
   useEffect(() => {
     message && setChatMessageList([...chatMessageList, message])
   }, [message])
-  
+
   useEffect(() => {
     scrollToBottom()
   }, [chatMessageList])

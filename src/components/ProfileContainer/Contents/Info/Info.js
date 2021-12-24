@@ -19,8 +19,6 @@ function Info({ user }) {
     )
   }
 
-
-
   return (
 
     <div className={styles.container}>
@@ -61,7 +59,6 @@ const PhotographerInfo = ({ userIdx }) => {
   const [loading, setLoading] = useState(true)
 
   const categories = useSelector(store => store.categories.categories)
-
 
   useEffect(async () => {
     setPhotographer(await getPhotographerDetail(userIdx))

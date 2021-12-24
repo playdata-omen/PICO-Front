@@ -11,13 +11,11 @@ function ChatRoomPage() {
 
   const [user, setUser] = useState({})
 
-  useEffect(() => {
-    const fetchData = async() => {
-      const data = await getUserWithPIdx(photographerIdx)
-      setUser(data)
-      console.log(data)
-    }
-    fetchData()
+  useEffect(async() => {
+    const data = await getUserWithPIdx(photographerIdx)
+    setUser(data)
+    console.log(data)
+    console.log(applyIdx)
   },[])
 
   return (

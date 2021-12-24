@@ -6,17 +6,25 @@ import styles from './ProfileContainer.module.css'
 import Review from './Contents/Review/Review'
 import { useSelector } from 'react-redux'
 import { getPhotographerDetail } from '../../api/User'
+import Spinner from '../Spinner/Spinner'
 
 function ProfileContainer({ user }) {
+
   const userIdx = useSelector(store => store.auth.user.userIdx)
-  
+
   const [page, setPage] = useState(1)
-  const [photographer, setPhotograpHer] = useState({})
-  const [loading, setLoading] = useState(true)
-  
-  useEffect(async() => {
-    user.isPhotographer && setPhotograpHer(await getPhotographerDetail(user.useridx))
-  })
+  const [photographer, setPhotographer] = useState(null)
+  const [grade, setGrade] = useState(0)
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const photographerData = user.userIdx == userIdx && await getPhotographerDetail(user.userIdx)
+      setPhotographer(photographerData)
+      setGrade(photographerData.grade)
+      console.log(photographerData.grade)
+    }
+    fetchData()
+  }, [user])
 
   const pageBtnContainer = (
     <div className={styles.pageBtnContainer}>
@@ -46,22 +54,21 @@ function ProfileContainer({ user }) {
   )
 
   return (
+      <div className={styles.container}>
+        <div className={styles.profileContentContainer}>
 
-    <div className={styles.container}>
-      <div className={styles.profileContentContainer}>
+          <ProfileTop user={user} grade={grade} />
 
-        <ProfileTop user={user} grade={photographer.grade} />
+          {pageBtnContainer}
 
-        {pageBtnContainer}
+          <div>
+            {page === 1 && <Info user={user} />}
+            {(page === 2 && user.isPhotographer) && <Work user={user} />}
+            {(page === 3 && user.isPhotographer) && <Review user={user} />}
+          </div>
 
-        <div>
-          {page === 1 && <Info user={user} />}
-          {(page === 2 && user.isPhotographer) && <Work user={user} />}
-          {(page === 3 && user.isPhotographer) && <Review user={user} />}
         </div>
-
       </div>
-    </div>
   )
 }
 

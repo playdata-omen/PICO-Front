@@ -9,9 +9,6 @@ import styles from  './LoginContainer.module.css'
 
 
 function LoginContainer() {
-  console.log(GOOGLE_AUTH_URL)
-  console.log(KAKAO_AUTH_URL)
-  console.log(NAVER_AUth_URL)
   return (
     <div className={styles.container}>
 

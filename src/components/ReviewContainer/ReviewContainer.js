@@ -1,37 +1,33 @@
 import React, { useState } from 'react'
+import { UploadReview } from '../../api/Review'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import styles from './ReviewContainer.module.css'
 import { Form1, Form2 } from './ReviewForm/ReviewForm'
 
 function ReviewContainer({ photographerIdx, applyIdx }) {
 
+  console.log(photographerIdx)
+  console.log(applyIdx)
+
   const [page, setPage] = useState(1)
+  const [grade, setGrade] = useState('0')
+  const [content, setContent] = useState('')
 
-  // applyIdx,
-  // photographerIdx,
-  // created
-  // content
-  // grade
-
-
-  const nextPage = () => {
-    setPage(page => page + 1)
-  }
-
+  const nextPage = () => setPage(page => page + 1)
   const prevPage = () => page > 1 && setPage(page => page - 1)
 
-  const submitReview = () => {
-    alert('review')
+  const submitReview = async() => {
+    const data = await UploadReview(photographerIdx, applyIdx, grade, content)
+    data && alert('review 작성 성공')
   }
 
   return (
     <div className={styles.container}>
       <ProgressBar page={page} num={2} />
       <br />
-
       <div>
-        {page === 1 && <Form1 />}
-        {page === 2 && <Form2 />}
+        {page === 1 && <Form1 grade={grade} setGrade={setGrade} />}
+        {page === 2 && <Form2 setContent={setContent} />}
       </div>
 
       <div className={styles.formBtnContainer}>

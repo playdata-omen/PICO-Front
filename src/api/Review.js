@@ -1,7 +1,7 @@
 import API from "./API";
 
 export const getReviewList = async userIdx => {
-  const data = await API.get(`reviews/${userIdx}`)
+  const data = await API.get(`reviewList/${userIdx}`)
     .then(res => {
       return res.data
     })
@@ -31,5 +31,13 @@ export const getReviewList = async userIdx => {
         ]
       )
     })
+  return data
+}
+
+export const UploadReview = async(photographerIdx, applyIdx, grade, content) => {
+  const data = API.post('review', {photographerIdx, applyIdx, grade, content})
+  .then(res => {
+    return res.data
+  })
   return data
 }

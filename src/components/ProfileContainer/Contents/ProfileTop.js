@@ -14,7 +14,7 @@ function ProfileTop({ user, grade }) {
 
   const updateProfile = () => {
     setTimeout(
-      function(){
+      function () {
         navigate('/user/update')
       }, 700
     )
@@ -22,7 +22,7 @@ function ProfileTop({ user, grade }) {
 
   const resquestPEstimate = () => {
     setTimeout(
-      function(){
+      function () {
         navigate(`/estimateRequest/${user.userIdx}`)
       }, 700
     )
@@ -30,23 +30,24 @@ function ProfileTop({ user, grade }) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.imgContainer}> 
-        <img src="https://i.smalljoys.me/2020/04/img_5e96ad75617c7.png?w=615&ssl=1&strip=all" alt='프로필 사진'/>
+      <div className={styles.imgContainer}>
+        <img src="https://i.smalljoys.me/2020/04/img_5e96ad75617c7.png?w=615&ssl=1&strip=all" alt='프로필 사진' />
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.info}>
-          <span>{user.nickName} { user.isPhotographer ? '작가님' : '고객님'}</span>
-          <Stars grade={grade}/>
+          <span>{user.nickName} {user.isPhotographer ? '작가님' : '고객님'}</span>
+          <label>평점 ({grade} / 5)</label>
+          <span><Stars grade={grade} /></span>
         </div>
-        { 
+        {
           userIdx === user.userIdx ?
-          <div className={styles.updateBtn} onClick={updateProfile}>
-            <button>정보수정</button>
-          </div>
-          :
-          <div className={styles.updateBtn} onClick={resquestPEstimate}>
-            <button>견적요청</button>
-          </div>
+            <div className={styles.updateBtn} onClick={updateProfile}>
+              <button>정보수정</button>
+            </div>
+            :
+            <div className={styles.updateBtn} onClick={resquestPEstimate}>
+              <button>견적요청</button>
+            </div>
         }
       </div>
     </div>

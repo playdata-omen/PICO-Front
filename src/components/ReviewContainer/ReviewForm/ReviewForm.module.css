@@ -23,7 +23,16 @@
   margin-bottom: 0px;
 }
 
+.contentContainer select {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
 .contentContainer textarea {
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: none;
