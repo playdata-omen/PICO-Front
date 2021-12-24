@@ -119,9 +119,3 @@
   padding-left: 5%;
   padding-top: 25%;
 }
-
-/* @media screen and (width<=768px){
-  .container {
-    grid-template-rows: 1fr 13fr;
-  }
-} */
