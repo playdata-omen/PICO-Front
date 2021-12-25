@@ -21,10 +21,10 @@ export const ImagePreviewBox2 = ({ recommendImages }) => {
 		const recommendImage = recommendImages[0]
 		return (
 			<div className={styles.previewContainer}
-				key={recommendImage["photoIdx"]}
-				onClick={() => navigate(`/profile/${recommendImage["photographerIdx"]}`)}
+				key={recommendImage.photoIdx}
+				onClick={() => navigate(`/work/${recommendImage.workIdx}`)}
 			>
-				<img src={recommendImage["storedFilePath"]} alt="" />
+				<img src={recommendImage.storedFilePath} alt="" />
 			</div>
 		)
 	} else {
@@ -32,10 +32,10 @@ export const ImagePreviewBox2 = ({ recommendImages }) => {
 			<div className={styles.previewOthersContainer}>
 				{recommendImages.map(file =>
 					<div className={styles.previewContainer}
-						key={file["photoIdx"]}
-						onClick={() => navigate(`/profile/${file["photographerIdx"]}`)}
+						key={file.photoIdx}
+						onClick={() => navigate(`/work/${file.workIdx}`)}
 					>
-						<img src={file["storedFilePath"]} alt="" />
+						<img src={file.storedFilePath} alt="" />
 					</div>
 				)}
 			</div>

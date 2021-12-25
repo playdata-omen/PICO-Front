@@ -12,7 +12,7 @@ function ImageSearchContainer() {
   const [recommendImages, setRecommendImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
-  
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     accept: "image/*",
     maxSize: 100000000, // 100 mb
@@ -21,17 +21,18 @@ function ImageSearchContainer() {
       if (acceptedFiles.length === 0) {
         alert("파일형식이나 파일크기를 확인해주세요")
       } else {
-          setImages(
-            acceptedFiles.map(file => Object.assign(file, {
-              preview: URL.createObjectURL(file)
-            }))
-          )
-          analize(acceptedFiles[0]);
-        }
+        setImages(
+          acceptedFiles.map(file => Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          }))
+        )
+        analize(acceptedFiles[0]);
       }
-    })
+    }
+  })
 
   const analize = async (image) => {
+    console.log("hello")
     setMessage("이미지 분석 중입니다");
     setRecommendImages([])
     let reader = new FileReader();
@@ -46,7 +47,7 @@ function ImageSearchContainer() {
       setLoading(false);
     };
   }
-    
+
   return (
     <div className={styles.container}>
       {
@@ -62,14 +63,14 @@ function ImageSearchContainer() {
                           <input {...getInputProps()} />
                           <span><h3>파일형식이나 파일크기를 확인해주세요</h3></span>
                         </div>
-                      :
+                        :
                         <div className={styles.upperLeftAccept} {...getRootProps()}>
                           <input {...getInputProps()} />
                           <span><h3>여기에 사진을 끌어 놓으세요</h3></span>
                         </div>
                     }
                   </div>
-                :
+                  :
                   <div className={styles.upperLeftContainer}>
                     <div className={styles.upperLeft} {...getRootProps()}>
                       <input {...getInputProps()} />
@@ -78,36 +79,37 @@ function ImageSearchContainer() {
                         <AddButton />
                       </div>
                       <div className={styles.previewContainer}>
-                        <ImagePreviewBox 
+                        <ImagePreviewBox
                           images={images}
                         />
                       </div>
-                    </div> 
+                    </div>
                   </div>
               }
               <div className={styles.upperRightContainer}>
-                <div>
-                  <h3>분석 결과</h3>
-                </div>
                 <div className={styles.upperRight}>
                   {
-                    loading ?  
+                    loading ?
+                    
                       <div>
                         {message}
                       </div>
-                    :
-                      <div className={styles.recommendFirst}> 
-                      {
-                        recommendImages[0] ?
-                          <ImagePreviewBox2
-                          recommendImages={recommendImages.slice(0,1)}
-                          />
-                        :
-                          <div>
-                            {message}
-                          </div>
-                      }
-                      </div>    
+
+                      :
+
+                      <div className={styles.recommendFirst}>
+                        <label>분석 결과</label>
+                        {
+                          recommendImages[0] ?
+                            <ImagePreviewBox2
+                              recommendImages={recommendImages.slice(0, 1)}
+                            />
+                            :
+                            <div>
+                              {message}
+                            </div>
+                        }
+                      </div>
                   }
                 </div>
               </div>
@@ -119,7 +121,7 @@ function ImageSearchContainer() {
                   <hr />
 
                   <span>
-                    <h3>다른 사진들은 어떠신가요?</h3> 
+                    <h3>다른 사진들은 어떠신가요?</h3>
                   </span>
                   <div className={styles.otherImagesContainer}>
                     <ImagePreviewBox2
@@ -130,9 +132,9 @@ function ImageSearchContainer() {
               }
             </div>
           </div>
-        :
+          :
           <div className={styles.subContainerMain}>
-            <ImageUploadBox 
+            <ImageUploadBox
               setImages={setImages}
               setMultiple={false}
               analize={analize}
@@ -141,7 +143,7 @@ function ImageSearchContainer() {
       }
     </div>
 
-  ) 
+  )
 }
 
 export default ImageSearchContainer

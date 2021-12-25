@@ -63,6 +63,19 @@
   display: block;
 }
 
+.delBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delBtn button {
+  cursor: pointer;
+  height: 50px;
+  aspect-ratio: 1/1;
+  border: none;
+  border-radius: 50%;
+}
+
 @media screen and (width<=768px){
   .card {
     padding: 10px;
