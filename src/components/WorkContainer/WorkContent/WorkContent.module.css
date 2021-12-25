@@ -4,8 +4,39 @@
   flex-direction: column;
 }
 
+.container * {
+  transition: ease 300ms;
+}
+
 .workInfoContainer {
   text-align: left;
+}
+
+.workInfoHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workInfoHeader label{
+  font-weight: 700;
+}
+
+.workInfoHeader button{
+  position: absolute;
+  right: 20%;
+  margin-right: 20px;
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.workInfoHeader button:hover{
+  box-shadow: 0 0 0 3px var(--primary-color);
 }
 
 .categoryLabel {
@@ -111,7 +142,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   color:var(--primary-color);
 }
-
 
 @media screen and (width<=768px){
   .imgContainer, .btnContainer {

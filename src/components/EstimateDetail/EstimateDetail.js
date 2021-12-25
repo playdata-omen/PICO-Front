@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { getApplyDetail } from '../../api/Apply'
-import { applyEstimate, getEstimateDetail } from '../../api/Estimate'
+import { applyEstimate, getEstimateDetail, deleteEstimate } from '../../api/Estimate'
 import { getUserWithUserIdx } from '../../api/User'
 import EstimateResCard from '../Cards/EstimateCard/EstimateResCard'
 import MyInfoCard from '../Cards/MyInfoCard/MyInfoCard'
@@ -11,6 +11,8 @@ import Spinner from '../Spinner/Spinner'
 import styles from './EstimateDetail.module.css'
 
 function EstimateDetail({ estimateIdx, applyIdx }) {
+
+  let navigate = useNavigate();
 
   const categories = useSelector(store => store.categories.categories)
   const user = useSelector(store => store.auth.user)
@@ -29,18 +31,26 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
     setApply(applyData)
   }
 
+  const handleDeleteEstimate = async() => {
+    const flag = await deleteEstimate(estimateIdx)
+    flag ? handleDeleteEstimateSuccess() : alert("삭제실패")
+  }
+
+  const handleDeleteEstimateSuccess = () =>  {
+    alert("삭제성공")
+    navigate('/myPage')
+  }
+
   useEffect(() => {
     const fetchData = async () => {
-      console.log(typeof (applyIdx))
       const estimateData = await getEstimateDetail(estimateIdx)
       setEstimate(estimateData)
       const userData = await user.userIdx !== estimate.userIdx && await getUserWithUserIdx(estimateData.userIdx)
       const applyData = applyIdx !== 'undefined' && await getApplyDetail(applyIdx)
       applyData && setApply(applyData)
       setReqUser(userData)
-      console.log(applyData)
       const cat = await categories.filter(cat => cat.categoryIdx === estimateData.categoryIdx)[0].kind
-      console.log(cat)
+      console.log(estimateData)
       setCategory(cat)
       setLoading(false)
     }
@@ -80,7 +90,7 @@ function EstimateDetail({ estimateIdx, applyIdx }) {
             {
               user.userIdx === estimate.userIdx ?
                 <React.Fragment>
-                  <button>삭제</button>
+                  <button onClick={handleDeleteEstimate}>삭제</button>
                 </React.Fragment>
                 :
                 <React.Fragment>
@@ -138,16 +148,16 @@ const EstimateRes = ({ estimate }) => {
   )
 
   return (
-    !estimate.applyList.length == 0 ?
+    !estimate.applyList.length == 0?
 
       <div>
-        {estimate.status < 3 && estimate.status !== 4 ? unmatched : matched}
+        {(estimate.status < 5 && estimate.status !== 4)? unmatched : matched}
       </div>
 
       :
 
       <div>
-        <span>아직 받은 견적이 없습니다</span>
+        <span>{estimate.status !== 6 ? "지원한 작가가 없습니다" : "의뢰가 끝난 견적서입니다"}</span>
       </div>
   )
 }

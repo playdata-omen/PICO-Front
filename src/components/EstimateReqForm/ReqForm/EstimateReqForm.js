@@ -11,26 +11,26 @@ import Spinner from '../../Spinner/Spinner';
 export const Form1 = ({ category, setCategory, photographerIdx }) => {
 
   const [categories, setCategories] = useState(useSelector(state => state.categories.categories))
-  
-  useEffect(async() => {
+
+  useEffect(async () => {
     setCategories(photographerIdx ? await getPCategories(photographerIdx) : categories)
-  },[])
-  
+  }, [])
+
   return (
     <div className={styles.container}>
       <label>의뢰분야</label>
       <div className={styles.contentContainer}>
         <div className={styles.category}>
-        {
-          categories.map(cat =>
-            <div>
-              <input type='radio' value={cat.categoryIdx} checked={cat.categoryIdx === category}/> 
-              <div key={cat.categoryIdx} className={styles.categoryBtn} onClick={() => setCategory(cat.categoryIdx)}>
-                <label>{cat.kind}</label>
+          {
+            categories.map(cat =>
+              <div>
+                <input type='radio' value={cat.categoryIdx} checked={cat.categoryIdx === category} />
+                <div key={cat.categoryIdx} className={styles.categoryBtn} onClick={() => setCategory(cat.categoryIdx)}>
+                  <label>{cat.kind}</label>
+                </div>
               </div>
-            </div>
-          )
-        }
+            )
+          }
         </div>
       </div>
     </div>
@@ -66,26 +66,26 @@ export const Form2 = ({ city, handleCityChange, setAddress }) => {
   )
 }
 
-export const Form3 = ({setStartDate, setEndDate }) => {
+export const Form3 = ({ setStartDate, setEndDate }) => {
 
   const [sDate, setSDate] = useState(null)
   const [eDate, setEDate] = useState(null)
 
   useEffect(() => {
-    if(eDate && sDate) {
+    if (eDate && sDate) {
       eDate < sDate && setEDate(sDate)
     }
-    if(sDate && eDate == null) {
+    if (sDate && eDate == null) {
       setEDate(sDate)
     }
 
     (eDate && sDate == null) && setSDate(eDate)
-    
+
     sDate != null && setStartDate(sDate.toLocaleDateString('ko-KR'))
     eDate != null && setEndDate(eDate.toLocaleDateString('ko-KR'))
 
-    console.log(sDate,eDate)
-  },[sDate, eDate])
+    console.log(sDate, eDate)
+  }, [sDate, eDate])
 
   return (
     <div className={styles.container}>
@@ -94,11 +94,11 @@ export const Form3 = ({setStartDate, setEndDate }) => {
         <div className={styles.datePicker}>
           <span>
             <label>시작일</label>
-            <DatePicker selected={sDate} onChange={date => setSDate(date)}  dateFormat='yyyy-MM-dd' minDate={new Date()} value={sDate} inline/>
+            <DatePicker selected={sDate} onChange={date => setSDate(date)} dateFormat='yyyy-MM-dd' minDate={new Date()} value={sDate} inline />
           </span>
           <span>
             <label>종료일</label>
-            <DatePicker selected={eDate} onChange={date => setEDate(date)} dateFormat='yyyy-MM-dd' minDate={sDate} value={eDate} inline/>
+            <DatePicker selected={eDate} onChange={date => setEDate(date)} dateFormat='yyyy-MM-dd' minDate={sDate ? sDate : new Date()} value={eDate} inline />
           </span>
         </div>
       </div>

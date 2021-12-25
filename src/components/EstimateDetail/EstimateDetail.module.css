@@ -9,6 +9,10 @@
   margin-top: 50px;
 }
 
+.container * {
+  transition: ease 300ms;
+}
+
 .requestInfoContainer {
   /* background-color: var(--primary-color); */
   box-shadow: 0 0 0 1px var(--primary-color);
@@ -49,10 +53,26 @@
   font-size: 12px;
 }
 
+.info button {
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  padding: 10px;
+}
+
+.info button:hover {
+  box-shadow: 0 0 0 3px var(--primary-color) inset;
+}
+
 .cardsContainer label{
   display: block;
   padding: 10px;
   font-weight: 700;
+}
+
+.cardsContainer span {
+  padding: 10px;
 }
 
 @media screen and (width<=768px){

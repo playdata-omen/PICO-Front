@@ -16,7 +16,7 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
   const photographer = useSelector(store => store.auth.photographer)
   const [apply, setApply] = useState({})
 
-  const [chatMessageList, setChatMessageList] = useState([])
+
   const [loading, setLoading] = useState(true)
 
   const confirmEstimateHandler = async (estimateIdx, photographerIdx) => {
@@ -32,10 +32,6 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
   useEffect(() => {
     const fetchData = async () => {
       const applyData = await getApplyDetail(applyIdx)
-      const chatMessageListData = await getChatMessageList(chatRoomIdx)
-      console.log(chatMessageListData)
-      chatMessageListData.sort((a, b) => a.chatMessageIdx - b.chatMessageIdx)
-      setChatMessageList(chatMessageListData)
       setApply(applyData)
       console.log(applyData)
       setLoading(false)
@@ -68,7 +64,7 @@ function ChatContainer({ applyIdx, chatRoomIdx }) {
       }
 
       <div className={styles.bottom}>
-        <ChatWebSocketContainer chatRoomIdx={chatRoomIdx} chatMessageList={chatMessageList} setChatMessageList={setChatMessageList} />
+        <ChatWebSocketContainer chatRoomIdx={chatRoomIdx} />
       </div>
 
     </div>
@@ -101,13 +97,14 @@ const MessageBox = ({ message, userIdx }) => {
   )
 }
 
-const ChatWebSocketContainer = ({ chatRoomIdx, chatMessageList, setChatMessageList }) => {
+const ChatWebSocketContainer = ({ chatRoomIdx }) => {
 
   const userIdx = useSelector(store => store.auth.user.userIdx)
 
   const $websocket = useRef(null);
   const scrollRef = useRef()
 
+  const [chatMessageList, setChatMessageList] = useState([])
   const [message, setMessage] = useState(null)
   const [send, setSend] = useState("")
 
@@ -127,6 +124,16 @@ const ChatWebSocketContainer = ({ chatRoomIdx, chatMessageList, setChatMessageLi
       handleClickSendTo()
     }
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const chatMessageListData = await getChatMessageList(chatRoomIdx)
+      console.log(chatMessageListData)
+      chatMessageListData.sort((a, b) => a.chatMessageIdx - b.chatMessageIdx)
+      setChatMessageList(chatMessageListData)
+    }
+    fetchData()
+  }, [])
 
   useEffect(() => {
     message && setChatMessageList([...chatMessageList, message])

@@ -1,6 +1,7 @@
 import { category_actions } from "../_actions/category_actions"
 import API from "./API"
 
+// 작품 카테고리 릿
 export const fetchCategories = () => {
   return dispatch => {
     dispatch(category_actions.fetchCategoriesRequest)
@@ -15,17 +16,11 @@ export const fetchCategories = () => {
   }
 }
 
+// 작가 프로필 페이지에 출력 될 카테고리 라벨 
 export const getPCategories = async photgrapherIdx => {
   const data = await API.get('getPCategories', photgrapherIdx)
   .then(res => {
     return res.data
-  })
-  .catch(err => {
-    return ([
-      {"categoryIdx":4,"kind":"제품"},
-      {"categoryIdx":5,"kind":"행사"},
-      {"categoryIdx":6,"kind":"기타"},
-    ])
   })
   return data
 }

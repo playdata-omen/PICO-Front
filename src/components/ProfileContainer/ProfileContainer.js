@@ -13,17 +13,22 @@ function ProfileContainer({ user }) {
   const userIdx = useSelector(store => store.auth.user.userIdx)
 
   const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(true)
   const [photographer, setPhotographer] = useState(null)
   const [grade, setGrade] = useState(0)
 
   useEffect(() => {
-    const fetchData = async() => {
-      const photographerData = user.userIdx == userIdx && await getPhotographerDetail(user.userIdx)
-      setPhotographer(photographerData)
-      setGrade(photographerData.grade)
-      console.log(photographerData.grade)
-    }
-    fetchData()
+    setLoading(false)
+  },[])
+
+  useEffect(() => {
+    user.isPhotographer &&
+    getPhotographerDetail(user.userIdx).then(res => {
+      console.log(res)
+      setPhotographer(res)
+      setGrade(res.grade)
+      setLoading(false)
+    })
   }, [user])
 
   const pageBtnContainer = (
@@ -54,6 +59,12 @@ function ProfileContainer({ user }) {
   )
 
   return (
+
+    loading ?
+      <Spinner />
+
+      :
+
       <div className={styles.container}>
         <div className={styles.profileContentContainer}>
 

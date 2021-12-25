@@ -26,3 +26,12 @@ export const getWorkDetail = async (workIdx) => {
     })
   return data
 }
+
+// 작품 삭제
+export const deleteWork = async (workIdx) => {
+  const data = await API.delete(`work/${workIdx}/delete`)
+    .then(res => {
+      return res.data
+    })
+  return data
+}

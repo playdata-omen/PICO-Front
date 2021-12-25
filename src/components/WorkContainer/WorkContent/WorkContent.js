@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './WorkContent.module.css';
+
+import { deleteWork } from '../../../api/Work';
 
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
+import styles from './WorkContent.module.css';
+import { useNavigate } from 'react-router';
 function WorkContent({ work }) {
 
+  let navigate = useNavigate()
+
   const categories = useSelector(store => store.categories.categories)
+  const photographerIdx = useSelector(store => store.auth.photographer.photographerIdx)
   const [category, setCategory] = useState(null)
   const [imageViewer, setImageViewer] = useState(false)
   const [image, setImage] = useState(null)
@@ -15,13 +21,24 @@ function WorkContent({ work }) {
   const handleImageviewer = (photoUrl) => {
     setImageViewer(true)
     setImage(photoUrl)
-    console.log(photoUrl)
+  }
+
+  const handleDeleteWork = async () => {
+    navigate('/')
+    const flag = await deleteWork(work.workIdx)
+    flag ? handleDeleteSuccess(): alert('삭제 실패')
+  }
+
+  const handleDeleteSuccess = () => {
+    alert("삭제성공")
+    navigate("/myPage")
   }
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       const cat = await categories.filter(cat => cat.categoryIdx === work.categoryIdx)[0].kind
       setCategory(cat)
+      console.log(work)
     }
     fetchData()
   }, [])
@@ -35,8 +52,15 @@ function WorkContent({ work }) {
   return (
     <div className={styles.container}>
       <div className={styles.workInfoContainer}>
-        <label><h3>{work.title}</h3></label>
-        {work.content}<br />
+        <div className={styles.workInfoHeader}>
+          <label>{work.title}</label>
+          {
+            work.photographerIdx === photographerIdx &&
+            <button onClick={handleDeleteWork}>작품삭제</button>
+          }
+        </div>
+        <label>{work.content}</label>
+        <br />
       </div>
       <div className={styles.categoryLabel}>
         <label>{category}</label>

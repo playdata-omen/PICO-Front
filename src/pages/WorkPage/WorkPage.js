@@ -11,7 +11,7 @@ function WorkPage() {
 
     <div className={styles.container}>
       <div className={styles.componentContainer}>
-        <WorkContainer workIdx={workIdx}/>
+        <WorkContainer workIdx={workIdx} />
       </div>
     </div>
   )

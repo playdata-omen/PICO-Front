@@ -5,39 +5,23 @@ export const getReviewList = async userIdx => {
     .then(res => {
       return res.data
     })
-    .catch(err => {
-      return (
-        [
-          {
-            "reviewIdx": 1,
-            "created": "2021-12-20T01:00:37.000+0000",
-            "content": "i'm so sad",
-            "grade": 4.6,
-            "user" : {
-              "userIdx" : 1,
-              "name" : "조하운"
-            }
-          },
-          {
-            "reviewIdx": 6,
-            "created": "2021-12-20T08:01:43.000+0000",
-            "content": "i'm so happy i'm so happy i'm so happy",
-            "grade": 4.2,
-            "user" : {
-              "userIdx" : 1,
-              "name" : "마유진"
-            }
-          }
-        ]
-      )
+  return data
+}
+
+export const uploadReview = async (photographerIdx, applyIdx, grade, content) => {
+  const data = API.post('review', {
+    photographerIdx, applyIdx, grade, content
+  })
+    .then(res => {
+      return res.data
     })
   return data
 }
 
-export const UploadReview = async(photographerIdx, applyIdx, grade, content) => {
-  const data = API.post('review', {photographerIdx, applyIdx, grade, content})
-  .then(res => {
-    return res.data
-  })
-  return data
+export const deleteReview = async (reviewIdx, photographerIdx) => {
+  const flag = API.delete(`review/${reviewIdx}/photographer/${photographerIdx}/delete`)
+    .then(res => {
+      return res.data
+    })
+  return flag
 }

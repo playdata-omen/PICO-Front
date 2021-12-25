@@ -36,8 +36,12 @@ function ProfileTop({ user, grade }) {
       <div className={styles.infoContainer}>
         <div className={styles.info}>
           <span>{user.nickName} {user.isPhotographer ? '작가님' : '고객님'}</span>
-          <label>평점 ({grade} / 5)</label>
-          <span><Stars grade={grade} /></span>
+
+          {
+            user.isPhotographer &&
+            <ReviewStarContainer user={user} grade={grade} />
+          }
+
         </div>
         {
           userIdx === user.userIdx ?
@@ -55,3 +59,19 @@ function ProfileTop({ user, grade }) {
 }
 
 export default ProfileTop
+
+const ReviewStarContainer = ({ user, grade }) => {
+  return (
+    grade ?
+      <React.Fragment>
+        <label>평점 ({grade.toFixed(2)} / 5)</label>
+        <span><Stars grade={grade} /></span>
+      </React.Fragment>
+
+      :
+
+      <React.Fragment>
+        <label>아직 리뷰가 없습니다</label>
+      </React.Fragment>
+  )
+}

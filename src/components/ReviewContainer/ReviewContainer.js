@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UploadReview } from '../../api/Review'
+import { uploadReview } from '../../api/Review'
 import { ProgressBar } from '../ProgressBar/ProgressBar'
 import styles from './ReviewContainer.module.css'
 import { Form1, Form2 } from './ReviewForm/ReviewForm'
@@ -17,7 +17,7 @@ function ReviewContainer({ photographerIdx, applyIdx }) {
   const prevPage = () => page > 1 && setPage(page => page - 1)
 
   const submitReview = async() => {
-    const data = await UploadReview(photographerIdx, applyIdx, grade, content)
+    const data = await uploadReview(photographerIdx, applyIdx, grade, content)
     data && alert('review 작성 성공')
   }
 
