@@ -1,16 +1,13 @@
 import React from 'react'
 import styles from '../Cards.module.css'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { useNavigate } from 'react-router';
-import { style } from '@mui/system';
-
 
 function EstimateReqCard({ estimate, apply }) {
 
   return (
     <div>
       {estimate && <EstimateCard estimate={estimate} />}
-      {apply && <ApplyCard apply={apply}/>}
+      {apply && <ApplyCard apply={apply} />}
     </div>
   )
 }
@@ -18,7 +15,7 @@ function EstimateReqCard({ estimate, apply }) {
 export default EstimateReqCard
 
 const EstimateCard = ({ estimate }) => {
-  
+
   const created = estimate.created.split('T')[0]
 
   return (
@@ -40,7 +37,7 @@ const EstimateCard = ({ estimate }) => {
             </div>
           }
           {estimate.status === 3 && "수행중"}
-          {estimate.status === 4 && "수행완료"}
+          {(estimate.status === 4 && estimate.status === 6) && "수행완료"}
         </label>
       </div>
       <div className={styles.cardInfoContainer}>
@@ -55,7 +52,6 @@ const EstimateCard = ({ estimate }) => {
 }
 
 const ApplyCard = ({ apply }) => {
-  console.log(apply.isApplied)
   return (
     <div className={styles.card}>
       <div className={styles.imgContainer}>

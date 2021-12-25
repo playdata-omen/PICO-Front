@@ -6,6 +6,7 @@ import styles from '../Pages.module.css'
 function EstimatePage() {
 
   let { estimateIdx, applyIdx } = useParams()
+
   return (
     <div className={styles.container}>
       <EstimateDetail estimateIdx={estimateIdx} applyIdx={applyIdx} />

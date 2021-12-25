@@ -45,8 +45,14 @@
 }
 
 .info span {
-  padding: 10px;
+  padding-left: 10px;
   font-size: 20px;
+}
+
+.info label {
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 12px;
 }
 
 .updateBtn {

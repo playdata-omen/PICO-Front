@@ -11,7 +11,7 @@ function MyInfoCard({ user }) {
         <AccountBoxIcon fontSize='large' className={styles.profile}/>
       </div>
       <div className={styles.cardInfoContainer}>
-        <span>{user.name}</span>
+        <span>{user.nickName}</span>
         <span>{user.email}</span>
       </div>
       <div className={styles.cardInfoBtn}>

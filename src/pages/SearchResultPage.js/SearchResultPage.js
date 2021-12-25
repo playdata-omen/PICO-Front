@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import styles from '../Pages.module.css'
 
@@ -10,7 +10,7 @@ function SearchResultPage() {
 
   return (
     <div className={styles.container}>
-      <SearchResultContainer type={type} search={search}/>
+      <SearchResultContainer type={type} search={search} />
     </div>
   )
 }

@@ -7,7 +7,7 @@ import styles from '../Pages.module.css'
 
 function ChatRoomPage() {
 
-  let { photographerIdx, applyIdx } = useParams();
+  let { photographerIdx, applyIdx, chatRoomIdx } = useParams();
 
   const [user, setUser] = useState({})
 
@@ -20,7 +20,7 @@ function ChatRoomPage() {
 
   return (
     <div className={styles.container}>
-      <ChatRoomContainer user={user} applyIdx={applyIdx}/>
+      <ChatRoomContainer user={user} applyIdx={applyIdx} chatRoomIdx={chatRoomIdx}/>
     </div>
   )
 }

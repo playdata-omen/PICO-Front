@@ -5,8 +5,9 @@ export const getRecommendList = async image => {
   formData.append("userFile", image);
   const data = await AI_API.post('searchImage', formData)
     .then(res => {
-      return res.data
+      return res.data;
     }).catch(err => {
+      console.log(err);
     })
 
   return data

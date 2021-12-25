@@ -6,18 +6,30 @@ import styles from './ProfileContainer.module.css'
 import Review from './Contents/Review/Review'
 import { useSelector } from 'react-redux'
 import { getPhotographerDetail } from '../../api/User'
+import Spinner from '../Spinner/Spinner'
 
 function ProfileContainer({ user }) {
+
   const userIdx = useSelector(store => store.auth.user.userIdx)
-  
+
   const [page, setPage] = useState(1)
-  const [photographer, setPhotograpHer] = useState({})
   const [loading, setLoading] = useState(true)
-  
-  useEffect(async() => {
-    console.log(user)
-    user.isPhotographer && setPhotograpHer(await getPhotographerDetail(user.useridx))
-  })
+  const [photographer, setPhotographer] = useState(null)
+  const [grade, setGrade] = useState(0)
+
+  useEffect(() => {
+    setLoading(false)
+  },[])
+
+  useEffect(() => {
+    user.isPhotographer &&
+    getPhotographerDetail(user.userIdx).then(res => {
+      console.log(res)
+      setPhotographer(res)
+      setGrade(res.grade)
+      setLoading(false)
+    })
+  }, [user])
 
   const pageBtnContainer = (
     <div className={styles.pageBtnContainer}>
@@ -48,21 +60,26 @@ function ProfileContainer({ user }) {
 
   return (
 
-    <div className={styles.container}>
-      <div className={styles.profileContentContainer}>
+    loading ?
+      <Spinner />
 
-        <ProfileTop user={user} grade={photographer.grade} />
+      :
 
-        {pageBtnContainer}
+      <div className={styles.container}>
+        <div className={styles.profileContentContainer}>
 
-        <div>
-          {page === 1 && <Info user={user} />}
-          {(page === 2 && user.isPhotographer) && <Work user={user} />}
-          {(page === 3 && user.isPhotographer) && <Review user={user} />}
+          <ProfileTop user={user} grade={grade} />
+
+          {pageBtnContainer}
+
+          <div>
+            {page === 1 && <Info user={user} />}
+            {(page === 2 && user.isPhotographer) && <Work user={user} />}
+            {(page === 3 && user.isPhotographer) && <Review user={user} />}
+          </div>
+
         </div>
-
       </div>
-    </div>
   )
 }
 

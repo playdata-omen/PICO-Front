@@ -3,6 +3,7 @@ import { auth_actions } from '../_actions/auth_action.js'
 import { ACCESS_TOKEN } from "../constants"
 import { getPhotographerDetail } from "./User"
 
+// 로그인
 export const getUser = (navigate, code, provider) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
@@ -22,12 +23,12 @@ export const getUser = (navigate, code, provider) => {
     .catch(err => {
       alert(err.message)
       dispatch(auth_actions.fetchUserFailure(err.message))
-      console.log('test2')
       navigate('/login')
     })
   }
 }
 
+// 회원가입/ 정보수정
 export const registerUser = (userIdx, name, nickName, email, phone, isPhotographer, isRegister) => {
   return dispatch => {
     console.log(userIdx)
@@ -51,6 +52,7 @@ export const registerUser = (userIdx, name, nickName, email, phone, isPhotograph
   }
 }
 
+// 작가 등록
 export const registerPhotographer = (userIdx, activityCity, activityAddress, category, hasStudio, isOtherArea, studioAddress, studioCity) => {
   return dispatch => {
     dispatch(auth_actions.fetchUserRequest)
@@ -73,17 +75,3 @@ export const registerPhotographer = (userIdx, activityCity, activityAddress, cat
     })
   }
 }
-
-// {
-//   "activityAddress": "string",
-//   "activityCity": "string",
-//   "category": [
-//     0
-//   ],
-//   "hasStudio": true,
-//   "isOtherArea": true,
-//   "photographerIdx": 0,
-//   "studioAddress": "string",
-//   "studioCity": "string",
-//   "userIdx": 0
-// }

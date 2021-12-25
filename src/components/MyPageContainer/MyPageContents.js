@@ -22,16 +22,16 @@ function MyPageContents({ user }) {
     )
   }
 
-
-
-  useEffect(async () => {
-    const estimateData = await getEstimateReqList();
-    const applyListData = await getApplyList()
-    // console.log(data)
-    setEstimates(estimateData)
-    setApplyList(applyListData)
-    console.log(applyList)
-    setLoading(false)
+  useEffect(() => {
+    const fetchData = async () => {
+      const estimateData = await getEstimateReqList();
+      const applyListData = await getApplyList()
+      setEstimates(estimateData)
+      setApplyList(applyListData)
+      setLoading(false)
+      console.log(applyListData)
+    }
+    fetchData()
   }, [])
 
   return (
@@ -56,20 +56,6 @@ function MyPageContents({ user }) {
         <div className={styles.cardList}>
           {applyList.length !== 0 && <ApplyCardsContainer applyList={applyList} />}
         </div>
-
-        {/* {
-          user.isPhotographer &&
-          <div className={styles.cardList}>
-            <label>의뢰지원</label>
-            {
-              applyList.map(apply =>
-                <div onClick={() => estimateDetailPage(apply.estimateIdx, apply.applyIdx)}>
-                  <EstimateReqCard apply={apply} />
-                </div>
-              )
-            }
-          </div>
-        } */}
       </div>
 
   )
@@ -102,14 +88,18 @@ const EstimateCardsContainer = ({ estimates }) => {
     </div>
   )
 }
+
 const ApplyCardsContainer = ({ applyList }) => {
 
   let navigate = useNavigate();
 
-  const estimateDetailPage = (estimateIdx, applyIdx) => {
+  const estimateDetailPage = (applyStatus, estimateIdx, applyIdx) => {
     setTimeout(
       function () {
-        navigate(`/estimate/${estimateIdx}/${applyIdx}`)
+        (applyStatus !== 6 && applyStatus !== 7) ?
+          navigate(`/estimate/${estimateIdx}/${applyIdx}`)
+          :
+          alert("더 이상 접근할 수 없습니다")
       }, 500
     )
   }
@@ -119,7 +109,7 @@ const ApplyCardsContainer = ({ applyList }) => {
       <label>의뢰요청서</label>
       {
         applyList.map(apply =>
-          <div onClick={() => estimateDetailPage(apply.estimateIdx, apply.applyIdx)}>
+          <div onClick={() => estimateDetailPage(apply.status, apply.estimateIdx, apply.applyIdx)}>
             <EstimateReqCard apply={apply} />
           </div>
         )
