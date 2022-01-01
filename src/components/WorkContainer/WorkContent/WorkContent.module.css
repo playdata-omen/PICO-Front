@@ -17,11 +17,11 @@
   justify-content: space-between;
 }
 
-.workInfoHeader label{
+.workInfoHeader label {
   font-weight: 700;
 }
 
-.workInfoHeader button{
+.workInfoHeader button {
   position: absolute;
   right: 20%;
   margin-right: 20px;
@@ -35,7 +35,7 @@
   font-size: 12px;
 }
 
-.workInfoHeader button:hover{
+.workInfoHeader button:hover {
   box-shadow: 0 0 0 3px var(--primary-color);
 }
 
@@ -68,7 +68,6 @@
   overflow: hidden;
   border-radius: 10px;
   aspect-ratio: 1/1;
-  /* border: 1px solid red; */
   box-shadow: 0 0 0 1px var(--primary-color) inset;
 }
 
@@ -130,21 +129,22 @@
   cursor: pointer;
   width: 100%;
   padding: 10px;
-  color:var(--primary-color);
+  color: var(--primary-color);
 }
 
 .btnContainer label * {
-  color:var(--primary-color);
+  color: var(--primary-color);
 }
 
 .btnContainer label:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
-  color:var(--primary-color);
+  color: var(--primary-color);
 }
 
-@media screen and (width<=768px){
-  .imgContainer, .btnContainer {
+@media screen and (width<=768px) {
+  .imgContainer,
+  .btnContainer {
     width: 100%;
   }
 }

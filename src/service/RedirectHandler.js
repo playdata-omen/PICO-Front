@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from "react-router"
-import Spinner from '../components/Spinner/Spinner'
-import { Navigate } from 'react-router'
-
-
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import Spinner from '../components/Spinner/Spinner';
+import { Navigate } from 'react-router';
 
 export const ErrRedirectHandler = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/err')
-  }, [])
+    navigate('/err');
+  }, []);
 
-  return (
-    <div>
-    </div>
-  )
-}
-
+  return <div></div>;
+};
