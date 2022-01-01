@@ -74,7 +74,7 @@ function RegForm() {
   }
 
   const handleRegister = () => {
-    dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer, user.register))
+    dispatch(auth_actions.registerUser(user.userIdx, name, nickName, email, phone, isPhotographer, user.isRegister))
 
     isPhotographer &&
       dispatch(auth_actions.registerPhotographer(

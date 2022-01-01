@@ -1,11 +1,9 @@
-import axios from 'axios'
-import { ACCESS_TOKEN, SERVER_URL } from '../constants'
-import RedirectHandler from '../service/RedirectHandler';
-import { useNavigate } from "react-router"
+import axios from 'axios';
+import { ACCESS_TOKEN, SERVER_URL } from '../constants';
 
 const API = axios.create({
   baseURL: SERVER_URL,
-})
+});
 
 const getToken = async () => {
   const token = localStorage.getItem(ACCESS_TOKEN);
@@ -16,27 +14,26 @@ const getToken = async () => {
   }
 };
 
-API.interceptors.request.use(async config => {
-  config.headers["content-type"] = "application/json; charset=utf-8";
-  config.headers["X-Requested-With"] = "XMLHttpRequest";
-  config.headers["Accept"] = "*/*";
+API.interceptors.request.use(async (config) => {
+  config.headers['content-type'] = 'application/json; charset=utf-8';
+  config.headers['X-Requested-With'] = 'XMLHttpRequest';
+  config.headers['Accept'] = '*/*';
   //getToken는 로컬 스토리지에 토큰이 있다면 반환한다 없다면 null 값 반환
-  config.headers["authorization"] = await getToken();
+  config.headers['authorization'] = await getToken();
   return config;
 });
 
 API.interceptors.response.use(
-  response => {
-    return response
+  (response) => {
+    return response;
   },
-  error => {
+  (error) => {
     if (!error.response) {
-      alert(error.message)
-      // RedirectHandler()
+      alert(error.message);
     }
-    return Promise.reject(error)
-  }
-)
+    return Promise.reject(error);
+  },
+);
 
 // API.interceptors.request.use(config => {
 //   /* some logic */
@@ -46,7 +43,6 @@ API.interceptors.response.use(
 //     cancelToken: new CancelToken((cancel) => cancel('Cancel repeated request'))
 //   };
 // });
-
 
 // API.interceptors.response.use(
 //   response => response,
@@ -67,4 +63,4 @@ API.interceptors.response.use(
 //   return response;
 // });
 
-export default API
+export default API;

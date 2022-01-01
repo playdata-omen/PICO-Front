@@ -33,7 +33,7 @@ function ReviewContainer({ photographerIdx, applyIdx }) {
       <div className={styles.formBtnContainer}>
         {page > 1 && <button className={styles.formBtn} onClick={prevPage}>이전</button>}
         {page < 2 && <button className={styles.formBtn} onClick={nextPage}>다음</button>}
-        {page == 2 && <button className={styles.formBtn} onClick={submitReview}>견적요청 제출</button>}
+        {page == 2 && <button className={styles.formBtn} onClick={submitReview}>리뷰 작성</button>}
       </div>
 
     </div>

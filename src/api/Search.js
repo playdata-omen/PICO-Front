@@ -5,30 +5,6 @@ export const categorySearch = async (categoryIdx) => {
     .then(res => {
       return res.data
     })
-    .catch(err => {
-      return (
-        [
-          {
-            "photographerIdx": 1,
-            "user": {
-              "userIdx": 1,
-              "name": "임우송",
-              "email": "kingdomduner@gmail.com",
-              "isPhotographer": true
-            }
-          },
-          {
-            "photographerIdx": 2,
-            "user": {
-              "userIdx": 11,
-              "name": "김지명",
-              "email": "kim-pick@gmail.com",
-              "isPhotographer": true
-            }
-          },
-        ]
-      )
-    })
   return data
 }
 

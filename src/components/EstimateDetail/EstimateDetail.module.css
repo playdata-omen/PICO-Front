@@ -65,7 +65,7 @@
   box-shadow: 0 0 0 3px var(--primary-color) inset;
 }
 
-.cardsContainer label{
+.cardsContainer label {
   display: block;
   padding: 10px;
   font-weight: 700;
@@ -75,8 +75,8 @@
   padding: 10px;
 }
 
-@media screen and (width<=768px){
-  .container{
+@media screen and (width<=768px) {
+  .container {
     width: 90%;
   }
 
