@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react'
-
+import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 const Stars = ({ grade }) => {
-
-  const fullStar = grade && [...Array(Math.floor(grade))].map((e, i) => <StarIcon key={i} />)
-  const halfStar = grade && [...Array(Math.ceil(grade) - Math.floor(grade))].map((e, i) => <StarHalfIcon key={i} />)
-  const voidStar = grade && [...Array(5 - Math.ceil(grade))].map((e, i) => <StarOutlineIcon key={i} />)
+  const fullStar = grade && [...Array(Math.floor(grade))].map((e, i) => <StarIcon key={i} />);
+  const halfStar = grade && [...Array(Math.ceil(grade) - Math.floor(grade))].map((e, i) => (<StarHalfIcon key={i} />));
+  const voidStar = grade && [...Array(5 - Math.ceil(grade))].map((e, i) => <StarOutlineIcon key={i} />);
 
   return (
-    grade ?
-
+    grade &&
+    (
       <div>
         {fullStar}{halfStar}{voidStar}
       </div>
-
-      :
-
-      <div />
+    )
   )
-}
+};
 
-export default Stars
+export default Stars;

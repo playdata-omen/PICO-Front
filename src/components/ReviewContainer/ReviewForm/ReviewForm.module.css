@@ -85,7 +85,7 @@
   transition: ease-out 300ms;
 }
 
-.category input[type=radio] {
+.category input[type='radio'] {
   display: none;
 }
 
@@ -116,7 +116,7 @@
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
-.category input[type=radio]:checked + .categoryBtn {
+.category input[type='radio']:checked + .categoryBtn {
   border-radius: 50%;
 }
 
@@ -124,12 +124,12 @@
   background-color: var(--secondary-color);
 }
 
-@media screen and (width<=768px){
-  .container{
+@media screen and (width<=768px) {
+  .container {
     min-height: 60vh;
     height: fit-content;
   }
-  
+
   .category {
     padding-left: 0px;
     padding-right: 0px;

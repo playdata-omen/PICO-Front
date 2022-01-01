@@ -27,7 +27,7 @@ function ReviewCard({review}) {
         <span>{review.content}</span>
         <Stars grade={review.grade}/>
       </div>
-      <div>
+      <div className={styles.delBtn}>
         {
           userIdx === review.user.userIdx &&
           <button onClick={handleDeleteReview}>삭제</button>

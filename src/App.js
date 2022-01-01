@@ -28,48 +28,48 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route exact path="/" element={<MainPage />}/>
-        <Route exact path="/login" element={<LoginPage />}/>
-        <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />}/>
-        <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />}/>
-        <Route exact path="/register" element={<RegisterPage />}/>
-        <Route exact path="/imageSearch" element={<ImageSearchPage />}/>
-        <Route exact path="/work/:workIdx" element={<WorkPage />}/>
-        <Route exact path="/profile/:photographerIdx" element={<ProfilePage />}/>
-        <Route 
+        <Route exact path="/" element={<MainPage />} />
+        <Route exact path="/login" element={<LoginPage />} />
+        <Route exact path="/oauth/callback/*" element={<OauthRedirectHandler />} />
+        <Route exact path="/searchResult/:type/:search" element={<SearchResultPage />} />
+        <Route exact path="/register" element={<RegisterPage />} />
+        <Route exact path="/imageSearch" element={<ImageSearchPage />} />
+        <Route exact path="/work/:workIdx" element={<WorkPage />} />
+        <Route exact path="/profile/:photographerIdx" element={<ProfilePage />} />
+        <Route
           exact path="/myPage"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
-              <MyPage user={auth.user}/>
+              <MyPage user={auth.user} />
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           exact path="/myPage/profile"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
               {/* <ProfilePage />        */}
-              <ProfilePage user={auth.user}/>       
+              <ProfilePage user={auth.user} />
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           path="/user/update"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
-              <ProfileUpdatePage user={auth.user}/>
+              <ProfileUpdatePage user={auth.user} />
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           exact path="/estimate/:estimateIdx/:applyIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
-              <EstimatePage/>
+              <EstimatePage />
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           exact path="/chat/:photographerIdx/:applyIdx/:chatRoomIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
@@ -77,7 +77,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           exact path="/estimateRequest"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
@@ -85,7 +85,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           path="/estimateRequest/:photographerIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
@@ -94,7 +94,7 @@ function App() {
 
           }
         />
-        <Route 
+        <Route
           path="/uploadWork"
           element={
             <PrivateRoute authenticated={auth.authenticated}>
@@ -102,7 +102,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route 
+        <Route
           path="/review/:photographerIdx/:applyIdx"
           element={
             <PrivateRoute authenticated={auth.authenticated}>

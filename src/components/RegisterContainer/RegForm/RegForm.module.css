@@ -13,12 +13,14 @@
   transition: ease-out 300ms;
 }
 
-.formContainer input[type=text], .formContainer select {
+.formContainer input[type='text'],
+.formContainer select {
   border: none;
   box-shadow: 0 0 0 1px var(--primary-color) inset;
 }
 
-.formContainer input[type=text]:focus, .formContainer select:focus {
+.formContainer input[type='text']:focus,
+.formContainer select:focus {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
@@ -33,7 +35,7 @@
 
 .inputContainer label {
   /* border: 1px solid burlywood; */
-  padding-top:10px;
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 
@@ -73,7 +75,8 @@
   align-content: center;
 }
 
-.categoryBtn, .radioBtn {
+.categoryBtn,
+.radioBtn {
   /* padding-top: 100% */
   aspect-ratio: 1/1;
 }
@@ -89,7 +92,8 @@
   align-items: center;
 }
 
-.categoryRadio input[type=radio], .radio input[type=radio] {
+.categoryRadio input[type='radio'],
+.radio input[type='radio'] {
   display: none;
 }
 
@@ -103,7 +107,8 @@
   top: 20%;
 }
 
-.categoryBtn, .submitBtn {
+.categoryBtn,
+.submitBtn {
   width: 100%;
   cursor: pointer;
   background-color: var(--primary-color);
@@ -125,29 +130,33 @@
   font-size: small;
 }
 
-.categoryBtn:hover, .submitBtn:hover, .radioBtn:hover {
+.categoryBtn:hover,
+.submitBtn:hover,
+.radioBtn:hover {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
-.radioContainer input[type=radio]:checked + .categoryBtn {
+.radioContainer input[type='radio']:checked + .categoryBtn {
   border-radius: 50%;
 }
 
-.radioBtn:active, .categoryBtn:active, .submitBtn:active {
+.radioBtn:active,
+.categoryBtn:active,
+.submitBtn:active {
   background-color: var(--secondary-color);
 }
 
-.radioContainer input[type=radio]:checked + .radioBtn  {
+.radioContainer input[type='radio']:checked + .radioBtn {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
-@media (width<=1180px){
+@media (width<=1180px) {
   .formContainer {
     width: 80%;
   }
 }
 
-@media screen and (width<=768px){
+@media screen and (width<=768px) {
   .formContainer {
     width: 100%;
   }
@@ -160,6 +169,6 @@
   .categoryRadio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 5px
+    grid-gap: 5px;
   }
 }

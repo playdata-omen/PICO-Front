@@ -9,7 +9,7 @@
   width: 60%;
 }
 
-@media screen and (width<=768px){
+@media screen and (width<=768px) {
   .componentContainer {
     width: 90%;
   }

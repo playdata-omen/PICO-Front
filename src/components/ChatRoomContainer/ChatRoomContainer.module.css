@@ -12,22 +12,20 @@
 .chatContainer {
   overflow: hidden;
   width: 100%;
-  /* border: 1px solid red; */
 }
 
 .profileContainer {
   width: 40%;
   overflow: scroll;
-  /* border: 1px solid red; */
 }
 
-@media screen and (width<=1208px){
-  .chatContainer{
+@media screen and (width<=1208px) {
+  .chatContainer {
     width: 60%;
-  } 
+  }
 }
 
-@media screen and (width<=768px){
+@media screen and (width<=768px) {
   .container {
     width: 90%;
     flex-direction: column;
@@ -36,7 +34,7 @@
   .chatContainer {
     width: 100%;
   }
-  
+
   .profileContainer {
     display: none;
   }
@@ -45,7 +43,8 @@
     display: flex;
   }
 
-  .pageBtnContainer div, .pageBtnContainer button {
-    width: 100%
+  .pageBtnContainer div,
+  .pageBtnContainer button {
+    width: 100%;
   }
 }

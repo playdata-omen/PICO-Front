@@ -27,12 +27,12 @@
   background-color: var(--primary-color);
 }
 
-.top button:hover, .sendBtn:hover {
+.top button:hover,
+.sendBtn:hover {
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
 .bottom {
-  /* border: 1px solid red; */
   overflow: scroll;
   display: grid;
   grid-template-rows: 9fr 1fr;
@@ -40,7 +40,6 @@
 }
 
 .read {
-  /* border: 1px solid red; */
   padding: 10px;
   height: fill-available;
   display: flex;
@@ -53,11 +52,12 @@
   display: block;
   height: fill-available;
   padding: 10px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   box-shadow: 0 0 0 1px var(--primary-color) inset;
 }
 
-.myMessage, .otherMessage {
+.myMessage,
+.otherMessage {
   display: flex;
   padding-bottom: 10px;
 }
@@ -66,7 +66,7 @@
   justify-content: flex-start;
   text-align: left;
 }
- 
+
 .myMessage {
   justify-content: flex-end;
   text-align: right;

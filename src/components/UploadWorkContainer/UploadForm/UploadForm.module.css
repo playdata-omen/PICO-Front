@@ -1,7 +1,6 @@
 .container {
   padding: 10px;
   height: 60vh;
-  /* border: 1px dashed red; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,13 +9,11 @@
 .container label {
   padding: 10px;
   font-size: 20px;
-  /* border: 1px dashed red; */
 }
 
 /* Form 1 Category */
 .contentContainer {
   height: 100%;
-  /* border: 1px dashed red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +63,7 @@
   transition: ease-out 300ms;
 }
 
-.category input[type=radio] {
+.category input[type='radio'] {
   display: none;
 }
 
@@ -97,7 +94,7 @@
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
-.category input[type=radio]:checked + .categoryBtn {
+.category input[type='radio']:checked + .categoryBtn {
   border-radius: 50%;
 }
 
@@ -135,7 +132,6 @@
 .image {
   margin-top: 20px;
   width: 100%;
-  /* border: 1px solid red; */
 }
 
 .image img {
@@ -144,12 +140,12 @@
   box-shadow: 0 0 0 1px var(--primary-color);
 }
 
-@media screen and (width<=768px){
-  .container{
+@media screen and (width<=768px) {
+  .container {
     min-height: 60vh;
     height: fit-content;
   }
-  
+
   .category {
     padding-left: 0px;
     padding-right: 0px;

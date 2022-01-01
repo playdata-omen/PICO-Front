@@ -24,6 +24,7 @@ export const reqEstimate = async (navigate, categoryIdx, content, city, address,
   startDate = startDate.replace(re1, '-').replace(re2, '')
   endDate = endDate.replace(re1, '-').replace(re2, '')
   photographerIdx = !!photographerIdx ? photographerIdx : 0
+  console.log(photographerIdx)
   await API.post('estimate', {
     categoryIdx, content, city, address, startDate, endDate, photographerIdx
   })

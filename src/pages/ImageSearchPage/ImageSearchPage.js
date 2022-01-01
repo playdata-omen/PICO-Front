@@ -1,5 +1,5 @@
-import styles from '../Pages.module.css'
-import ImageSearchContainer from '../../components/ImageSearchContainer/ImageSearchContainer'
+import styles from '../Pages.module.css';
+import ImageSearchContainer from '../../components/ImageSearchContainer/ImageSearchContainer';
 
 function ImageSearchPage() {
   return (
@@ -8,7 +8,7 @@ function ImageSearchPage() {
         <ImageSearchContainer />
       </div>
     </div>
-  ) 
+  );
 }
 
-export default ImageSearchPage
+export default ImageSearchPage;

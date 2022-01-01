@@ -14,7 +14,8 @@
   box-shadow: 0 0 0 3px var(--secondary-color) inset;
 }
 
-.plus, .plus2 {
+.plus,
+.plus2 {
   position: absolute;
   background-color: var(--secondary-color);
   border-radius: 2.5px;
@@ -26,7 +27,7 @@
   transform: translateY(27px) translateX(15px);
 }
 
-.plus2{
+.plus2 {
   width: 6px;
   height: 30px;
   transform: translateY(15px) translateX(27px);
@@ -42,8 +43,6 @@
   transform: translateY(15px) translateX(15px);
 }
 
-.btnFrame:active > .active{
+.btnFrame:active > .active {
   background-color: var(--secondary-color);
 }
-
-

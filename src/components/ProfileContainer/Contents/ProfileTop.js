@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import Stars from '../../Stars/Stars'
 
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
 
 
 function ProfileTop({ user, grade }) {
@@ -31,7 +32,7 @@ function ProfileTop({ user, grade }) {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <img src="https://i.smalljoys.me/2020/04/img_5e96ad75617c7.png?w=615&ssl=1&strip=all" alt='프로필 사진' />
+        <AccountBoxIcon fontSize='large' className={styles.profile} />
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.info}>
