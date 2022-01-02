@@ -106,10 +106,7 @@ const ChatWebSocketContainer = ({ chatRoomIdx }) => {
   const [send, setSend] = useState('');
 
   const handleClickSendTo = () => {
-    $websocket.current.sendMessage(
-      `/sendTo/${chatRoomIdx}/${send}/${localStorage.getItem(ACCESS_TOKEN)}`,
-      send,
-    );
+    $websocket.current.sendMessage(`/sendTo/${chatRoomIdx}/${send}/${localStorage.getItem(ACCESS_TOKEN)}`, send);
     setSend('');
   };
 
