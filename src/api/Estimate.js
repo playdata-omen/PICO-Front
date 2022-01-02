@@ -19,8 +19,18 @@ export const getEstimateDetail = async (estimateIdx) => {
 export const reqEstimate = async (navigate, categoryIdx, content, city, address, startDate, endDate, photographerIdx) => {
   let re1 = /\.\s/gi; // ". "
   let re2 = /\./gi; // "."
-  startDate = startDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
-  endDate = endDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
+
+  const dateStrRefactor = (date) => {
+    let re1 = /\.\s/gi; // ". "
+    let re2 = /\./gi; // "."
+    return date.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
+  };
+
+
+  startDate = dateStrRefactor(startDate)
+  endDate = dateStrRefactor(endDate)
+  // startDate = startDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
+  // endDate = endDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
 
 
   photographerIdx = !!photographerIdx ? photographerIdx : 0;
