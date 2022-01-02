@@ -1,6 +1,5 @@
 import API from './API';
 
-//token.user.userIdx
 export const getEstimateReqList = async () => {
   const data = await API.get('estimate').then((res) => {
     return res.data;
@@ -15,10 +14,8 @@ export const getEstimateDetail = async (estimateIdx) => {
   return data;
 };
 
-// 경적요청
+// 견적요청
 export const reqEstimate = async (navigate, categoryIdx, content, city, address, startDate, endDate, photographerIdx) => {
-  let re1 = /\.\s/gi; // ". "
-  let re2 = /\./gi; // "."
 
   const dateStrRefactor = (date) => {
     let re1 = /\.\s/gi; // ". "
@@ -26,12 +23,8 @@ export const reqEstimate = async (navigate, categoryIdx, content, city, address,
     return date.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
   };
 
-
   startDate = dateStrRefactor(startDate)
   endDate = dateStrRefactor(endDate)
-  // startDate = startDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
-  // endDate = endDate.replace(re1, '-').replace(re2, '').split('-').map(v => v = v.length < 2 ? '0' + v : v).join('-');
-
 
   photographerIdx = !!photographerIdx ? photographerIdx : 0;
   console.log(photographerIdx);
