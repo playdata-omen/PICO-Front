@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+.dropzoneAccept {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--accept-color);
+  border-radius: 10px;
+}
+
+.dropzoneReject {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--reject-color);
+  border-radius: 10px;
+}
+
+
+
+

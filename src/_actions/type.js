@@ -1,3 +1,13 @@
 // auth_actions
-export const LOGIN = 'LOGIN'
-export const LOGOUT = 'LOGOUT'
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+
+export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const FETCH_PHTOGRAPHER_SUCCESS = 'FETCH_PHTOGRAPHER_SUCCESS';
+
+// category_actions
+export const FETCH_CATEGORY_REQUEST = 'FETCH_CATEGORY_REQUEST';
+export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
+export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';

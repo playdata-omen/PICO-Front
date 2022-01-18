@@ -1,0 +1,29 @@
+.container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px dashed red; */
+  text-align: left;
+  margin-top: 50px;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardList label {
+  font-weight: 700;
+  padding: 10px;
+}
+
+.cardBtn {
+  cursor: pointer;
+}
+
+@media screen and (width<=768px){
+  .container{
+    width: 90%;
+  }
+}

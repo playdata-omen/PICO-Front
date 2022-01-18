@@ -1,0 +1,65 @@
+.container {
+  padding: 20px;
+}
+
+.basicInfoContainer {
+  margin-top: 50px;
+  text-align: left;
+}
+
+.basicInfoContainer label {
+  font-weight: 700;
+}
+
+.basicInfoContainer ul{
+  padding: 0px;
+  margin-bottom: 100px;
+}
+
+.basicInfoContainer li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  list-style: none;
+}
+
+.categoryContainer {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.categoryLabel {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.btn {
+  margin-top: 120px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.btn span {
+  font-size: 12px;
+  color: grey;
+  margin-top: 20px;
+}
+

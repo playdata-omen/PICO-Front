@@ -1,0 +1,50 @@
+.container {
+  margin-top: 50px;
+  width: 90%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  border-radius: 10px;
+  scroll-behavior: smooth;
+}
+
+.chatContainer {
+  overflow: hidden;
+  width: 100%;
+}
+
+.profileContainer {
+  width: 40%;
+  overflow: scroll;
+}
+
+@media screen and (width<=1208px) {
+  .chatContainer {
+    width: 60%;
+  }
+}
+
+@media screen and (width<=768px) {
+  .container {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .chatContainer {
+    width: 100%;
+  }
+
+  .profileContainer {
+    display: none;
+  }
+
+  .pageBtnContainer {
+    display: flex;
+  }
+
+  .pageBtnContainer div,
+  .pageBtnContainer button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,121 @@
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  border-right: 1px solid var(--primary-color);
+}
+
+.container * {
+  transition: ease 300ms;
+}
+
+.top {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.top button {
+  cursor: pointer;
+  width: 100px;
+  padding: 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+}
+
+.top button:hover,
+.sendBtn:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.bottom {
+  overflow: scroll;
+  display: grid;
+  grid-template-rows: 9fr 1fr;
+  max-height: fill-available;
+}
+
+.read {
+  padding: 10px;
+  height: fill-available;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.chat {
+  display: block;
+  height: fill-available;
+  padding: 10px;
+  overflow-y: scroll;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
+.myMessage,
+.otherMessage {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.otherMessage {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.myMessage {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.box {
+  width: 200px;
+  padding: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.27);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.box label {
+  font-weight: 700;
+}
+
+.send {
+  padding: 10px;
+  min-height: 50px;
+  border-top: 1px solid var(--primary-color);
+}
+
+.textArea {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.textArea textarea {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.sendBtn {
+  margin-left: 10px;
+  cursor: pointer;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.sendBtn * {
+  padding-left: 5%;
+  padding-top: 25%;
+}

@@ -1,0 +1,150 @@
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container * {
+  transition: ease 300ms;
+}
+
+.workInfoContainer {
+  text-align: left;
+}
+
+.workInfoHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workInfoHeader label {
+  font-weight: 700;
+}
+
+.workInfoHeader button {
+  position: absolute;
+  right: 20%;
+  margin-right: 20px;
+  cursor: pointer;
+  display: block;
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.workInfoHeader button:hover {
+  box-shadow: 0 0 0 3px var(--primary-color);
+}
+
+.categoryLabel {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.categoryLabel label {
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.workImgContainer {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.workImgContainer * {
+  transition: ease 300ms;
+}
+
+.imgCard {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 1/1;
+  box-shadow: 0 0 0 1px var(--primary-color) inset;
+}
+
+.imgCard img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  z-index: -3;
+}
+
+.imgCard:hover {
+  box-shadow: 0 0 0 3px var(--secondary-color) inset;
+}
+
+.imageViewerContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.imageViewerContainer * {
+  transition: ease 300ms;
+}
+
+.imageViewer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.imgContainer {
+  cursor: pointer;
+  width: 80%;
+  overflow: hidden;
+}
+
+.imageViewer img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.btnContainer {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btnContainer label {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  color: var(--primary-color);
+}
+
+.btnContainer label * {
+  color: var(--primary-color);
+}
+
+.btnContainer label:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--primary-color);
+}
+
+@media screen and (width<=768px) {
+  .imgContainer,
+  .btnContainer {
+    width: 100%;
+  }
+}

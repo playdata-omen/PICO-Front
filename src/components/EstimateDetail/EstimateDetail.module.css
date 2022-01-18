@@ -1,0 +1,86 @@
+@import url('../../constants/colors.css');
+
+.container {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px dashed red; */
+  text-align: left;
+  margin-top: 50px;
+}
+
+.container * {
+  transition: ease 300ms;
+}
+
+.requestInfoContainer {
+  /* background-color: var(--primary-color); */
+  box-shadow: 0 0 0 1px var(--primary-color);
+  border-radius: 10px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.estimateHeader {
+  width: 200px;
+  font-weight: 700;
+}
+
+.requestInfoContainer label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.categoryLabel {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.categoryLabel label {
+  width: 100px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.info {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.info button {
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  padding: 10px;
+}
+
+.info button:hover {
+  box-shadow: 0 0 0 3px var(--primary-color) inset;
+}
+
+.cardsContainer label {
+  display: block;
+  padding: 10px;
+  font-weight: 700;
+}
+
+.cardsContainer span {
+  padding: 10px;
+}
+
+@media screen and (width<=768px) {
+  .container {
+    width: 90%;
+  }
+
+  .requestInfoContainer {
+    border-radius: 5px;
+  }
+}
