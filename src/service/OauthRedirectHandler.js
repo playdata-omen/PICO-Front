@@ -6,7 +6,7 @@ import { auth_actions } from '../_actions/auth_action';
 
 function OauthRedirectHandler() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   // respons code 받기
   let url = new URL(window.location.href);

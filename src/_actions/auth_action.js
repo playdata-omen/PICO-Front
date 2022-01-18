@@ -1,7 +1,6 @@
 // action type
 import { getUser, registerPhotographer, registerUser } from '../api/Auth';
-import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_PHTOGRAPHER_SUCCESS,
-} from './type';
+import { LOGIN, LOGOUT, FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, FETCH_PHTOGRAPHER_SUCCESS } from './type';
 
 // action creator
 // simply creates an action
