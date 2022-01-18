@@ -3,6 +3,7 @@ import { auth_actions } from '../_actions/auth_action.js';
 import { ACCESS_TOKEN } from '../constants';
 import { getPhotographerDetail } from './User';
 
+
 // 로그인
 export const getUser = (navigate, code, provider) => {
   return (dispatch) => {
@@ -12,7 +13,6 @@ export const getUser = (navigate, code, provider) => {
       provider,
     })
       .then(async (res) => {
-        console.log(res.data);
         const user = res.data;
         localStorage.setItem(ACCESS_TOKEN, user.accessToken);
         dispatch(auth_actions.fetchUserSuccess(user));

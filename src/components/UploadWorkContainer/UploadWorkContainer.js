@@ -49,7 +49,7 @@ function UploadWorkContainer() {
     images.forEach(async (image) => {
       setConverted([
         ...converted,
-        await getBase64(image, converted, setConverted),
+        await getBase64(image),
       ]);
     });
     console.log(converted);
